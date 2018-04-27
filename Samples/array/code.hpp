@@ -46,10 +46,10 @@ struct A : std::array< T, N > {
         : std::array< T, N >(convert_array< T >(a)) {}
     
     constexpr A(const A& a) noexcept = default;
-	constexpr A(A&& a) noexcept = default;
+    constexpr A(A&& a) noexcept = default;
     ~A() = default;
-	constexpr A& operator=(const A& a) noexcept = default;
-	constexpr A& operator=(A&& a) noexcept = default;
+    constexpr A& operator=(const A& a) noexcept = default;
+    constexpr A& operator=(A&& a) noexcept = default;
 };
 
 int main() {
