@@ -1,24 +1,26 @@
 #include <algorithm>
 #include <array>
 #include <iostream>
+#include <tuple>
+#include <utility>
 
-template< typename T, size_t...Is >
-constexpr std::array< T, sizeof...(Is) > 
-    replicate_value_impl(T value, std::index_sequence< Is... >) {
+template< typename T, size_t...I >
+constexpr std::array< T, sizeof...(I) > 
+    replicate_value_impl(T value, std::index_sequence< I... >) {
     
-    return { (static_cast< void >(Is), value)... };
+    return { (static_cast< void >(I), value)... };
 }
 template< typename T, size_t N >
 constexpr std::array< T, N > replicate_value(T value) {
     return replicate_value_impl(value, std::make_index_sequence< N >());
 }
 
-template< typename ToT, typename FromT, size_t...Is >
-constexpr std::array< ToT, sizeof...(Is) > 
-    convert_array_impl(const std::array< FromT, sizeof...(Is) >& arr, 
-                       std::index_sequence< Is... >) {
+template< typename ToT, typename FromT, size_t...I >
+constexpr std::array< ToT, sizeof...(I) > 
+    convert_array_impl(const std::array< FromT, sizeof...(I) >& arr, 
+                       std::index_sequence< I... >) {
     
-    return { static_cast< ToT >(arr[Is])... };
+    return { static_cast< ToT >(arr[I])... };
 }
 template< typename ToT, typename FromT, size_t N >
 constexpr std::array< ToT, N > 
@@ -27,18 +29,40 @@ constexpr std::array< ToT, N >
     return convert_array_impl< ToT >(arr, std::make_index_sequence< N >());
 }
 
-template< typename T, size_t ToN, size_t...Is >
+template< typename T, size_t ToN, size_t...I >
 constexpr std::array< T, ToN > 
-    extend_array_impl(const std::array< T, sizeof...(Is) >& arr, 
-                      std::index_sequence< Is... >) {
+    extend_array_impl(const std::array< T, sizeof...(I) >& arr, 
+                      std::index_sequence< I... >) {
     
-    return { arr[Is]... };
+    return { arr[I]... };
 }
 template< typename T, size_t ToN, size_t FromN >
 constexpr std::array< T, ToN > 
     extend_array(const std::array< T, FromN >& arr) {
     
     return extend_array_impl< T, ToN >(arr, std::make_index_sequence< FromN >());
+}
+
+template< typename... Ts >
+constexpr decltype(auto) args_to_tuple(Ts&&... elements) {
+    return std::make_tuple(std::forward< Ts >(elements)...);
+}
+template< typename T, size_t...I >
+constexpr decltype(auto) array_to_tuple_impl(const std::array< T, sizeof...(I) >& a, std::index_sequence< I... >) {
+    return std::make_tuple(a[I]...);
+}
+template< typename T, size_t N >
+constexpr decltype(auto) array_to_tuple(const std::array< T, N >& a) {
+    return array_to_tuple_impl(a, std::make_index_sequence< N >()); 
+}
+template< typename T, typename TupleT, std::size_t... I >
+constexpr decltype(auto) tuple_to_array_impl(const TupleT& t, std::index_sequence< I... >) {
+    return std::array< T, sizeof...(I) >{ std::get< I >(t)... };
+}
+template< typename T, typename... Ts >
+constexpr decltype(auto) tuple_to_array(const std::tuple< T, Ts... >& t) {
+    constexpr auto N = sizeof...(Ts) + 1;
+    return tuple_to_array_impl< T >(t, std::make_index_sequence< N >());
 }
 
 template< typename T, std::size_t N >
@@ -63,8 +87,8 @@ struct A : std::array< T, N > {
         : std::array< T, N >(extend_array< T, N, N2 >(a)) {}
     
     template< std::size_t N2, typename... Ts, typename = std::enable_if_t< (N2 < N && (N2 + sizeof...(Ts)) == N ) > >
-    constexpr A(const A< T, N2 >& a, Ts&&... elements) noexcept
-        : std::array< T, N >(extend_array< T, N, N2 >(a)) {}
+    constexpr A(const A< T, N2 >& a, Ts&&... elements) noexcept 
+        : std::array< T, N >(tuple_to_array(std::tuple_cat(array_to_tuple(a), args_to_tuple(std::forward< Ts >(elements)...)))) {}
     
     ~A() = default;
     constexpr A& operator=(const A& a) noexcept = default;
