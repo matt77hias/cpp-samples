@@ -56,7 +56,7 @@ constexpr decltype(auto) tuple_to_array(const std::tuple< T, Ts... >& t) {
     return tuple_to_array_impl< T >(t, std::make_index_sequence< N >());
 }
 
-template< typename T, std::size_t N >
+template< typename T, std::size_t N, typename = std::enable_if_t< (N != 1) > >
 struct A : std::array< T, N > {
     
     constexpr A() noexcept
@@ -71,9 +71,9 @@ struct A : std::array< T, N > {
    
     template< typename... Ts, typename = std::enable_if_t< (N == sizeof...(Ts)) > >
     constexpr A(Ts&&... elements) noexcept
-        : std::array< T, N >{ std::move(elements)... } {}
+        : std::array< T, N >{ std::forward< Ts >(elements)... } {}
 
-    template< std::size_t N2, typename = std::enable_if_t< (N2 < N ) > >
+    template< std::size_t N2, typename = std::enable_if_t< (N2 < N) > >
     constexpr A(const A< T, N2 >& a) noexcept
         : std::array< T, N >(extend_array< T, N, N2 >(a)) {}
     
@@ -93,6 +93,7 @@ std::ostream& operator<<(std::ostream& os, const A< T, N >& a) {
 }
 
 int main() {
+
     constexpr A< float, 5 > a;
     std::cout << a;
     
