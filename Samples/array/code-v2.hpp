@@ -2,44 +2,35 @@
 #include <array>
 #include <iostream>
 #include <tuple>
-#include <utility>
 
 template< typename T, size_t...I >
-constexpr std::array< T, sizeof...(I) > 
-    replicate_value_impl(T value, std::index_sequence< I... >) {
-    
-    return { (static_cast< void >(I), value)... };
+constexpr decltype(auto) replicate_value_impl(T value, std::index_sequence< I... >) {
+    return std::array< T, sizeof...(I) >{ (static_cast< void >(I), value)... };
 }
 template< typename T, size_t N >
-constexpr std::array< T, N > replicate_value(T value) {
+constexpr decltype(auto) replicate_value(T value) {
     return replicate_value_impl(value, std::make_index_sequence< N >());
 }
 
 template< typename ToT, typename FromT, size_t...I >
-constexpr std::array< ToT, sizeof...(I) > 
-    convert_array_impl(const std::array< FromT, sizeof...(I) >& arr, 
-                       std::index_sequence< I... >) {
+constexpr decltype(auto) convert_array_impl(const std::array< FromT, sizeof...(I) >& arr, 
+                                            std::index_sequence< I... >) {
     
-    return { static_cast< ToT >(arr[I])... };
+    return std::array< ToT, sizeof...(I) >{ static_cast< ToT >(arr[I])... };
 }
 template< typename ToT, typename FromT, size_t N >
-constexpr std::array< ToT, N > 
-    convert_array(const std::array< FromT, N >& arr) {
-    
+constexpr decltype(auto) convert_array(const std::array< FromT, N >& arr) {
     return convert_array_impl< ToT >(arr, std::make_index_sequence< N >());
 }
 
 template< typename T, size_t ToN, size_t...I >
-constexpr std::array< T, ToN > 
-    extend_array_impl(const std::array< T, sizeof...(I) >& arr, 
-                      std::index_sequence< I... >) {
+constexpr decltype(auto) extend_array_impl(const std::array< T, sizeof...(I) >& arr, 
+                                           std::index_sequence< I... >) {
     
-    return { arr[I]... };
+    return std::array< T, ToN >{ arr[I]... };
 }
 template< typename T, size_t ToN, size_t FromN >
-constexpr std::array< T, ToN > 
-    extend_array(const std::array< T, FromN >& arr) {
-    
+constexpr decltype(auto) extend_array(const std::array< T, FromN >& arr) {
     return extend_array_impl< T, ToN >(arr, std::make_index_sequence< FromN >());
 }
 
