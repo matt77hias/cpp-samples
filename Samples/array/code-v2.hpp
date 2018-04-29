@@ -3,55 +3,63 @@
 #include <iostream>
 #include <tuple>
 
+//-----------------------------------------------------------------------------
+// The idea is to replace mage::Vector2, mage::Vector3, mage::Vector4, 
+// mage::Vector2A, mage::Vector3A, mage::Vector4A with a std::array wrapper.
+// Only (primitive) integral values should be uses which do not require dynamic
+// memory allocation. If this is not the case, not all 'noexcept' occurences 
+// will be appropriate.
+//-----------------------------------------------------------------------------
+
 template< typename T, size_t...I >
-constexpr decltype(auto) replicate_value_impl(T value, std::index_sequence< I... >) {
+constexpr decltype(auto) replicate_value_impl(T value, std::index_sequence< I... >) noexcept {
     return std::array< T, sizeof...(I) >{ (static_cast< void >(I), value)... };
 }
 template< typename T, size_t N >
-constexpr decltype(auto) replicate_value(T value) {
+constexpr decltype(auto) replicate_value(T value) noexcept {
     return replicate_value_impl(value, std::make_index_sequence< N >());
 }
 
 template< typename ToT, typename FromT, size_t...I >
 constexpr decltype(auto) convert_array_impl(const std::array< FromT, sizeof...(I) >& arr, 
-                                            std::index_sequence< I... >) {
+                                            std::index_sequence< I... >) noexcept {
     
     return std::array< ToT, sizeof...(I) >{ static_cast< ToT >(arr[I])... };
 }
 template< typename ToT, typename FromT, size_t N >
-constexpr decltype(auto) convert_array(const std::array< FromT, N >& arr) {
+constexpr decltype(auto) convert_array(const std::array< FromT, N >& arr) noexcept {
     return convert_array_impl< ToT >(arr, std::make_index_sequence< N >());
 }
 
 template< typename T, size_t ToN, size_t...I >
 constexpr decltype(auto) extend_array_impl(const std::array< T, sizeof...(I) >& arr, 
-                                           std::index_sequence< I... >) {
+                                           std::index_sequence< I... >) noexcept {
     
     return std::array< T, ToN >{ arr[I]... };
 }
 template< typename T, size_t ToN, size_t FromN >
-constexpr decltype(auto) extend_array(const std::array< T, FromN >& arr) {
+constexpr decltype(auto) extend_array(const std::array< T, FromN >& arr) noexcept {
     return extend_array_impl< T, ToN >(arr, std::make_index_sequence< FromN >());
 }
 
 template< typename... Ts >
-constexpr decltype(auto) args_to_tuple(Ts&&... elements) {
+constexpr decltype(auto) args_to_tuple(Ts&&... elements) noexcept {
     return std::make_tuple(std::forward< Ts >(elements)...);
 }
 template< typename T, size_t...I >
-constexpr decltype(auto) array_to_tuple_impl(const std::array< T, sizeof...(I) >& a, std::index_sequence< I... >) {
+constexpr decltype(auto) array_to_tuple_impl(const std::array< T, sizeof...(I) >& a, std::index_sequence< I... >) noexcept {
     return std::make_tuple(a[I]...);
 }
 template< typename T, size_t N >
-constexpr decltype(auto) array_to_tuple(const std::array< T, N >& a) {
+constexpr decltype(auto) array_to_tuple(const std::array< T, N >& a) noexcept {
     return array_to_tuple_impl(a, std::make_index_sequence< N >()); 
 }
 template< typename T, typename TupleT, std::size_t... I >
-constexpr decltype(auto) tuple_to_array_impl(const TupleT& t, std::index_sequence< I... >) {
+constexpr decltype(auto) tuple_to_array_impl(const TupleT& t, std::index_sequence< I... >) noexcept {
     return std::array< T, sizeof...(I) >{ std::get< I >(t)... };
 }
 template< typename T, typename... Ts >
-constexpr decltype(auto) tuple_to_array(const std::tuple< T, Ts... >& t) {
+constexpr decltype(auto) tuple_to_array(const std::tuple< T, Ts... >& t) noexcept {
     constexpr auto N = sizeof...(Ts) + 1;
     return tuple_to_array_impl< T >(t, std::make_index_sequence< N >());
 }
