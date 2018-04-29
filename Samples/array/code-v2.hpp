@@ -97,7 +97,7 @@ struct A : std::array< T, N > {
 
 template< typename T, std::size_t N >
 std::ostream& operator<<(std::ostream& os, const A< T, N >& a) {
-    for (auto i : a) { os << i << ' '; }
+    for (const auto& i : a) { os << i << ' '; }
     return os << '\n';
 }
 
