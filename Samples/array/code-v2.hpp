@@ -87,7 +87,8 @@ struct A : std::array< T, N > {
     
     template< std::size_t N2, typename... Ts, typename = std::enable_if_t< (N2 < N && (N2 + sizeof...(Ts)) == N ) > >
     constexpr A(const A< T, N2 >& a, Ts&&... elements) noexcept 
-        : std::array< T, N >(tuple_to_array(std::tuple_cat(array_to_tuple(a), args_to_tuple(std::forward< Ts >(elements)...)))) {}
+        : std::array< T, N >(tuple_to_array(std::tuple_cat(array_to_tuple(a), 
+                                                           args_to_tuple(std::forward< Ts >(elements)...)))) {}
     
     ~A() = default;
     constexpr A& operator=(const A& a) noexcept = default;
@@ -105,10 +106,10 @@ int main() {
     constexpr A< float, 5 > a;
     std::cout << a;
     
-    constexpr A< int, 5 > b(a);
+    constexpr A< float, 5 > b = { 1.5f, 2.5f, 3.5f, 4.5f, 5.5f };
     std::cout << b;
     
-    constexpr A< int, 5 > c = { 1, 2, 3, 4, 5 };
+    constexpr A< int, 5 > c(b);
     std::cout << c;
     
     constexpr A< int, 6 > d(c);
