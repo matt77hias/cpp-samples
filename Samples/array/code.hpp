@@ -159,7 +159,7 @@ struct Array : std::array< T, N > {
         return std::array< T, N >::operator[](4);
     }
     
-    constexpr std::enable_if_t< ( 2 <= N ), const T& > GetX() const noexcept {
+    constexpr std::enable_if_t< ( 1 <= N ), const T& > GetX() const noexcept {
         return std::array< T, N >::operator[](0);
     }
     constexpr std::enable_if_t< ( 2 <= N ), const T& > GetY() const noexcept {
