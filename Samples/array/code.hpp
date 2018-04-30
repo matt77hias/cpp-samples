@@ -6,44 +6,44 @@
 namespace details {
 
     template< typename ActionT, typename FromT, size_t...I >
-    constexpr decltype(auto) TransformArray(ActionT action, 
-                                            const std::array< FromT, sizeof...(I) >& a,
-                                            std::index_sequence< I... >) {
+    constexpr auto TransformArray(ActionT&& action, 
+                                  const std::array< FromT, sizeof...(I) >& a, 
+                                  std::index_sequence< I... >) {
 
         using ToT = decltype(std::declval< ActionT >()(std::declval< FromT >()));
         return std::array< ToT, sizeof...(I) >{ action(a[I])... };
     }
 
     template< typename T, size_t...I >
-    constexpr decltype(auto) FillArray(T value, std::index_sequence< I... >) {
+    constexpr auto FillArray(T value, std::index_sequence< I... >) {
         return std::array< T, sizeof...(I) >{ (static_cast< void >(I), value)... };
     }
 
     template< size_t ToN, typename T, size_t...I >
-    constexpr decltype(auto) EnlargeArray(const std::array< T, sizeof...(I) >& a,
-                                          std::index_sequence< I... >) {
+    constexpr auto EnlargeArray(const std::array< T, sizeof...(I) >& a, 
+                                std::index_sequence< I... >) {
 
         return std::array< T, ToN >{ a[I]... };
     }
 
     template< typename T, typename TupleT, std::size_t... I >
-    constexpr decltype(auto) TuppleToArray(const TupleT& t, 
-                                           std::index_sequence< I... >) {
+    constexpr auto TuppleToArray(const TupleT& t, 
+                                 std::index_sequence< I... >) {
 
         return std::array< T, sizeof...(I) >{ std::get< I >(t)... };
     }
 }
 
 template< typename ActionT, typename FromT, size_t N >
-constexpr decltype(auto) TransformArray(ActionT action,
-                                        const std::array< FromT, N >& a) {
+constexpr auto TransformArray(ActionT&& action, 
+                              const std::array< FromT, N >& a) {
 
-    return details::TransformArray(std::move(action), a,
+    return details::TransformArray(std::forward< ActionT >(action), a,
                                    std::make_index_sequence< N >());
 }
 
 template< typename ToT, typename FromT, size_t N >
-constexpr decltype(auto) StaticCastArray(const std::array< FromT, N >& a) {
+constexpr auto StaticCastArray(const std::array< FromT, N >& a) {
     constexpr auto f = [](const FromT& v) {
         return static_cast< ToT >(v); 
     };
@@ -51,7 +51,7 @@ constexpr decltype(auto) StaticCastArray(const std::array< FromT, N >& a) {
 }
 
 template< typename ToT, typename FromT, size_t N >
-constexpr decltype(auto) DynamicCastArray(const std::array< FromT, N >& a) {
+constexpr auto DynamicCastArray(const std::array< FromT, N >& a) {
     constexpr auto f = [](const FromT& v) {
         return dynamic_cast< ToT >(v); 
     };
@@ -59,7 +59,7 @@ constexpr decltype(auto) DynamicCastArray(const std::array< FromT, N >& a) {
 }
 
 template< typename ToT, typename FromT, size_t N >
-constexpr decltype(auto) ConstCastArray(const std::array< FromT, N >& a) {
+constexpr auto ConstCastArray(const std::array< FromT, N >& a) {
     constexpr auto f = [](const FromT& v) {
         return const_cast< ToT >(v); 
     };
@@ -67,7 +67,7 @@ constexpr decltype(auto) ConstCastArray(const std::array< FromT, N >& a) {
 }
 
 template< typename ToT, typename FromT, size_t N >
-constexpr decltype(auto) ReinterpretCastArray(const std::array< FromT, N >& a) {
+constexpr auto ReinterpretCastArray(const std::array< FromT, N >& a) {
     constexpr auto f = [](const FromT& v) {
         return reinterpret_cast< ToT >(v); 
     };
@@ -75,17 +75,17 @@ constexpr decltype(auto) ReinterpretCastArray(const std::array< FromT, N >& a) {
 }
 
 template< typename T, size_t N >
-constexpr decltype(auto) FillArray(T value) {
+constexpr auto FillArray(T value) {
     return details::FillArray(value, std::make_index_sequence< N >());
 }
 
 template< size_t ToN, typename T, size_t FromN >
-constexpr decltype(auto) EnlargeArray(const std::array< T, FromN >& a) {
+constexpr auto EnlargeArray(const std::array< T, FromN >& a) {
     return details::EnlargeArray< ToN >(a, std::make_index_sequence< FromN >());
 }
 
 template< typename T, typename... Ts >
-constexpr decltype(auto) TuppleToArray(const std::tuple< T, Ts... >& t) {
+constexpr auto TuppleToArray(const std::tuple< T, Ts... >& t) {
     constexpr auto N = sizeof...(Ts) + 1u;
     return details::TuppleToArray< T >(t, std::make_index_sequence< N >());
 }
@@ -93,19 +93,19 @@ constexpr decltype(auto) TuppleToArray(const std::tuple< T, Ts... >& t) {
 namespace details {
 
     template< typename T, size_t...I >
-    constexpr decltype(auto) ArrayToTupple(const std::array< T, sizeof...(I) >& a, 
-                                           std::index_sequence< I... >) noexcept {
+    constexpr auto ArrayToTupple(const std::array< T, sizeof...(I) >& a, 
+                                 std::index_sequence< I... >) noexcept {
         return std::make_tuple(a[I]...);
     }
 }
 
 template< typename T, size_t N >
-constexpr decltype(auto) ArrayToTupple(const std::array< T, N >& a) noexcept {
+constexpr auto ArrayToTupple(const std::array< T, N >& a) noexcept {
     return details::ArrayToTupple(a, std::make_index_sequence< N >());
 }
 
 template< typename... ArgsT >
-constexpr decltype(auto) ArgsToTuple(ArgsT&&... args) noexcept {
+constexpr auto ArgsToTuple(ArgsT&&... args) noexcept {
     return std::make_tuple(std::forward< ArgsT >(args)...);
 }
 
@@ -192,7 +192,7 @@ int main() {
     constexpr Array< float, 6 > d(c);
     std::cout << d;
     
-    constexpr Array< float, 6 > e(d);
+    constexpr Array< float, 6 > e(c, 6.5f);
     std::cout << e;
     
     constexpr Array< int, 6 > f(e);
