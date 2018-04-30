@@ -7,7 +7,7 @@ template< typename ActionT, typename T, size_t...I >
 constexpr decltype(auto) TransformArrayImpl(ActionT action, 
                                             const std::array< T, sizeof...(I) >& a, 
                                             std::index_sequence< I... >) {
-    using ToT = decltype(action(std::declval< T >()));
+    using ToT = decltype(std::declval< ActionT >()(std::declval< T >()));
     return std::array< ToT, sizeof...(I) >{ action(a[I])... };
 }
 
