@@ -1,6 +1,5 @@
 #include <array>
 #include <iostream>
-#include <tuple>
 #include <utility>
 
 namespace details {
@@ -15,7 +14,7 @@ namespace details {
 	}
 
 	template< typename T, size_t...I >
-	constexpr auto FillArray(T value, std::index_sequence< I... >) {
+	constexpr auto FillArray(const T& value, std::index_sequence< I... >) {
 		return std::array< T, sizeof...(I) >{ (static_cast< void >(I), value)... };
 	}
 
@@ -82,7 +81,7 @@ constexpr auto ReinterpretCastArray(const std::array< FromT, N >& a) {
 }
 
 template< typename T, size_t N >
-constexpr auto FillArray(T value) {
+constexpr auto FillArray(const T& value) {
 	return details::FillArray(value, std::make_index_sequence< N >());
 }
 
@@ -111,6 +110,9 @@ public:
 	constexpr Array() noexcept
 		: std::array< T, N >{} {}
 
+	constexpr explicit Array(const T& value) noexcept
+		: std::array< T, N >(FillArray< T, N >(value)) {}
+    
 	template< typename... ArgsT, 
 			  typename = std::enable_if_t< (N == sizeof...(ArgsT)) > >
 	constexpr Array(ArgsT&&... args) noexcept
@@ -177,6 +179,13 @@ int main() {
     
     constexpr Array< int, 6 > f(e);
     std::cout << f;
+    
+    constexpr Array< int, 6 > g(5);
+    std::cout << g;
+    
+    constexpr int h_value = 5;
+    constexpr Array< int, 6 > h(h_value);
+    std::cout << h;
     
     return 0;
 }
