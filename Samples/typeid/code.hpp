@@ -1,8 +1,7 @@
-#include <algorithm>
+#include <iostream>
 #include <typeindex>
 #include <unordered_map>
 #include <vector>
-#include <iostream>
 
 struct Component {
     virtual ~Component() = default;
