@@ -1,18 +1,18 @@
-#include <memory>
 #include <iostream>
+#include <memory>
 
-bool logging = false;
+bool g_logging = false;
 
 void* operator new(std::size_t size) {
     const auto ptr = std::malloc(size);
-    if (logging) {
+    if (g_logging) {
         std::cout << "Allocated: " << (uintptr_t)ptr << std::endl;
     }
     return ptr;
 }
 void operator delete(void* ptr) noexcept {
     std::free(ptr);
-    if (logging) {
+    if (g_logging) {
        std::cout << "Deallocated: " << (uintptr_t)ptr << std::endl; 
     }
 }
@@ -40,11 +40,11 @@ void test(bool use_make_shared) {
 }
 
 int main() { 
-    logging = true;
+    g_logging = true;
     test(true);
     std::cout << std::endl;
     test(false);
-    logging = false;
+    g_logging = false;
     
     return 0;
 };
