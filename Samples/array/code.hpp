@@ -112,7 +112,7 @@ public:
 
 	constexpr explicit Array(const T& value) noexcept
 		: std::array< T, N >(FillArray< T, N >(value)) {}
-    
+
 	template< typename... ArgsT, 
 			  typename = std::enable_if_t< (N == sizeof...(ArgsT)) > >
 	constexpr Array(ArgsT&&... args) noexcept
@@ -144,8 +144,9 @@ public:
 	
 	constexpr Array(Array&& a) noexcept = default;
 
-	template< typename U, size_t FromA >
-	constexpr explicit Array(const Array< U, N, FromA >& a) noexcept
+	template< typename FromT, size_t FromA, 
+			  typename = std::enable_if_t< std::is_convertible_v< FromT, T > > >
+	constexpr explicit Array(const Array< FromT, N, FromA >& a) noexcept
 		: std::array< T, N >(StaticCastArray< T >(a)) {}
 
 	~Array() = default;
@@ -186,6 +187,9 @@ int main() {
     constexpr int h_value = 5;
     constexpr Array< int, 6 > h(h_value);
     std::cout << h;
+    
+    constexpr Array< Array< float, 5 >, 5 > i(c);
+    std::cout << i;
     
     return 0;
 }
