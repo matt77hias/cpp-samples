@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <typeindex>
 #include <unordered_map>
