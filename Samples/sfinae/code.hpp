@@ -35,7 +35,7 @@ struct HasSerializeMemberMethod {
 
 private:
     
-    template< typename U, U u > 
+    template< typename U, U ValueU > 
     struct IsMatch {};
 
     template< typename U > 
