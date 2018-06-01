@@ -1,6 +1,8 @@
 #include <iostream>
 
 struct Base {
+    virtual ~Base() = default;
+    
     virtual Base* Clone() const {
         std::cout << "Base::Clone\n";
         return new Base(*this);
