@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <cstdint>
+#include <iostream>
 
 template< typename T >
 class LinkedList {
@@ -51,7 +52,7 @@ public:
 		}
 		else {
 			m_last->m_next = new LinkedListElement(data);
-			m_last->m_next->prev = m_last;
+			m_last->m_next->m_prev = m_last;
 			m_last = m_last->m_next;
 		}
 
@@ -60,49 +61,55 @@ public:
 		return m_last->m_data;
 	}
 	
-	T* InsertBefore(T* data, LinkedListElement* next_element) {
-		const auto current = next_element->m_prev;
-
-		++m_size;
-
+	T* InsertBefore(T* data, LinkedListElement* element_next) {
+        if (!data) {
+			return nullptr;
+		}
+        
+        ++m_size;
+        
+		const auto current = element_next->m_prev;
 		if (!current) {
 			m_first = new LinkedListElement(data);
-			m_first->next = next_element;
-			next_element->prev = m_first;
-			return m_first->data;
+			m_first->m_next = element_next;
+			element_next->m_prev = m_first;
+			return m_first->m_data;
 		}
 		else {
 			current->m_next = new LinkedListElement(data);
 			current->m_next->m_prev = current;
-			current->m_next->m_next = next_element;
-			next_element->m_prev = current->m_next;
+			current->m_next->m_next = element_next;
+			element_next->m_prev = current->m_next;
 			return current->m_next->m_data;
 		}
 	}
 	
-	T *InsertAfter(T *data, LinkedListElement *prev_element) {
-		const auto current = prev_element->m_next;
-
-		++m_size;
-
+	T* InsertAfter(T* data, LinkedListElement* element_prev) {
+        if (!data) {
+			return nullptr;
+		}
+        
+        ++m_size;
+        
+		const auto current = element_prev->m_next;
 		if (!current) {
 			m_last = new LinkedListElement(data);
-			m_last->prev = prev_element;
-			prev_element->next = m_last;
+			m_last->m_prev = element_prev;
+			element_prev->m_next = m_last;
 			return m_last->m_data;
 		}
 		else {
 			current->m_prev = new LinkedListElement(data);
 			current->m_prev->m_next = current;
-			current->m_prev->m_prev = prev_element;
-			prev_element->m_next = current->m_prev;
+			current->m_prev->m_prev = element_prev;
+			element_prev->m_next = current->m_prev;
 			return current->m_prev->m_data;
 		}
 	}
 
-	void Remove(T** data, bool data_destruction = true) {
+	void Remove(T* data, bool data_destruction = true) {
         for (auto current = m_first; nullptr != current; current = current->m_next) {
-			if (*data != current->m_data) {
+			if (data != current->m_data) {
                 continue;
             }
             
@@ -114,7 +121,7 @@ public:
 			}
             
             if (m_last == current) {
-                m_last = m_last->prev;
+                m_last = m_last->m_prev;
                 if (m_last) {
                     m_last->m_next = nullptr;
 				}
@@ -122,14 +129,10 @@ public:
             
             if (!data_destruction) {
                 current->m_data = nullptr;
-				delete current;
 			}
-			else {
-                delete current;
-                *data = nullptr;
-			}
-            
-            m_size--;
+			
+            delete current;
+            --m_size;
             break;
 		}
 	}
@@ -137,12 +140,12 @@ public:
 	void Empty(bool data_destruction = true) {
 		while (nullptr != m_last) {
 			const auto current = m_last;
-			m_last = m_last->prev;
+			m_last = m_last->m_prev;
 
 			if (!data_destruction) {
-				m_last->m_data = nullptr;
+				current->m_data = nullptr;
 			} else {
-                delete m_last;
+                delete current;
             }
 		}
         
@@ -212,5 +215,16 @@ private:
 };
 
 int main() {
+    const auto i1 = new int(1);
+    const auto i2 = new int(2);
+    const auto i3 = new int(3);
+    
+    LinkedList< int > list;
+    list.Add(i1);
+    list.Add(i3);
+    list.InsertBefore(i2, list.GetCompleteLinkedListElement(i3));
+    list.Remove(i1);
+    
+    std::cout << *list.GetAt(0) << std::endl;
     return 0;
 }
