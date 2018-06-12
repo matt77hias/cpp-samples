@@ -15,7 +15,7 @@ public:
 			m_next(nullptr), 
 			m_prev(nullptr) {}
 
-		~LinkedListElement() noexcept {
+		~LinkedListElement() {
 			delete m_data;
 
 			if (m_next) {
