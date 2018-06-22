@@ -3,7 +3,7 @@
 
 int main() {
     constexpr auto a = 27u;
-    constexpr auto b = 7u;
+    constexpr auto b = 7u; // versus 0u
     
     std::bitset< 32 > c1(! b);
     std::bitset< 32 > c2(!! b);
