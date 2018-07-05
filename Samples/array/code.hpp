@@ -103,7 +103,7 @@ constexpr auto ArrayToTupple(const std::array< T, N >& a) noexcept {
 }
 
 template< typename T, size_t N, size_t A = alignof(T), 
-		  typename = std::enable_if_t< (N != 1) > >
+		  typename = std::enable_if_t< (N > 1) > >
 struct alignas(A) Array : public std::array< T, N > {
 
 public:
