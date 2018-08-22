@@ -54,7 +54,7 @@ public:
     static const bool value = (alignof(Yes) == alignof(Test< T >(nullptr)));
 };
 
-template< bool ConditionT, class T = void >
+template< bool ConditionT, typename T = void >
 struct enable_if {};
 
 template< typename T >
