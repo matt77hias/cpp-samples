@@ -57,30 +57,6 @@ constexpr auto StaticCastArray(const std::array< FromT, N >& a) {
 	return TransformArray(f, a);
 }
 
-template< typename ToT, typename FromT, size_t N >
-constexpr auto DynamicCastArray(const std::array< FromT, N >& a) {
-	constexpr auto f = [](const FromT& v) {
-		return dynamic_cast< ToT >(v); 
-	};
-	return TransformArray(f, a);
-}
-
-template< typename ToT, typename FromT, size_t N >
-constexpr auto ConstCastArray(const std::array< FromT, N >& a) {
-	constexpr auto f = [](const FromT& v) {
-		return const_cast< ToT >(v); 
-	};
-	return TransformArray(f, a);
-}
-
-template< typename ToT, typename FromT, size_t N >
-constexpr auto ReinterpretCastArray(const std::array< FromT, N >& a) {
-	constexpr auto f = [](const FromT& v) {
-		return reinterpret_cast< ToT >(v); 
-	};
-	return TransformArray(f, a);
-}
-
 template< typename T, size_t N >
 constexpr auto FillArray(const T& value) {
 	return details::FillArray(value, std::make_index_sequence< N >());
