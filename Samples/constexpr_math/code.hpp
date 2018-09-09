@@ -7,7 +7,7 @@ namespace details {
               typename = std::enable_if_t< std::is_unsigned_v< T > > >
     struct Factorial {
     
-        constexpr T operator()(T x) noexcept {
+        constexpr T operator()(T x) const noexcept {
             T result = 1u;
             for (T n = 2u; n <= x; ++n) {
                 result *= n;
@@ -25,7 +25,7 @@ namespace details {
               typename = std::enable_if_t< std::is_unsigned_v< E > > >
     struct Power {
     
-        constexpr T operator()(T x, E e) noexcept {
+        constexpr T operator()(T x, E e) const noexcept {
             T result = 1u;
             for (std::size_t n = 0u; n < e; ++n) {
                 result *= x;
@@ -43,7 +43,7 @@ namespace details {
               typename = std::enable_if_t< std::is_floating_point_v< T > > >
     struct Sine {
         
-        constexpr T operator()(T x) noexcept {
+        constexpr T operator()(T x) const noexcept {
             T result = 0u;
             for (std::size_t n = 0u; n < N; ++n) {
                 result += power(-1, n) * power(x, 2u * n + 1u) / factorial(2u * n + 1u);        
@@ -61,7 +61,7 @@ namespace details {
               typename = std::enable_if_t< std::is_floating_point_v< T > > >
     struct Cosine {
         
-        constexpr T operator()(T x) noexcept {
+        constexpr T operator()(T x) const noexcept {
             T result = 0u;
             for (std::size_t n = 0u; n < N; ++n) {
                 result += power(-1, n) * power(x, 2u * n) / factorial(2u * n);        
