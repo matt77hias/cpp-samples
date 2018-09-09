@@ -44,7 +44,7 @@ namespace details {
     struct Sine {
         
         constexpr T operator()(T x) const noexcept {
-            T result = 0u;
+            T result = 0;
             for (std::size_t n = 0u; n < N; ++n) {
                 result += power(-1, n) * power(x, 2u * n + 1u) / factorial(2u * n + 1u);        
             }
@@ -62,7 +62,7 @@ namespace details {
     struct Cosine {
         
         constexpr T operator()(T x) const noexcept {
-            T result = 0u;
+            T result = 0;
             for (std::size_t n = 0u; n < N; ++n) {
                 result += power(-1, n) * power(x, 2u * n) / factorial(2u * n);        
             }
