@@ -103,9 +103,15 @@ constexpr T cos(T x) noexcept {
 #include <iostream>
 
 int main() {
-    std::cout << sin(0.0)           << std::endl;
-    std::cout << cos(0.0)           << std::endl;
-    std::cout << sin(3.14159265359) << std::endl;
-    std::cout << cos(3.14159265359) << std::endl;
+    constexpr auto sin_0  = sin(0.0);
+    constexpr auto cos_0  = cos(0.0);
+    constexpr auto sin_pi = sin(3.14159265359);
+    constexpr auto cos_pi = cos(3.14159265359);
+    
+    std::cout << sin_0  << std::endl;
+    std::cout << cos_0  << std::endl;
+    std::cout << sin_pi << std::endl;
+    std::cout << cos_pi << std::endl;
+    
     return 0;
 }
