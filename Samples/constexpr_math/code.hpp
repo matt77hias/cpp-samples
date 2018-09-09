@@ -8,7 +8,7 @@ namespace details {
     struct Factorial {
     
         constexpr T operator()(T x) const noexcept {
-            T result = 1u;
+            T result(1);
             for (T n = 2u; n <= x; ++n) {
                 result *= n;
             }
