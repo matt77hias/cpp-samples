@@ -18,3 +18,5 @@
 *.c			text eol=crlf
 *.cc		text eol=crlf
 *.cpp		text eol=crlf
+
+Samples/** linguist-documentation=false

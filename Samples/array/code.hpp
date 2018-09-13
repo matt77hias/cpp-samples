@@ -35,7 +35,7 @@ namespace details {
 
 	template< typename T, size_t...I >
 	constexpr auto ArrayToTupple(const std::array< T, sizeof...(I) >& a,
-								 std::index_sequence< I... >) noexcept {
+								 std::index_sequence< I... >) {
 		
 		return std::make_tuple(a[I]...);
 	}
@@ -57,30 +57,6 @@ constexpr auto StaticCastArray(const std::array< FromT, N >& a) {
 	return TransformArray(f, a);
 }
 
-template< typename ToT, typename FromT, size_t N >
-constexpr auto DynamicCastArray(const std::array< FromT, N >& a) {
-	constexpr auto f = [](const FromT& v) {
-		return dynamic_cast< ToT >(v); 
-	};
-	return TransformArray(f, a);
-}
-
-template< typename ToT, typename FromT, size_t N >
-constexpr auto ConstCastArray(const std::array< FromT, N >& a) {
-	constexpr auto f = [](const FromT& v) {
-		return const_cast< ToT >(v); 
-	};
-	return TransformArray(f, a);
-}
-
-template< typename ToT, typename FromT, size_t N >
-constexpr auto ReinterpretCastArray(const std::array< FromT, N >& a) {
-	constexpr auto f = [](const FromT& v) {
-		return reinterpret_cast< ToT >(v); 
-	};
-	return TransformArray(f, a);
-}
-
 template< typename T, size_t N >
 constexpr auto FillArray(const T& value) {
 	return details::FillArray(value, std::make_index_sequence< N >());
@@ -98,12 +74,12 @@ constexpr auto TuppleToArray(const std::tuple< T, Ts... >& t) {
 }
 
 template< typename T, size_t N >
-constexpr auto ArrayToTupple(const std::array< T, N >& a) noexcept {
+constexpr auto ArrayToTupple(const std::array< T, N >& a) {
 	return details::ArrayToTupple(a, std::make_index_sequence< N >());
 }
 
 template< typename T, size_t N, size_t A = alignof(T), 
-		  typename = std::enable_if_t< (N != 1) > >
+		  typename = std::enable_if_t< (N > 1) > >
 struct alignas(A) Array : public std::array< T, N > {
 
 public:
@@ -152,9 +128,9 @@ public:
 
 	~Array() = default;
 	
-	constexpr Array& operator=(const Array& a) noexcept = default;
+	Array& operator=(const Array& a) noexcept = default;
 
-	constexpr Array& operator=(Array&& a) noexcept = default;
+	Array& operator=(Array&& a) noexcept = default;
 };
 
 template< typename T, std::size_t N >
