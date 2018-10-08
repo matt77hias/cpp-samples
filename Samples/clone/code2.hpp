@@ -35,6 +35,6 @@ private:
 int main() {
     Base* b = new Derived;
     b->Clone();
-	delete b;
+    delete b;
     return 0;
 }
