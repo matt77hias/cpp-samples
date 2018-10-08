@@ -19,5 +19,6 @@ struct Derived : public Base {
 int main() {
     Base* b = new Derived;
     b->Clone();
+	delete b;
     return 0;
 }
