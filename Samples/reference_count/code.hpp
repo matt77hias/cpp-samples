@@ -37,7 +37,7 @@ public:
 		}
 	}
 	
-	Reference(const Reference< T >& ref) noexcept 
+	explicit Reference(const Reference< T >& ref) noexcept 
 		: Reference(ref.m_ptr) {}
 	
 	~Reference() {
