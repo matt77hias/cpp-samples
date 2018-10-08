@@ -33,7 +33,8 @@ private:
 };
 
 int main() {
-    Base *b = new Derived;
+    Base* b = new Derived;
     b->Clone();
+	delete b;
     return 0;
 }
