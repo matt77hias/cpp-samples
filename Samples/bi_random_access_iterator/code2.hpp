@@ -161,7 +161,7 @@ public:
     }
 
     [[nodiscard]]
-    const std::size_t operator-(const BiRandomAccessIterator& bit) const {
+    std::size_t operator-(const BiRandomAccessIterator& bit) const {
         return m_it1 - bit.m_it1;
     }
     [[nodiscard]]
