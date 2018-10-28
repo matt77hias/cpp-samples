@@ -13,12 +13,12 @@ public:
         : m_it1{}, m_it2{} {}
     BiRandomAccessIterator(FirstT it1, SecondT it2) noexcept
         : m_it1(std::move(it1)), m_it2(std::move(it2)) {}
-    BiRandomAccessIterator(const BiRandomAccessIterator& entity) = default;
-    BiRandomAccessIterator(BiRandomAccessIterator&& entity) = default;
+    BiRandomAccessIterator(const BiRandomAccessIterator& it) = default;
+    BiRandomAccessIterator(BiRandomAccessIterator&& it) = default;
     ~BiRandomAccessIterator() = default;
 
-    BiRandomAccessIterator& operator=(const BiRandomAccessIterator& entity) = default;
-    BiRandomAccessIterator& operator=(BiRandomAccessIterator&& entity) = default;
+    BiRandomAccessIterator& operator=(const BiRandomAccessIterator& it) = default;
+    BiRandomAccessIterator& operator=(BiRandomAccessIterator&& it) = default;
 
     auto operator*() noexcept {
         return std::make_pair(std::ref(*m_it1), std::ref(*m_it2));
