@@ -1,10 +1,8 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdint>
-#include <functional>
 #include <iostream>
 #include <unordered_map>
-#include <utility>
 #include <vector>
 
 using U32 = std::uint32_t;
