@@ -10,13 +10,17 @@
 using U32 = std::uint32_t;
 
 template< typename T >
-using AlignedVector = std::vector< T >;
+using AlignedVector = std::vector< T >; // placeholder
 
 namespace mage {
 
 	class Entity {
 
 	public:
+        
+        //---------------------------------------------------------------------
+		// Constructors and Destructors
+		//---------------------------------------------------------------------
 
 		constexpr explicit Entity(U32 id = 0u) noexcept
 			: m_id(id) {}
@@ -24,18 +28,35 @@ namespace mage {
 		constexpr Entity(Entity&& entity) noexcept = default;
 		~Entity() = default;
 
+        //---------------------------------------------------------------------
+		// Assignment Operators
+		//---------------------------------------------------------------------
+        
 		Entity& operator=(const Entity& entity) noexcept = default;
 		Entity& operator=(Entity&& entity) noexcept = default;
 
-		[[nodiscard]]
-		constexpr explicit operator bool() const noexcept {
-			return IsValid();
+        //---------------------------------------------------------------------
+		// Member Methods
+		//---------------------------------------------------------------------
+        
+        [[nodiscard]]
+		constexpr U32 GetID() const noexcept {
+			return m_id;
 		}
+        [[nodiscard]]
+		constexpr explicit operator U32() const noexcept {
+			return GetID();
+		}
+        
 		[[nodiscard]]
 		constexpr bool IsValid() const noexcept {
 			return 0u != m_id;
 		}
-
+        [[nodiscard]]
+		constexpr explicit operator bool() const noexcept {
+			return IsValid();
+		}
+        
 		[[nodiscard]]
 		constexpr bool operator==(const Entity& rhs) const noexcept {
 			return m_id == rhs.m_id;
@@ -67,6 +88,10 @@ namespace mage {
 		}
 
 	private:
+        
+        //---------------------------------------------------------------------
+		// Member Variables
+		//---------------------------------------------------------------------
 
 		U32 m_id;
 	};
@@ -376,8 +401,8 @@ namespace mage {
 			std::swap(m_entities,   other.m_entities);
 			std::swap(m_mapping,    other.m_mapping);
 		}
-
-	private:
+        
+    // private: commented for std::cout illustration
 
 		//---------------------------------------------------------------------
 		// Member Variables
@@ -717,16 +742,33 @@ int main() {
     manager.emplace_back(mage::Entity(2u), 2.0f);
     manager.emplace_back(mage::Entity(1u), 1.0f);
     
-    for (auto c : manager) {
+    for (auto& c : manager.m_components) {
         std::cout << c;
     }
-    
     std::cout << std::endl;
+    for (auto& e : manager.m_entities) {
+        std::cout << U32(e);
+    }
+    std::cout << std::endl;
+    for (auto& [e, i] : manager.m_mapping) {
+        std::cout << '(' << U32(e) << "->" << i << ')';
+    }
+    std::cout << std::endl;
+    
     std::sort(RecordBegin(manager), RecordEnd(manager));
     
-    for (auto c : manager) {
+    for (auto& c : manager.m_components) {
         std::cout << c;
     }
+    std::cout << std::endl;
+    for (auto& e : manager.m_entities) {
+        std::cout << U32(e);
+    }
+    std::cout << std::endl;
+    for (auto& [e, i] : manager.m_mapping) {
+        std::cout << '(' << U32(e) << "->" << i << ')';
+    }
+    std::cout << std::endl;
     
     return 0;
 }
