@@ -538,16 +538,16 @@ namespace mage {
 			assert(m_component_manager->end() != m_component_it);
 			assert(m_component_manager->end() != other.m_component_it);
 
-			const std::size_t n1 = m_component_it - m_component_manager->m_components.begin();
-			auto entity_it1      = m_component_manager->m_entities.begin() + n1;
-			auto& mapping1       = m_component_manager->m_mapping[*entity_it1];
+			const std::size_t index1 = m_component_it - m_component_manager->m_components.begin();
+			auto& entity1            = m_component_manager->m_entities[index1];
+			auto& mapping1           = m_component_manager->m_mapping[entity1];
 
-			const std::size_t n2 = other.m_component_it - m_component_manager->m_components.begin();
-			auto entity_it2      = m_component_manager->m_entities.begin() + n2;
-			auto& mapping2       = m_component_manager->m_mapping[*entity_it2];
+			const std::size_t index2 = other.m_component_it - m_component_manager->m_components.begin();
+			auto& entity2            = m_component_manager->m_entities[index2];
+			auto& mapping2           = m_component_manager->m_mapping[entity2];
 
 			std::swap(*m_component_it, *other.m_component_it);
-			std::swap(*entity_it1, *entity_it2);
+			std::swap(entity1, entity2);
 			std::swap(mapping1, mapping2);
 		}
 
