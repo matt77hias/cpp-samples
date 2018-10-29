@@ -47,15 +47,6 @@ namespace mage {
 		}
         
 		[[nodiscard]]
-		constexpr bool IsValid() const noexcept {
-			return 0u != m_id;
-		}
-        [[nodiscard]]
-		constexpr explicit operator bool() const noexcept {
-			return IsValid();
-		}
-        
-		[[nodiscard]]
 		constexpr bool operator==(const Entity& rhs) const noexcept {
 			return m_id == rhs.m_id;
 		}
@@ -395,12 +386,32 @@ namespace mage {
 		}
 
 		void swap(ComponentManager& other) noexcept {
-			std::swap(m_components, other.m_components);
-			std::swap(m_entities,   other.m_entities);
-			std::swap(m_mapping,    other.m_mapping);
+            using std::swap;
+			swap(m_components, other.m_components);
+			swap(m_entities,   other.m_entities);
+			swap(m_mapping,    other.m_mapping);
 		}
         
     // private: commented for std::cout illustration
+        
+        //---------------------------------------------------------------------
+		// Member Methods
+		//---------------------------------------------------------------------
+        
+        void SwapComponents(std::size_t index1, std::size_t index2) noexcept {
+			auto& component1 = m_components[index1];
+			auto& entity1    = m_entities[index1];
+			auto& mapping1   = m_mapping[entity1];
+            
+            auto& component2 = m_components[index2];
+			auto& entity2    = m_entities[index2];
+			auto& mapping2   = m_mapping[entity2];
+
+            using std::swap;
+			swap(component1, component2);
+			swap(entity1, entity2);
+			swap(mapping1, mapping2);
+		}
 
 		//---------------------------------------------------------------------
 		// Member Variables
@@ -457,80 +468,31 @@ namespace mage {
 		// Member Methods
 		//---------------------------------------------------------------------
 
-		[[nodiscard]]
-		constexpr bool operator==(const T& rhs) const noexcept {
-			return *m_component_it == rhs;
-		}
-		[[nodiscard]]
-		constexpr bool operator!=(const T& rhs) const noexcept {
-			return *m_component_it != rhs;
-		}
-		[[nodiscard]]
-		constexpr bool operator<=(const T& rhs) const noexcept {
-			return *m_component_it <= rhs;
-		}
-		[[nodiscard]]
-		constexpr bool operator>=(const T& rhs) const noexcept {
-			return *m_component_it >= rhs;
-		}
-		[[nodiscard]]
-		constexpr bool operator<(const T& rhs) const noexcept {
-			return *m_component_it < rhs;
-		}
-		[[nodiscard]]
-		constexpr bool operator>(const T& rhs) const noexcept {
-			return *m_component_it > rhs;
-		}
-
-		[[nodiscard]]
-		friend constexpr bool operator==(const T& lhs, const Record& rhs) noexcept {
-			return lhs == *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		friend constexpr bool operator!=(const T& lhs, const Record& rhs) noexcept {
-			return lhs != *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		friend constexpr bool operator<=(const T& lhs, const Record& rhs) noexcept {
-			return lhs <= *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		friend constexpr bool operator>=(const T& lhs, const Record& rhs) noexcept {
-			return lhs >= *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		friend constexpr bool operator<(const T& lhs, const Record& rhs) noexcept {
-			return lhs < *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		friend constexpr bool operator>(const T& lhs, const Record& rhs) noexcept {
-			return lhs > *rhs.m_component_it;
-		}
-
-		[[nodiscard]]
-		constexpr bool operator==(const Record& rhs) const noexcept {
-			return *m_component_it == *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		constexpr bool operator!=(const Record& rhs) const noexcept {
-			return *m_component_it != *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		constexpr bool operator<=(const Record& rhs) const noexcept {
-			return *m_component_it <= *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		constexpr bool operator>=(const Record& rhs) const noexcept {
-			return *m_component_it >= *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		constexpr bool operator<(const Record& rhs) const noexcept {
-			return *m_component_it < *rhs.m_component_it;
-		}
-		[[nodiscard]]
-		constexpr bool operator>(const Record& rhs) const noexcept {
-			return *m_component_it > *rhs.m_component_it;
-		}
+        [[nodiscard]]
+        T& GetComponent() noexcept {
+            assert(nullptr != m_component_manager);
+			assert(m_component_manager->end() != m_component_it);
+            
+            return *m_component_it;
+        }
+        
+        [[nodiscard]]
+        const T& GetComponent() const noexcept {
+            assert(nullptr != m_component_manager);
+			assert(m_component_manager->end() != m_component_it);
+            
+            return *m_component_it;
+        }
+        
+        [[nodiscard]]
+        const Entity& GetEntity() const noexcept {
+            assert(nullptr != m_component_manager);
+			assert(m_component_manager->end() != m_component_it);
+            
+            const auto begin = m_component_manager->begin();
+			const std::size_t index(m_component_it - begin);
+            return m_component_manager->m_entities[index];
+        }
 
         void swap(Record& other) noexcept {
 			assert(nullptr != m_component_manager);
@@ -538,17 +500,10 @@ namespace mage {
 			assert(m_component_manager->end() != m_component_it);
 			assert(m_component_manager->end() != other.m_component_it);
 
-			const std::size_t index1 = m_component_it - m_component_manager->m_components.begin();
-			auto& entity1            = m_component_manager->m_entities[index1];
-			auto& mapping1           = m_component_manager->m_mapping[entity1];
-
-			const std::size_t index2 = other.m_component_it - m_component_manager->m_components.begin();
-			auto& entity2            = m_component_manager->m_entities[index2];
-			auto& mapping2           = m_component_manager->m_mapping[entity2];
-
-			std::swap(*m_component_it, *other.m_component_it);
-			std::swap(entity1, entity2);
-			std::swap(mapping1, mapping2);
+            const auto begin = m_component_manager->begin();
+			const std::size_t index1(      m_component_it - begin);
+			const std::size_t index2(other.m_component_it - begin);
+			m_component_manager->SwapComponents(index1, index2);
 		}
 
 	private:
@@ -575,6 +530,14 @@ namespace mage {
 		//---------------------------------------------------------------------
 
 		using ComponentIterator = typename ComponentManager< T >::iterator;
+        
+        using value_type        = Record< T >;
+        using reference         = Record< T >;
+        using const_reference   = Record< T >;
+        using pointer           = void;
+        using const_pointer     = void;
+        using difference_type   = std::ptrdiff_t;
+        using iterator_category = std::random_access_iterator_tag;
 
 		//---------------------------------------------------------------------
 		// Constructors and Destructors
@@ -602,38 +565,41 @@ namespace mage {
 		// Member Methods
 		//---------------------------------------------------------------------
 
-		Record< T > operator*() noexcept {
+		reference operator*() noexcept {
 			return Record< T >(m_component_it, m_component_manager);
 		}
-		Record< T > operator*() const noexcept {
+		const_reference operator*() const noexcept {
 			return Record< T >(m_component_it, m_component_manager);
 		}
-
+        
+        pointer operator->() = delete;
+        const_pointer operator->() const = delete;
+        
 		[[nodiscard]]
-		Record< T > operator[](std::size_t n) noexcept {
+		reference operator[](difference_type n) noexcept {
 			return Record< T >(m_component_it + n, m_component_manager);
 		}
 		[[nodiscard]]
-		Record< T > operator[](std::size_t n) const noexcept {
+		const_reference operator[](difference_type n) const noexcept {
 			return Record< T >(m_component_it + n, m_component_manager);
 		}
 
 		[[nodiscard]]
-		std::size_t operator-(const RecordIterator& it) const noexcept {
+		difference_type operator-(const RecordIterator& it) const noexcept {
 			return m_component_it - it.m_component_it;
 		}
 
 		[[nodiscard]]
-		const RecordIterator operator+(std::size_t n) const noexcept {
+		const RecordIterator operator+(difference_type n) const noexcept {
 			return RecordIterator(m_component_it + n, m_component_manager);
 		}
 		[[nodiscard]]
-		const RecordIterator operator-(std::size_t n) const noexcept {
+		const RecordIterator operator-(difference_type n) const noexcept {
 			return RecordIterator(m_component_it - n, m_component_manager);
 		}
 			
 		[[nodiscard]]
-		friend const RecordIterator operator+(std::size_t n, const RecordIterator& it) noexcept {
+		friend const RecordIterator operator+(difference_type n, const RecordIterator& it) noexcept {
 			return it + n;
 		}
 			
@@ -655,11 +621,11 @@ namespace mage {
 			return RecordIterator(it.m_component_it - 1u, it.m_component_manager);
 		}
 
-		RecordIterator& operator+=(std::size_t n) noexcept {
+		RecordIterator& operator+=(difference_type n) noexcept {
 			m_component_it += n;
 			return *this;
 		}
-		RecordIterator& operator-=(std::size_t n) noexcept {
+		RecordIterator& operator-=(difference_type n) noexcept {
 			m_component_it -= n;
 			return *this;
 		}
@@ -688,9 +654,15 @@ namespace mage {
 		constexpr bool operator>(const RecordIterator& rhs) const noexcept {
 			return m_component_it > rhs.m_component_it;
 		}
+        
+        void swap(RecordIterator& other) noexcept {
+            using std::swap;
+            swap(m_component_it,      other.m_component_it);
+            swap(m_component_manager, other.m_component_manager);
+        }
 
 	private:
-			
+        
 		ComponentIterator m_component_it;
 		ComponentManager< T >* m_component_manager;
 	};
@@ -717,21 +689,6 @@ namespace mage {
 	}
 }
 
-namespace std {
-
-    template< typename T >
-    struct iterator_traits< mage::RecordIterator< T > > {
-     
-    public:
-    
-        using value_type        = mage::Record< T >;
-        using reference_type    = mage::Record< T >&;
-        using pointer_type      = mage::Record< T >*;
-        using difference_type   = ptrdiff_t;
-        using iterator_category = random_access_iterator_tag;
-    };
-}
-
 int main() {
     mage::ComponentManager< float > manager;
     manager.emplace_back(mage::Entity(5u), 5.0f);
@@ -753,7 +710,10 @@ int main() {
     }
     std::cout << std::endl;
     
-    std::sort(RecordBegin(manager), RecordEnd(manager));
+    std::sort(RecordBegin(manager), RecordEnd(manager), 
+              [](const auto& lhs, const auto& rhs) { 
+                  return lhs.GetComponent() < rhs.GetComponent(); 
+              });
     
     for (auto& c : manager.m_components) {
         std::cout << c;
