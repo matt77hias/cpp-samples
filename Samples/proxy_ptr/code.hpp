@@ -25,52 +25,52 @@ namespace experimental {
     std::vector< Light >  g_lights;
 
     template< typename T >
-    T &Get(size_t index) noexcept;
+    T& Get(size_t index) noexcept;
     template<>
-    inline Camera &Get< Camera >(size_t index) noexcept {
+    inline Camera& Get< Camera >(size_t index) noexcept {
         return g_cameras[index];
     }
     template<>
-    inline Light &Get< Light >(size_t index) noexcept {
+    inline Light& Get< Light >(size_t index) noexcept {
         return g_lights[index];
     }
 
     template< typename T >
     struct H final {
   
-        explicit H(std::function< T *() > getter) 
+        explicit H(std::function< T*() > getter) 
             : m_getter(std::move(getter)) {}
     
-        H(const H &h) = default;
-        H(H &&h) = default;
+        H(const H& h) = default;
+        H(H&& h) = default;
     
         template< typename U >
-        H(const H< U > &h) 
+        H(const H< U >& h) 
             : m_getter(h.m_getter) {}
         template< typename U >
-        H(H< U > &&h) 
+        H(H< U >&& h) 
             : m_getter(std::move(h.m_getter)) {}
     
         ~H() = default;
     
-        H &operator=(const H &h) = default;
-        H &operator=(H &&h) = default;
+        H& operator=(const H& h) = default;
+        H& operator=(H&& h) = default;
     
         explicit operator bool() const noexcept {
             return nullptr != Get();
         }
     
-        T &operator*() const { 
+        T& operator*() const { 
             return *Get(); 
         }
-        T *operator->() const { 
+        T* operator->() const { 
             return  Get(); 
         }
-        T *Get() const { 
+        T* Get() const { 
             return m_getter(); 
         }
     
-        std::function< T *() > m_getter;
+        std::function< T*() > m_getter;
     };
     
     template< typename U >
