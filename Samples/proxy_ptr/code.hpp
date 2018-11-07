@@ -76,7 +76,7 @@ namespace experimental {
     template< typename U >
     static H< U > Create(size_t index) {
         return H< U >([index]() { 
-            return index == 0 ? nullptr : &experimental::Get< U >(index - 1); 
+            return index == 0u ? nullptr : &experimental::Get< U >(index - 1u); 
         });
     }
 }
@@ -85,10 +85,10 @@ using namespace experimental;
 
 int main() {
     // Sizes
-    std::cout << "Size of a raw    ptr: " << sizeof(Component *) << std::endl;
-    std::cout << "Size of a unique ptr: " << sizeof(std::unique_ptr< Component *() >) << std::endl;
-    std::cout << "Size of a shared ptr: " << sizeof(std::shared_ptr< Component *() >) << std::endl;
-    std::cout << "Size of a handle ptr: " << sizeof(H< Component *() >) << std::endl;
+    std::cout << "Size of a raw    ptr: " << sizeof(Component*) << std::endl;
+    std::cout << "Size of a unique ptr: " << sizeof(std::unique_ptr< Component*() >) << std::endl;
+    std::cout << "Size of a shared ptr: " << sizeof(std::shared_ptr< Component*() >) << std::endl;
+    std::cout << "Size of a handle ptr: " << sizeof(H< Component*() >) << std::endl;
     
     // Populate
     g_cameras.emplace_back();
