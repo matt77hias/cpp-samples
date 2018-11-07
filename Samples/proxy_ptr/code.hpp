@@ -86,9 +86,9 @@ using namespace experimental;
 int main() {
     // Sizes
     std::cout << "Size of a raw    ptr: " << sizeof(Component*) << std::endl;
-    std::cout << "Size of a unique ptr: " << sizeof(std::unique_ptr< Component*() >) << std::endl;
-    std::cout << "Size of a shared ptr: " << sizeof(std::shared_ptr< Component*() >) << std::endl;
-    std::cout << "Size of a handle ptr: " << sizeof(H< Component*() >) << std::endl;
+    std::cout << "Size of a unique ptr: " << sizeof(std::unique_ptr< Component >) << std::endl;
+    std::cout << "Size of a shared ptr: " << sizeof(std::shared_ptr< Component >) << std::endl;
+    std::cout << "Size of a handle ptr: " << sizeof(H< Component >) << std::endl;
     
     // Populate
     g_cameras.emplace_back();
