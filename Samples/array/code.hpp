@@ -6,6 +6,7 @@
 namespace details {
 
 	template< typename ActionT, typename FromT, size_t...I >
+	[[nodiscard]]
 	constexpr auto TransformArray(ActionT&& action, 
 								  const std::array< FromT, sizeof...(I) >& a, 
 								  std::index_sequence< I... >) {
@@ -15,11 +16,13 @@ namespace details {
 	}
 
 	template< typename T, size_t...I >
+	[[nodiscard]]
 	constexpr auto FillArray(const T& value, std::index_sequence< I... >) {
 		return std::array< T, sizeof...(I) >{ (static_cast< void >(I), value)... };
 	}
 
 	template< size_t ToN, typename T, size_t...I >
+	[[nodiscard]]
 	constexpr auto EnlargeArray(const std::array< T, sizeof...(I) >& a, 
 								std::index_sequence< I... >) {
 
@@ -27,6 +30,7 @@ namespace details {
 	}
 
 	template< typename T, typename TupleT, std::size_t... I >
+	[[nodiscard]]
 	constexpr auto TuppleToArray(const TupleT& t, 
 								 std::index_sequence< I... >) {
 
@@ -34,6 +38,7 @@ namespace details {
 	}
 
 	template< typename T, size_t...I >
+	[[nodiscard]]
 	constexpr auto ArrayToTupple(const std::array< T, sizeof...(I) >& a,
 								 std::index_sequence< I... >) {
 		
@@ -42,6 +47,7 @@ namespace details {
 }
 
 template< typename ActionT, typename FromT, size_t N >
+[[nodiscard]]
 constexpr auto TransformArray(ActionT&& action, 
 							  const std::array< FromT, N >& a) {
 	
@@ -50,6 +56,7 @@ constexpr auto TransformArray(ActionT&& action,
 }
 
 template< typename ToT, typename FromT, size_t N >
+[[nodiscard]]
 constexpr auto StaticCastArray(const std::array< FromT, N >& a) {
 	constexpr auto f = [](const FromT& v) {
 		return static_cast< ToT >(v); 
@@ -58,22 +65,26 @@ constexpr auto StaticCastArray(const std::array< FromT, N >& a) {
 }
 
 template< typename T, size_t N >
+[[nodiscard]]
 constexpr auto FillArray(const T& value) {
 	return details::FillArray(value, std::make_index_sequence< N >());
 }
 
 template< size_t ToN, typename T, size_t FromN >
+[[nodiscard]]
 constexpr auto EnlargeArray(const std::array< T, FromN >& a) {
 	return details::EnlargeArray< ToN >(a, std::make_index_sequence< FromN >());
 }
 
 template< typename T, typename... Ts >
+[[nodiscard]]
 constexpr auto TuppleToArray(const std::tuple< T, Ts... >& t) {
 	constexpr auto N = sizeof...(Ts) + 1u;
 	return details::TuppleToArray< T >(t, std::make_index_sequence< N >());
 }
 
 template< typename T, size_t N >
+[[nodiscard]]
 constexpr auto ArrayToTupple(const std::array< T, N >& a) {
 	return details::ArrayToTupple(a, std::make_index_sequence< N >());
 }
