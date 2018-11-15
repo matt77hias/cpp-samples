@@ -9,7 +9,7 @@
 # cpp-samples
 
 ## About
-Samples for small prototyping and experimenting with various C++ standards and features.
+Samples for prototyping and experimenting with various C++ standards and features.
 
 ## Try It Online
 * [Wandbox](https://wandbox.org/)
