@@ -468,6 +468,13 @@ namespace mage {
 		// Member Methods
 		//---------------------------------------------------------------------
 
+        operator T() noexcept {
+            assert(nullptr != m_component_manager);
+			assert(m_component_manager->end() != m_component_it);
+            
+            return *m_component_it;
+        }
+
         [[nodiscard]]
         T& GetComponent() noexcept {
             assert(nullptr != m_component_manager);
@@ -713,6 +720,11 @@ int main() {
     std::sort(RecordBegin(manager), RecordEnd(manager), 
               [](const auto& lhs, const auto& rhs) { 
                   return lhs.GetComponent() < rhs.GetComponent(); 
+              });
+
+    std::sort(RecordBegin(manager), RecordEnd(manager), 
+              [](const float& lhs, const float& rhs) { 
+                  return lhs < rhs; 
               });
     
     for (auto& c : manager.m_components) {
