@@ -191,13 +191,15 @@ namespace mage {
 			//-----------------------------------------------------------------
 			// Member Methods
 			//-----------------------------------------------------------------
-
+            
             [[nodiscard]]
 			operator T&() noexcept {
-				assert(nullptr != m_component_manager);
-				assert(m_component_manager->end() != m_component_it);
-				
-				return *m_component_it;
+				return GetComponent();
+			}
+
+			[[nodiscard]]
+			operator const T&() const noexcept {
+				return GetComponent();
 			}
 
 			[[nodiscard]]
