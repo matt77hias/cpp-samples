@@ -373,7 +373,7 @@ namespace mage {
 				return m_components[it->second];
 			}
 
-			m_mapping.emplace(entity, size());
+			m_mapping.emplace(entity, static_cast< U32 >(size()));
 			m_entities.push_back(entity);
 			return m_components.emplace_back(
 				std::forward< ConstructorArgsT >(args)...);
@@ -421,7 +421,7 @@ namespace mage {
 		
 		AlignedVector< Entity > m_entities;
 
-		std::unordered_map< Entity, std::size_t > m_mapping;
+		std::unordered_map< Entity, U32 > m_mapping;
 	};
 
 	//-------------------------------------------------------------------------
