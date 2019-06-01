@@ -543,9 +543,7 @@ namespace mage {
         
         using value_type        = Record< T >;
         using reference         = Record< T >;
-        using const_reference   = Record< T >;
         using pointer           = void;
-        using const_pointer     = void;
         using difference_type   = std::ptrdiff_t;
         using iterator_category = std::random_access_iterator_tag;
 
@@ -575,22 +573,14 @@ namespace mage {
 		// Member Methods
 		//---------------------------------------------------------------------
 
-		reference operator*() noexcept {
-			return Record< T >(m_component_it, m_component_manager);
-		}
-		const_reference operator*() const noexcept {
+		reference operator*() const noexcept {
 			return Record< T >(m_component_it, m_component_manager);
 		}
         
         pointer operator->() = delete;
-        const_pointer operator->() const = delete;
         
 		[[nodiscard]]
-		reference operator[](difference_type n) noexcept {
-			return Record< T >(m_component_it + n, m_component_manager);
-		}
-		[[nodiscard]]
-		const_reference operator[](difference_type n) const noexcept {
+		reference operator[](difference_type n) const noexcept {
 			return Record< T >(m_component_it + n, m_component_manager);
 		}
 
