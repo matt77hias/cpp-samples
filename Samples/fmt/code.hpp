@@ -36,7 +36,7 @@ namespace fmt {
 		template< typename FormatContextT >
 		auto format(const std::wstring_view& wstr, FormatContextT& ctx) {
 			const UTF16toUTF8 str(wstr);
-			return format_to(ctx.begin(), "{}", std::string_view(str));
+			return format_to(ctx.out(), "{}", std::string_view(str));
 		}
 	};
 
@@ -51,7 +51,7 @@ namespace fmt {
 		template< typename FormatContextT >
 		auto format(const std::wstring& wstr, FormatContextT& ctx) {
 			const UTF16toUTF8 str(wstr);
-			return format_to(ctx.begin(), "{}", std::string_view(str));
+			return format_to(ctx.out(), "{}", std::string_view(str));
 		}
 	};
 
@@ -66,7 +66,7 @@ namespace fmt {
 		template< typename FormatContextT >
 		auto format(const std::string_view& str, FormatContextT& ctx) {
 			const UTF8toUTF16 wstr(str);
-			return format_to(ctx.begin(), L"{}", std::wstring_view(wstr));
+			return format_to(ctx.out(), L"{}", std::wstring_view(wstr));
 		}
 	};
 
@@ -81,7 +81,7 @@ namespace fmt {
 		template< typename FormatContextT >
 		auto format(const std::string& str, FormatContextT& ctx) {
 			const UTF8toUTF16 wstr(str);
-			return format_to(ctx.begin(), L"{}", std::wstring_view(wstr));
+			return format_to(ctx.out(), L"{}", std::wstring_view(wstr));
 		}
 	};
 }
