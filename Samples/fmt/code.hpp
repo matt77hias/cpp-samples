@@ -100,8 +100,8 @@ int main() {
     std::string s = "foo";
     std::string_view sv = s;
 
-    std::string ws = "bar";
-    std::string_view wsv = ws;
+    std::wstring ws = L"bar";
+    std::wstring_view wsv = ws;
 
     Print( "{}", s);
     Print( "{}", sv);
