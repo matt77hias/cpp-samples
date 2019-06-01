@@ -469,7 +469,7 @@ namespace mage {
 		//---------------------------------------------------------------------
 
         [[nodiscard]]
-        operator T() noexcept {
+        operator T&() noexcept {
             assert(nullptr != m_component_manager);
 			assert(m_component_manager->end() != m_component_it);
             
