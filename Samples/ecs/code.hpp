@@ -165,7 +165,7 @@ namespace mage {
 		//---------------------------------------------------------------------
 
 		ComponentManager& operator=(const ComponentManager& manager) = default;
-		ComponentManager& operator=(ComponentManager&& manager) noexcept = default;
+		ComponentManager& operator=(ComponentManager&& manager) = default;
 
 		//---------------------------------------------------------------------
 		// Member Methods: Element access
@@ -468,6 +468,7 @@ namespace mage {
 		// Member Methods
 		//---------------------------------------------------------------------
 
+        [[nodiscard]]
         operator T() noexcept {
             assert(nullptr != m_component_manager);
 			assert(m_component_manager->end() != m_component_it);
