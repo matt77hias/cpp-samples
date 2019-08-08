@@ -6,9 +6,9 @@
 [co]: https://www.codacy.com/app/matt77hias/cpp-samples?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matt77hias/cpp-samples&amp;utm_campaign=Badge_Grade
 [li]: https://raw.githubusercontent.com/matt77hias/cpp-samples/master/LICENSE.txt
 
-<p align="center"><img src="res/cpp.png"></p>
-
 # cpp-samples
+
+<p align="center"><img src="res/cpp.png"></p>
 
 ## About
 Samples for prototyping and experimenting with various C++ standards and features.
