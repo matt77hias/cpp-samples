@@ -26,8 +26,9 @@ struct Derived : public Base
 int main()
 {
     Base* b = new Derived;
-    b->Clone();
+    Base* clone = b->Clone();
     delete b;
+	delete clone;
 
     return 0;
 }
