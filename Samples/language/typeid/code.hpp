@@ -1,74 +1,98 @@
+// for_each
 #include <algorithm>
+// cout, endl
 #include <iostream>
+// type_index
 #include <typeindex>
+// unordered_multimap
 #include <unordered_map>
+// vector
 #include <vector>
 
-struct Component {
+struct Component
+{
     virtual ~Component() = default;
 };
+
 struct A : public Component {};
 struct B : public Component {};
 
-struct Node {
-
+struct Node
+{
     template< typename ComponentT >
-	bool Has() const noexcept {
+    [[nodiscard]]
+	bool Has() const noexcept
+    {
 		return m_components.find(typeid(ComponentT)) != m_components.cend();
 	}
 
 	template< typename ComponentT >
-	size_t GetNumberOf() const noexcept {
+    [[nodiscard]]
+	size_t GetNumberOf() const noexcept
+    {
 		return m_components.count(typeid(ComponentT));
 	};
 
 	template< typename ComponentT >
-	ComponentT* Get() noexcept {
+    [[nodiscard]]
+	ComponentT* Get() noexcept
+    {
 		const auto it = m_components.find(typeid(ComponentT));
 		return (it != m_components.end()) ? 
 			static_cast< ComponentT* >(it->second) : nullptr;
 	}
 
 	template< typename ComponentT >
-	const ComponentT* Get() const noexcept {
+    [[nodiscard]]
+	const ComponentT* Get() const noexcept
+    {
 		const auto it = m_components.find(typeid(ComponentT));
 		return (it != m_components.cend()) ? 
 			static_cast< ComponentT* >(it->second) : nullptr;
-
 	}
 
 	template< typename ComponentT >
-	std::vector< ComponentT* > GetAll() {
+    [[nodiscard]]
+	std::vector< ComponentT* > GetAll()
+    {
 		std::vector< ComponentT* > components;
 		const auto range = m_components.equal_range(typeid(ComponentT));
-		for_each(range.first, range.second, 
-			[&components](decltype(m_components)::value_type& x) {
-				components.push_back(static_cast< ComponentT* >(x.second));
-			}
+		std::for_each(range.first, range.second,
+                      [&components](decltype(m_components)::value_type& x)
+                      {
+                          components.push_back(static_cast< ComponentT* >(x.second));
+                      }
 		);
+
 		return components;
 	}
 
 	template< typename ComponentT >
-	std::vector< const ComponentT* > GetAll() const {
+    [[nodiscard]]
+	std::vector< const ComponentT* > GetAll() const
+    {
 		std::vector< ComponentT* > components;
 		const auto range = m_components.equal_range(typeid(ComponentT));
-		for_each(range.first, range.second,
-			[&components](decltype(m_components)::value_type& x) {
-				components.push_back(static_cast< ComponentT* >(x.second));
-			}
+		std::for_each(range.first, range.second,
+                      [&components](decltype(m_components)::value_type& x)
+                      {
+                          components.push_back(static_cast< ComponentT* >(x.second));
+                      }
 		);
+
 		return components;
 	}
     
-    void AddComponent(Component* component) {
+    void AddComponent(Component* component)
+    {
 		m_components.emplace(typeid(*component), component);
 	}
     
     std::unordered_multimap< std::type_index, Component* > m_components;
 };
 
-int main() {
+int main()
+{
     Node n;
     A* c = new A();
     n.AddComponent(c);
