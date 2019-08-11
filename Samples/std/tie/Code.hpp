@@ -1,7 +1,10 @@
+// cout, endl
 #include <iostream>
+// tie
 #include <tuple>
 
-int main() {
+int main()
+{
     int a = 1;
     int b = 2;
     
