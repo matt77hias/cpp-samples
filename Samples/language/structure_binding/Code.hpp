@@ -29,8 +29,8 @@ namespace std
 
 int main()
 {
-    constexpr std::array< int, 3 > a = { 1, 2, 3 };
-    constexpr Array< int, 3 > b      = { 4, 5, 6 };
+    constexpr std::array< int, 3u > a = { 1, 2, 3 };
+    constexpr Array< int, 3u > b      = { 4, 5, 6 };
     
     const auto [ax, ay, az] = a;
     std::cout << ax << ay << az << std::endl;
