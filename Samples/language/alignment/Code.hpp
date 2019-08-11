@@ -1,3 +1,4 @@
+// cout, endl
 #include <iostream>
 
 struct A
@@ -9,5 +10,6 @@ int main()
 {
     std::cout << alignof(A) << std::endl;
     std::cout <<  sizeof(A) << std::endl;
+
     return 0;
 }
