@@ -41,7 +41,7 @@ struct Widget
         std::cout << "Widget::~Widget()" << std::endl;
     }
     
-    int m_data;
+    int m_data = {};
 };
 
 void test(bool use_make_shared)
