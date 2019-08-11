@@ -1,6 +1,8 @@
+// cout
 #include <iostream>
- 
-int& f(int& i) 
+
+[[nodiscard]]
+constexpr int& f(int& i) noexcept
 { 
     return i; 
 };
@@ -10,8 +12,8 @@ int main()
     int i = 5;
     auto j = f(i);
     j = 0;
-    std::cout << i;
-    std::cout << ' ';
-    std::cout << j;
+    
+    std::cout << i << ' ' << j;
+
     return 0;
 }
