@@ -1,14 +1,18 @@
+// cout, endl
 #include <iostream>
 
 #define EVER ;;
 
-int main() {
+int main()
+{
     int i = 0;
-    for (EVER) {
+    for (EVER)
+    {
         
         std::cout << i++ << std::endl;
         
-        if (i > 5) {
+        if (5 < i)
+        {
             break;
         }
     }
