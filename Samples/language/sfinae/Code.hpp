@@ -1,56 +1,74 @@
+// cout, endl
 #include <iostream>
+// string
 #include <string>
 
 struct A {};
 
-const std::string ToString(const A&) {
+[[nodiscard]]
+std::string ToString(const A&)
+{
     return "ToString(const A&)";
 }
 
-struct B {
-    const std::string Serialize() const {
+struct B
+{
+    [[nodiscard]]
+    std::string Serialize() const
+    {
         return "B::Serialize()";
     }
 };
 
-struct C {
-    const std::string serialize;
+struct C
+{
+    std::string serialize;
 };
 
-const std::string ToString(const C&) {
+[[nodiscard]]
+std::string ToString(const C&)
+{
     return "ToString(const C&)";
 }
 
-struct Yes {
+struct [[nodiscard]] Yes
+{
     char m_ = 0;
 };
-struct No {
+
+struct [[nodiscard]] No
+{
     char m_[2] = {}; 
 };
 
 static_assert(sizeof(Yes) != sizeof(No));
 
 template< typename T >
-struct HasSerializeMemberMethod {
+struct HasSerializeMemberMethod
+{
 
 private:
     
     template< typename U, U ValueU > 
-    struct IsMatch {};
+    struct IsMatch
+    {};
 
     template< typename U > 
-    static const Yes Test(IsMatch< const std::string (U::*)(), &U::Serialize >*) noexcept {
-        return Yes();
+    static constexpr Yes Test(IsMatch< std::string (U::*)(), &U::Serialize >*) noexcept
+    {
+        return {};
     }
     
     template< typename U > 
-    static const Yes Test(IsMatch< const std::string (U::*)() const, &U::Serialize >*) noexcept {
-        return Yes();
+    static constexpr Yes Test(IsMatch< std::string (U::*)() const, &U::Serialize >*) noexcept
+    {
+        return {};
     }
     
     template< typename U > 
-    static const No Test(...) noexcept {
-        return No();
+    static constexpr No Test(...) noexcept
+    {
+        return {};
     }
     
 public:
@@ -59,24 +77,29 @@ public:
 };
 
 template< bool ConditionT, typename T = void >
-struct enable_if {};
+struct enable_if
+{};
 
 template< typename T >
-struct enable_if< true, T > { 
+struct enable_if< true, T >
+{ 
     using type = T; 
 };
 
 template< typename T > 
-typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v) {
+typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+{
     return v.Serialize();
 }
 
 template< typename T > 
-typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v) {
+typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+{
     return ToString(v);
 }
 
-int main() {
+int main()
+{
     std::cout << HasSerializeMemberMethod< A >::value << std::endl;
     std::cout << HasSerializeMemberMethod< B >::value << std::endl;
     std::cout << HasSerializeMemberMethod< C >::value << std::endl;
