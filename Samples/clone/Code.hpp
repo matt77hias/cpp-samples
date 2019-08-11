@@ -5,6 +5,7 @@ struct Base
 {
     virtual ~Base() = default;
     
+	[[nodiscard]]
     virtual Base* Clone() const
     {
         std::cout << "Base::Clone" << std::endl;
@@ -14,7 +15,8 @@ struct Base
 
 struct Derived : public Base
 {
-    virtual Derived* Clone() const override
+	[[nodiscard]]
+	virtual Derived* Clone() const override
     {
         std::cout << "Derived::Clone" << std::endl;
         return new Derived(*this);
