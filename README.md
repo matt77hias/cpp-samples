@@ -10,6 +10,8 @@
 
 <p align="center"><img src="res/cpp.png"></p>
 
+_C++ has flaws, but what does that matter when it comes to matters of the heart? We love what we love. Reason does not enter into it. In many ways, unwise love is the truest love. Anyone can love a thing because. That’s as easy as putting a penny in your pocket. But to love something despite. To know the flaws and love them too. That is rare and pure and perfect. (The Wise Programmer’s Fear)_
+
 ## About
 Samples for prototyping and experimenting with various C++ standards and features.
 
