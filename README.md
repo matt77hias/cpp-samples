@@ -19,6 +19,4 @@ Samples for prototyping and experimenting with various C++ standards and feature
 
 ## Try It Online
 * [Godbolt](https://godbolt.org/)
-   * Miscellaneous: assembly code, [installed libraries](https://github.com/mattgodbolt/compiler-explorer/wiki/Installed-libraries)
 * [Wandbox](https://wandbox.org/)
-   * Miscellaneous: multiple TUs
