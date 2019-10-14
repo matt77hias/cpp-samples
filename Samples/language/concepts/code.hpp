@@ -84,13 +84,16 @@ namespace v2
 namespace v3
 {
     template < typename T >
+    concept Array = std::is_array< T >::value;
+    
+    template < typename T >
     concept NonArray = !std::is_array< T >::value;
 
     template < typename T >
-    concept StackArray = std::is_array< T >::value && (std::extent_v< T > != 0u);
+    concept StackArray = Array< T > && (std::extent_v< T > != 0u);
 
     template < typename T >
-    concept HeapArray = std::is_array< T >::value && (std::extent_v< T > == 0u);
+    concept HeapArray = Array< T > && (std::extent_v< T > == 0u);
     
     template< NonArray T, typename... ConstructorArgsT >
 	[[nodiscard]]
