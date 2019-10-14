@@ -84,7 +84,7 @@ namespace v2
 namespace v3
 {
     template < typename T >
-    concept NonArray = std::is_array< T >::value;
+    concept NonArray = !std::is_array< T >::value;
 
     template < typename T >
     concept StackArray = std::is_array< T >::value && (std::extent_v< T > != 0u);
