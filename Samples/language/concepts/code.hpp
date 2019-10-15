@@ -15,7 +15,7 @@ namespace v0
 		      typename std::enable_if< !std::is_array< T >::value, int >::type = 0 >
 	inline std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args)
     {
-        return std::make_unique< T >(std::forward< ConstructorArgsT >(args)...);
+        return std::make_unique< T >(std::forward< ConstructorArgsT >(args)...); // C++14
     }
 
 	template< typename T,
@@ -27,7 +27,7 @@ namespace v0
 		      typename std::enable_if< std::is_array< T >::value && (std::extent< T >::value == 0u), int >::type = 0 >
 	inline std::unique_ptr< T > MakeUnique(std::size_t size)
     {
-        return std::make_unique< T >(size);
+        return std::make_unique< T >(size); // C++14
     }
 }
 
