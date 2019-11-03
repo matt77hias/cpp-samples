@@ -40,4 +40,8 @@
 *.cpp                                       linguist-language=C++
 *.c++                                       linguist-language=C++
 
+###############################################################################
+# Explicitly declare documentation for the following files
+###############################################################################
+
 Samples/**                                  linguist-documentation=false
