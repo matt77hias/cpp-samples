@@ -24,7 +24,7 @@ void* operator new(std::size_t size, A)
 [[nodiscard]]
 void* operator new[](std::size_t size, A)
 {
-    std::cout << "Called: void* operator new(std::size_t size, A)" << std::endl;
+    std::cout << "Called: void* operator new[](std::size_t size, A)" << std::endl;
     std::cout << "Size: " << size << std::endl;
     return &g_b;
 }
