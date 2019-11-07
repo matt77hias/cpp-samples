@@ -2,16 +2,20 @@
 #include <cstddef>
 // cout, endl
 #include <iostream>
+// logic_error
+#include <stdexcept>
 
 struct A 
 {};
 
 struct B
 {
-    int i;
+    B() { throw std::logic_error("Called: B::B()"); }
+    B(int i) : m_i(i) {}
+    int m_i = {};
 };
 
-B g_b;
+B g_b(0);
 
 [[nodiscard]]
 void* operator new(std::size_t size, A)
@@ -29,10 +33,42 @@ void* operator new[](std::size_t size, A)
     return &g_b;
 }
 
+void operator delete(void* ptr) noexcept
+{
+    if (ptr == &g_b) 
+    {
+        std::cout << "Called: delete(void* ptr)" << std::endl;
+    }
+}
+
+void operator delete(void* ptr, A) noexcept
+{
+    if (ptr == &g_b) 
+    {
+        std::cout << "Called: delete(void* ptr, A)" << std::endl;
+    }   
+}
+
+void operator delete[](void* ptr) noexcept
+{
+    if (ptr == &g_b) 
+    {
+        std::cout << "Called: delete[](void* ptr)" << std::endl;
+    }
+}
+
+void operator delete[](void* ptr, A) noexcept
+{
+    if (ptr == &g_b) 
+    {
+        std::cout << "Called: delete[](void* ptr, A)" << std::endl;
+    }
+}
+
 int main()
 {
    A a;
-   const auto b1 = new (a) B;
-   const auto b2 = new (a) B[5];
+   try { const auto b1 = new (a) B; }    catch (...) {}
+   try { const auto b2 = new (a) B[5]; } catch (...) {}
    return 0;
 }
