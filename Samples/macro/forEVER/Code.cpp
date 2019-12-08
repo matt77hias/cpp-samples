@@ -11,7 +11,7 @@ int main()
         
         std::cout << i++ << std::endl;
         
-        if (5 < i)
+        if (i > 5)
         {
             break;
         }

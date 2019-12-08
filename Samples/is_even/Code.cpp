@@ -11,14 +11,18 @@
 // (2a)^n   = 2^n a^n      = [a^n << n]
 // (2a+1)^n = (2a+1)(2b+1) = 4ab + 2(a+b) + 1 = [ab << 2] + [(a+b) << 1] + 1
 
-bool IsEven(std::uint32_t x)
+bool IsEven(std::uint32_t x) noexcept
 {
     std::cout << std::bitset< 32u >(x) << std::endl;
-	switch(x)
+	
+	switch (x)
     {
-		case 0u: return true;
-		case 1u: return false;
-		default: return IsEven(x*x);
+		case 0u:
+			return true;
+		case 1u:
+			return false;
+		default:
+			return IsEven(x * x);
 	}
 }
 
