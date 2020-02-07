@@ -150,16 +150,16 @@ int main()
    std::cout << std::endl;
 
    // rgb = v; // Does not compile.
-   static_cast< Vector&& >(rgb) = v;
+   static_cast< Vector& >(rgb) = v;
    // rgb = xyz; // Does not compile.
-   static_cast< Vector&& >(rgb) = xyz;
+   static_cast< Vector& >(rgb) = xyz;
 
    std::cout << std::endl;
 
    // xyz = v; // Does not compile.
-   static_cast< Vector&& >(xyz) = v;
+   static_cast< Vector& >(xyz) = v;
    // xyz = rgb; // Does not compile.
-   static_cast< Vector&& >(xyz) = rgb;
+   static_cast< Vector& >(xyz) = rgb;
    xyz = static_cast< Xyz >(rgb);
 
    return 0;
