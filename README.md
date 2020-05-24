@@ -17,6 +17,4 @@
 ## About
 Samples for prototyping and experimenting with various C++ standards and features.
 
-## Try It Online
-* [Godbolt](https://godbolt.org/)
-* [Wandbox](https://wandbox.org/)
+[Try It Online](https://godbolt.org/)
