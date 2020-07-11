@@ -1,3 +1,5 @@
+// size_t
+#include <cstddef>
 // cout, endl
 #include <iostream>
 // iota_view
@@ -5,10 +7,14 @@
 
 int main()
 {
-    auto range = std::ranges::iota_view{1, 10};
+    constexpr std::ranges::iota_view< std::size_t, std::size_t > range{ 1u, 10u };
     std::cout << *range.begin() << std::endl; 
     std::cout << *range.end()   << std::endl; 
     std::cout <<  range.empty() << std::endl; 
     std::cout <<  range.size()  << std::endl; 
-    return sizeof(range);
+
+    std::cout <<  sizeof(std::size_t)  << std::endl; 
+    std::cout <<  sizeof(range)        << std::endl; 
+    
+    return 0;
 }
