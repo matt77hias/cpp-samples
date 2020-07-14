@@ -15,6 +15,6 @@
 <p align="right"><i>The Wise Programmer’s Fear</i></p>
 
 ## About
-Samples for prototyping and experimenting with various C++ standards and features.
+Samples for prototyping and experimenting with various C++ standards, features and libraries.
 
 [Try It Online](https://godbolt.org/)
