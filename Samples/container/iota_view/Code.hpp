@@ -377,8 +377,8 @@ namespace mage
  
 int main()
 {
-    mage::IotaView range = { 0u, 10u };
-    for (auto element : range)
+    for (mage::IotaView range = { 0u, 10u };
+		 auto element : range)
     {
         std::cout << element;
     }
