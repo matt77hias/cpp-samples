@@ -25,7 +25,7 @@ namespace std
 {
   template< typename T >
   requires(std::same_as< T, typename ::Outer< typename T::value_type >::Inner >)
-  class tuple_size< T > : public integral_constant< size_t, 2 >
+  class tuple_size< T > : public integral_constant< size_t, 2u >
   {};
 
   template< typename T >
