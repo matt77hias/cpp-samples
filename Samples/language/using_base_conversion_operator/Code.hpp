@@ -1,6 +1,10 @@
 struct Base
 {
-    explicit operator int () const noexcept { return 7; }
+    [[nodiscard]]
+	explicit operator int () const noexcept
+	{
+		return 7;
+	}
 };
 
 struct Derived : Base
