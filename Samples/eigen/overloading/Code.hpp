@@ -23,7 +23,8 @@ void Foobar(const StaticF32x3& v)
 
 int main()
 {
-    StaticF32x3 v = {};
+    const StaticF32x3 v = {};
+    const auto result = v + v;
     Foobar(v);
     
     return 0;
