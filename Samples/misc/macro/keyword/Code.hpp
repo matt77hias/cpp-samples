@@ -1,7 +1,8 @@
 #define BREAK() break
 #define RETURN(arg) return arg
 
-int f() 
+[[nodiscard]]
+int f() noexcept
 {
     int i = 5;
     while (true)
