@@ -1,5 +1,7 @@
+#include <iostream>
+
 #define BREAK() break
-#define RETURN(arg) return arg
+#define RETURN(arg) return (arg)
 
 [[nodiscard]]
 int f() noexcept
