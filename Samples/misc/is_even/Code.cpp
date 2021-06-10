@@ -11,6 +11,7 @@
 // (2a)^n   = 2^n a^n      = [a^n << n]
 // (2a+1)^n = (2a+1)(2b+1) = 4ab + 2(a+b) + 1 = [ab << 2] + [(a+b) << 1] + 1
 
+[[nodiscard]]
 bool IsEven(std::uint32_t x) noexcept
 {
     std::cout << std::bitset< 32u >(x) << std::endl;
