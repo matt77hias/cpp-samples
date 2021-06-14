@@ -3,11 +3,14 @@
 
 using uint = unsigned int;
 
-float getX(uint i)
+[[nodiscard]]
+constexpr float getX(uint i) noexcept
 {
     return ((i & 2u) << 1u) - 1.0f;
 }
-float getY(uint i)
+
+[[nodiscard]]
+constexpr float getY(uint i) noexcept
 {
     return ((i & 1u) << 2u) - 1.0f;
 }
