@@ -6,7 +6,7 @@
 #include <vector>
 
 [[nodiscard]]
-constexpr bool predicate(int x)
+constexpr bool predicate(int x) noexcept
 {
     return x == 2;
 }
