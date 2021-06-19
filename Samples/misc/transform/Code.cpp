@@ -8,6 +8,7 @@
 #include <utility>
 
 template< typename ActionT, typename T, std::size_t... Is >
+[[nodiscard]]
 constexpr auto TransformArrayImpl(ActionT&& action, 
                                   const std::array< T, sizeof...(Is) >& a, 
                                   std::index_sequence< Is... >)
@@ -17,6 +18,7 @@ constexpr auto TransformArrayImpl(ActionT&& action,
 }
 
 template< typename ActionT, typename T, std::size_t N >
+[[nodiscard]]
 constexpr auto TransformArray(ActionT&& action, 
                               const std::array< T, N >& a)
 {
