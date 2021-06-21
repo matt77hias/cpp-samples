@@ -3,19 +3,27 @@ struct Vector
 
 struct Rgb : Vector
 {
-    constexpr Rgb()
+    [[nodiscard]]
+	constexpr Rgb()
         : Vector{}, m_i(0)
-    {
-    }
+    {}
+	
+	[[nodiscard]]
     constexpr Rgb(const Rgb&)
         : Vector{}, m_i(16)
     {}
+	
+	[[nodiscard]]
     constexpr Rgb(Rgb&&)
         : Vector{}, m_i(16)
     {}
+	
+	[[nodiscard]]
     constexpr explicit Rgb(const Vector&)
         : Vector{}, m_i(1)
     {}
+	
+	[[nodiscard]]
     constexpr explicit Rgb(Vector&&)
         : Vector{}, m_i(1)
     {}
@@ -25,7 +33,8 @@ struct Rgb : Vector
 
 struct Xyz : Vector
 {
-    constexpr explicit operator Rgb() const
+    [[nodiscard]]
+	constexpr explicit operator Rgb() const
     {
         Rgb temp{};
         return temp;
