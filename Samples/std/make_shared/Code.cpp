@@ -58,11 +58,11 @@ void test(bool use_make_shared)
     
     std::weak_ptr< Widget > wp(sp);
     
-    std::cout << "No std::shared_ptr's anymore." << std::endl;
 	sp.reset();
+	std::cout << "No std::shared_ptr's anymore." << std::endl;
     
-    std::cout << "No std::weak_ptr's anymore." << std::endl;
 	wp.reset();
+	std::cout << "No std::weak_ptr's anymore." << std::endl;
 }
 
 int main()
