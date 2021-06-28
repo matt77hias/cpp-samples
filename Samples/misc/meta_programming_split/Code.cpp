@@ -2,20 +2,30 @@
 
 // Source: https://stackoverflow.com/a/24971386/1731200
 
-#include <iostream>
-#include <type_traits>
-#include <utility>
-#include <string>
+// find_if
 #include <algorithm>
+// size_t
+#include <cstddef>
+// not1
 #include <functional>
+// cout, endl
+#include <iostream>
+// string
+#include <string>
+// false_type, true_type
+#include <type_traits>
+// make_pair, pair
+#include <utility>
 
 // Sequences
 
 template< bool... > 
-struct BoolSequence {};
+struct BoolSequence
+{};
 
 template< char... > 
-struct CharSequence {};
+struct CharSequence
+{};
 
 // Contains
 
@@ -24,27 +34,32 @@ struct Contains;
 
 template< char C, char... Cs, char Match >
 struct Contains< CharSequence< C, Cs... >, Match > 
-    : public Contains< CharSequence< Cs... >, Match > {};
+    : public Contains< CharSequence< Cs... >, Match >
+{};
 
 template< char C, char... Cs >
 struct Contains< CharSequence< C, Cs... >, C > 
-    : public std::true_type {};
+    : public std::true_type
+{};
 
 template< char Match >
 struct Contains< CharSequence<>, Match > 
-    : public std::false_type {};
+    : public std::false_type
+{};
 
 // MakeSequence
 
-template< size_t Index, typename T, typename Delims > 
+template< std::size_t Index, typename T, typename Delims > 
 struct MakeSequence;
 
-template< size_t Index, bool... Bs, typename Delims > 
+template< std::size_t Index, bool... Bs, typename Delims > 
 struct MakeSequence< Index, BoolSequence< Bs... >, Delims > 
-    : public MakeSequence< Index-1, BoolSequence< Contains< Delims, Index-1 >::value, Bs... >, Delims > {};
+    : public MakeSequence< Index - 1u, BoolSequence< Contains< Delims, Index - 1u >::value, Bs... >, Delims >
+{};
 
 template< bool... Bs, typename Delims > 
-struct MakeSequence< 0, BoolSequence< Bs... >, Delims > {
+struct MakeSequence< 0u, BoolSequence< Bs... >, Delims >
+{
 	using type = BoolSequence< Bs... >;
 };
 
@@ -52,29 +67,37 @@ template< typename T >
 struct BoolASCIITable;
 
 template< bool... Bs > 
-struct BoolASCIITable< BoolSequence< Bs... > > {
+struct BoolASCIITable< BoolSequence< Bs... > >
+{
     using argument_type = char; 
     
-	constexpr bool operator()(const argument_type c) const noexcept {
-		constexpr bool table[256] = { Bs... };
-		return table[static_cast< size_t >(c)];
+	[[nodiscard]]
+	constexpr bool operator()(const argument_type c) const noexcept
+	{
+		constexpr bool table[256u] = { Bs... };
+		return table[static_cast< std::size_t >(c)];
 	}
 };
 
 using Delims = CharSequence< '.', ',' ,' ' ,'-' ,'\n' >;
-using Table  = BoolASCIITable< typename MakeSequence< 256, BoolSequence<>, Delims >::type >;
+using Table  = BoolASCIITable< typename MakeSequence< 256u, BoolSequence<>, Delims >::type >;
 
-template< typename T_It >
-std::pair< T_It, T_It > getNextToken(T_It begin,T_It end) {
+template< typename I >
+[[nodiscard]]
+std::pair< I, I > getNextToken(I begin, I end)
+{
 	const auto first  = std::find_if(begin, end, std::not1(Table{}));
 	const auto second = std::find_if(first, end, Table{});
 	return std::make_pair(first,second);
 }
 
-int main() {
+int main()
+{
 	std::string s{"Some people, excluding those present, have been compile time constants - since puberty."};
-	for (auto it = std::begin(s); it != std::end(s); ){
-		const auto token = getNextToken(it, std::end(s));
+	
+	for (auto it = s.begin(); it != s.end();)
+	{
+		const auto token = getNextToken(it, s.end());
 		std::cout << std::string(token.first, token.second) << std::endl;
 		it = token.second;
 	}
