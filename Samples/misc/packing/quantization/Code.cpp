@@ -7,6 +7,7 @@ using F32 = float;
 using U32 = std::uint32_t;
 
 template< std::size_t QuantumSize >
+[[nodiscard]]
 constexpr F32 QuantizeSNorm(F32 x) noexcept
 {
     static_assert(QuantumSize <= 16u);
@@ -17,6 +18,7 @@ constexpr F32 QuantizeSNorm(F32 x) noexcept
 }
 
 template< std::size_t QuantumSize >
+[[nodiscard]]
 constexpr F32 QuantizeUNorm(F32 x) noexcept
 {
     static_assert(QuantumSize <= 16u);
