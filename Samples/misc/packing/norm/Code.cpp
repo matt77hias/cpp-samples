@@ -10,34 +10,40 @@ using S8  = std::int8_t;
 using U8  = std::uint8_t;
 using U32 = std::uint32_t;
 
+[[nodiscard]]
 constexpr S8 F32ToSNorm(F32 x) noexcept
 {
     const auto nx = std::clamp(x, -1.0f, 1.0f);
     return S8(((nx >= 0.0f) ? 127.0f : 128.0f) * nx);
 }
 
+[[nodiscard]]
 constexpr U8 F32ToUNorm(F32 x) noexcept
 {
     const auto nx = std::clamp(x, 0.0f, 1.0f);
     return U8(255.0f * nx);
 }
 
+[[nodiscard]]
 constexpr U8 F32ToSUNorm(F32 x) noexcept
 {
     const auto nx = std::clamp(x, -1.0f, 1.0f);
     return U8(128.0f + ((nx >= 0) ? 127.0f : 128.0f) * nx);
 }
 
+[[nodiscard]]
 constexpr F32 SNormToF32(S8 x) noexcept
 {
     return F32(x) / ((x >= 0) ? 127.0f : 128.0f);
 }
 
+[[nodiscard]]
 constexpr F32 UNormToF32(U8 x) noexcept
 {
     return F32(x) / 255.0f;
 }
 
+[[nodiscard]]
 constexpr F32 SUNormToF32(U8 x) noexcept
 {
     return (F32(x) - 128.0f) / ((x >= 127u) ? 127.0f : 128.0f);
