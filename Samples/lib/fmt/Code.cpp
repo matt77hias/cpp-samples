@@ -3,10 +3,13 @@
 #include <fmt/format.h>
 #include <string_view>
 
-struct UTF16toUTF8 {
-
-    explicit UTF16toUTF8([[maybe_unused]] std::wstring_view) {}
+struct UTF16toUTF8
+{
+    [[nodiscard]]
+	explicit UTF16toUTF8(std::wstring_view)
+	{}
     
+	[[nodiscard]]
     explicit operator std::string_view() const noexcept {
         return m_str;
     }
@@ -14,74 +17,86 @@ struct UTF16toUTF8 {
     std::string m_str = "string";
 };
 
-struct UTF8toUTF16 {
-
-    explicit UTF8toUTF16([[maybe_unused]] std::string_view) {}
+struct UTF8toUTF16
+{
+    [[nodiscard]]
+	explicit UTF8toUTF16(std::string_view)
+	{}
     
-    explicit operator std::wstring_view() const noexcept {
+	[[nodiscard]]
+    explicit operator std::wstring_view() const noexcept
+	{
         return m_str;
     }
 
     std::wstring m_str = L"wstring";
 };
 
-namespace fmt {
-
+namespace fmt
+{
 	template<>
-	struct formatter< std::wstring_view, char > {
-
+	struct formatter< std::wstring_view, char >
+	{
 		template< typename ParseContextT >
-		typename ParseContextT::iterator parse(ParseContextT& ctx) {
+		typename ParseContextT::iterator parse(ParseContextT& ctx)
+		{
 			return ctx.begin();
 		}
 
 		template< typename FormatContextT >
-		auto format(const std::wstring_view& wstr, FormatContextT& ctx) {
+		auto format(const std::wstring_view& wstr, FormatContextT& ctx)
+		{
 			const UTF16toUTF8 str(wstr);
 			return format_to(ctx.out(), "{}", std::string_view(str));
 		}
 	};
 
 	template<>
-	struct formatter< std::wstring, char > {
-
+	struct formatter< std::wstring, char >
+	{
 		template< typename ParseContextT >
-		typename ParseContextT::iterator parse(ParseContextT& ctx) {
+		typename ParseContextT::iterator parse(ParseContextT& ctx)
+		{
 			return ctx.begin();
 		}
 
 		template< typename FormatContextT >
-		auto format(const std::wstring& wstr, FormatContextT& ctx) {
+		auto format(const std::wstring& wstr, FormatContextT& ctx)
+		{
 			const UTF16toUTF8 str(wstr);
 			return format_to(ctx.out(), "{}", std::string_view(str));
 		}
 	};
 
 	template<>
-	struct formatter< std::string_view, wchar_t > {
-
+	struct formatter< std::string_view, wchar_t >
+	{
 		template< typename ParseContextT >
-		typename ParseContextT::iterator parse(ParseContextT& ctx) {
+		typename ParseContextT::iterator parse(ParseContextT& ctx)
+		{
 			return ctx.begin();
 		}
 
 		template< typename FormatContextT >
-		auto format(const std::string_view& str, FormatContextT& ctx) {
+		auto format(const std::string_view& str, FormatContextT& ctx)
+		{
 			const UTF8toUTF16 wstr(str);
 			return format_to(ctx.out(), L"{}", std::wstring_view(wstr));
 		}
 	};
 
 	template<>
-	struct formatter< std::string, wchar_t > {
-
+	struct formatter< std::string, wchar_t >
+	{
 		template< typename ParseContextT >
-		typename ParseContextT::iterator parse(ParseContextT& ctx) {
+		typename ParseContextT::iterator parse(ParseContextT& ctx)
+		{
 			return ctx.begin();
 		}
 
 		template< typename FormatContextT >
-		auto format(const std::string& str, FormatContextT& ctx) {
+		auto format(const std::string& str, FormatContextT& ctx)
+		{
 			const UTF8toUTF16 wstr(str);
 			return format_to(ctx.out(), L"{}", std::wstring_view(wstr));
 		}
@@ -89,16 +104,19 @@ namespace fmt {
 }
 
 template< typename... ArgsT >
-inline void Print(std::string_view format_str, const ArgsT&... args) {
+inline void Print(std::string_view format_str, const ArgsT&... args)
+{
     return fmt::print(format_str, args...);
 }
 
 template< typename... ArgsT >
-inline void Print(std::wstring_view format_str, const ArgsT&... args) {
+inline void Print(std::wstring_view format_str, const ArgsT&... args)
+{
     return fmt::print(format_str, args...);
 }
 
-int main() {
+int main()
+{
     std::string s = "foo";
     std::string_view sv = s;
 
