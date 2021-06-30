@@ -1,6 +1,8 @@
-// TODO: update
-
+// format_to, formatter, print
 #include <fmt/format.h>
+// string, wstring
+#include <string>
+// string_view, wstring_view
 #include <string_view>
 
 struct UTF16toUTF8
@@ -10,7 +12,8 @@ struct UTF16toUTF8
 	{}
     
 	[[nodiscard]]
-    explicit operator std::string_view() const noexcept {
+    explicit operator std::string_view() const noexcept
+	{
         return m_str;
     }
 
