@@ -6,22 +6,31 @@ struct Vector
 
 struct Rgb : Vector
 {
-    Rgb()
+    [[nodiscard]]
+	Rgb()
     {
         std::cout << "Rgb()" << std::endl;
     }
+	
+	[[nodiscard]]
     Rgb(const Rgb&)
     {
         std::cout << "Rgb(const Rgb&)" << std::endl;
     }
+	
+	[[nodiscard]]
     Rgb(Rgb&&)
     {
         std::cout << "Rgb(Rgb&&)" << std::endl;
     }
+	
+	[[nodiscard]]
     explicit Rgb(const Vector&)
     {
         std::cout << "Rgb(const Vector&)" << std::endl;
     }
+	
+	[[nodiscard]]
     explicit Rgb(Vector&&)
     {
         std::cout << "Rgb(Vector&&)" << std::endl;
@@ -30,10 +39,13 @@ struct Rgb : Vector
 
 struct Xyz : Vector
 {
-    Xyz()
+    [[nodiscard]]
+	Xyz()
     {
         std::cout << "Xyz()" << std::endl;
     }
+	
+	[[nodiscard]]
     explicit operator Rgb() const
     {
         std::cout << "operator Rgb()" << std::endl;
