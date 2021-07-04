@@ -5,7 +5,8 @@
 
 struct Widget
 {
-    Widget(const std::string&)
+    [[nodiscard]]
+	Widget(const std::string&)
     {
         std::cout << "Widget(const std::string&)" << std::endl;
     }
