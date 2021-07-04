@@ -3,21 +3,25 @@
 
 struct Vector
 {
-    Vector()
+    [[nodiscard]]
+	Vector()
     {
         std::cout << "Vector()" << std::endl;
     }
 
+	[[nodiscard]]
     Vector(float, float, float)
     {
         std::cout << "Vector(float, float, float)" << std::endl;
     }
 
+	[[nodiscard]]
     Vector(const Vector&)
     {
         std::cout << "Vector(const Vector&)" << std::endl;
     }
 
+	[[nodiscard]]
     Vector(Vector&&)
     {
         std::cout << "Vector(Vector&&)" << std::endl;
@@ -40,25 +44,29 @@ struct Vector
 
 struct Rgb : Vector
 {
-    Rgb()
+    [[nodiscard]]
+	Rgb()
         : Vector()
     {
         std::cout << "Rgb()" << std::endl;
     }
 
-    Rgb(float r, float g, float b)
+    [[nodiscard]]
+	Rgb(float r, float g, float b)
         : Vector(r, g, b)
     {
         std::cout << "Rgb(float, float, float)" << std::endl;
     }
 
-    Rgb(const Rgb& rgb)
+    [[nodiscard]]
+	Rgb(const Rgb& rgb)
         : Vector(rgb)
     {
         std::cout << "Rgb(const Rgb&)" << std::endl;
     }
 
-    Rgb(Rgb&& rgb)
+    [[nodiscard]]
+	Rgb(Rgb&& rgb)
         : Vector(std::move(rgb))
     {
         std::cout << "Rgb(Rgb&&)" << std::endl;
@@ -83,36 +91,42 @@ struct Rgb : Vector
 
 struct Xyz : Vector
 {
-    Xyz()
+    [[nodiscard]]
+	Xyz()
         : Vector()
     {
         std::cout << "Xyz()" << std::endl;
     }
 
+	[[nodiscard]]
     Xyz(float x, float y, float z)
         : Vector(x, y, z)
     {
         std::cout << "Xyz(float, float, float)" << std::endl;
     }
 
+	[[nodiscard]]
     explicit Xyz(const Rgb& rgb)
         : Vector(rgb)
     {
         std::cout << "Xyz(const Rgb&)" << std::endl;
     }
 
+	[[nodiscard]]
     explicit Xyz(Rgb&& rgb)
         : Vector(std::move(rgb))
     {
         std::cout << "Xyz(Rgb&&)" << std::endl;
     }
 
+	[[nodiscard]]
     Xyz(const Xyz& xyz)
         : Vector(xyz)
     {
         std::cout << "Xyz(const Xyz&)" << std::endl;
     }
 
+	[[nodiscard]]
     Xyz(Xyz&& xyz)
         : Vector(std::move(xyz))
     {
