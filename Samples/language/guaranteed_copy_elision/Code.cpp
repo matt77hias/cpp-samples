@@ -3,7 +3,8 @@
 
 struct Widget
 {
-    Widget() { std::cout << "Widget::Widget()" << std::endl; };
+    [[nodiscard]]
+	Widget() { std::cout << "Widget::Widget()" << std::endl; };
     Widget(const Widget&) = delete;
     Widget(const Widget&&) = delete;
     ~Widget() { std::cout << "Widget::~Widget()" << std::endl; };
