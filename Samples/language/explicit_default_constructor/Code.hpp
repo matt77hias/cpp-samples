@@ -6,8 +6,8 @@ struct Widget
 
 int main()
 {
-	// Widget w = {};
-    Widget w = Widget{};
+	// [[maybe_unused]] Widget w = {};
+    [[maybe_unused]] Widget w = Widget{};
     
     return 0;
 }
