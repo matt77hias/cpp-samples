@@ -6,6 +6,7 @@ class A
 
 public:
     
+	[[nodiscard]]
     explicit A(int a) noexcept
         : m_a(a)
     {
@@ -22,6 +23,7 @@ class B : public virtual A
     
 public:
     
+	[[nodiscard]]
     explicit B(int a) noexcept
         : A(a)
     {
@@ -36,6 +38,7 @@ class C : public virtual A
 
 public:
     
+	[[nodiscard]]
     explicit C(int a) noexcept
         : A(a)
     {
@@ -50,7 +53,8 @@ class D : public C, public B
 
 public:
     
-    explicit D() noexcept
+	[[nodiscard]]
+    D() noexcept
         : A(1), C(3), B(2)
     {
         std::cout << "D::D()" << std::endl;
