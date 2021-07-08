@@ -38,7 +38,8 @@ void operator delete(void* ptr) noexcept
 
 struct A
 {
-    A()
+    [[nodiscard]]
+	A()
     {
         std::cout << "A::A()" << std::endl;
     }
@@ -53,7 +54,8 @@ struct A
 
 struct B
 {
-    B()
+    [[nodiscard]]
+	B()
     {
         std::cout << "B::B()" << std::endl;
         throw std::logic_error("This is a long string to avoid SSO.");
