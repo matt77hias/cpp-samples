@@ -1,7 +1,5 @@
 // all_of
 #include <algorithm>
-// bind
-#include <functional>
 // cout, endl
 #include <iostream>
 // vector
