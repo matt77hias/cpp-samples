@@ -15,7 +15,7 @@ void Widget< T >
     ::reserve(size_type capacity)
     requires(requires(T t, size_type c) { t.reserve(c); })
 {
-        T::reserve(capacity);
+    T::reserve(capacity);
 }
 
 int main()
