@@ -14,33 +14,33 @@ int main()
 {
     // 1D
     
-    int a0[2u] = { 1, 2 };
+    [[maybe_unused]] int a0[2u] = { 1, 2 };
     
-    std::array< int, 2u > aa0 = { 1, 2 }; // Brace elision
-    std::array< int, 2u > aa1 = { { 1, 2 } };
+    [[maybe_unused]] std::array< int, 2u > aa0 = { 1, 2 }; // Brace elision
+    [[maybe_unused]] std::array< int, 2u > aa1 = { { 1, 2 } };
     
-    StaticArray< int, 2u > aaa0 = { 1, 2 }; // Brace elision
-    StaticArray< int, 2u > aaa1 = { { 1, 2 } };
-    StaticArray< int, 2u > aaa2 = { { { 1, 2 } } };
+    [[maybe_unused]] StaticArray< int, 2u > aaa0 = { 1, 2 }; // Brace elision
+    [[maybe_unused]] StaticArray< int, 2u > aaa1 = { { 1, 2 } };
+    [[maybe_unused]] StaticArray< int, 2u > aaa2 = { { { 1, 2 } } };
 
     // 2D
 
-    int b0[2u][2u] = { 1, 2, 3, 4 }; // Brace elision
-    int b1[2u][2u] = { { 1, 2 },  { 3, 4 } };
+    [[maybe_unused]] int b0[2u][2u] = { 1, 2, 3, 4 }; // Brace elision
+    [[maybe_unused]] int b1[2u][2u] = { { 1, 2 },  { 3, 4 } };
 
-    std::array< std::array< int, 2u >, 2u > bb0 = { 1, 2, 3, 4 }; // Brace elision
-    std::array< std::array< int, 2u >, 2u > bb1 = { { { { 1, 2 } }, { { 3, 4 } } } };
+    [[maybe_unused]] std::array< std::array< int, 2u >, 2u > bb0 = { 1, 2, 3, 4 }; // Brace elision
+    [[maybe_unused]] std::array< std::array< int, 2u >, 2u > bb1 = { { { { 1, 2 } }, { { 3, 4 } } } };
 
-    StaticArray< StaticArray< int, 2u >, 2u > bbb0 = { 1, 2, 3, 4 }; // Brace elision
-    StaticArray< StaticArray< int, 2u >, 2u > bbb1 = { { { { { { 1, 2 } } }, { { { 3, 4 } } } } } };
+    [[maybe_unused]] StaticArray< StaticArray< int, 2u >, 2u > bbb0 = { 1, 2, 3, 4 }; // Brace elision
+    [[maybe_unused]] StaticArray< StaticArray< int, 2u >, 2u > bbb1 = { { { { { { 1, 2 } } }, { { { 3, 4 } } } } } };
 
     // CTAD
 
-    int c0[] = { 1, 2 };
+    [[maybe_unused]] int c0[] = { 1, 2 };
 
-    std::array cc0 = { 1, 2 };
+    [[maybe_unused]] std::array cc0 = { 1, 2 };
 
-    StaticArray ccc1 = { 1, 2 };
+    [[maybe_unused]] StaticArray ccc1 = { 1, 2 };
 
     return 0;
 }
