@@ -8,40 +8,40 @@
 int main()
 {
     {
-        std::int16_t src = -3;
-        std::bitset< 16u > src_bits(src);
+        constexpr std::int16_t src = -3;
+        const std::bitset< 16u > src_bits(src);
         std::cout << src_bits << '\n';
 
-        std::uint16_t dst = src;
-        std::bitset< 16u > dst_bits(dst);
+        constexpr std::uint16_t dst = src;
+        const std::bitset< 16u > dst_bits(dst);
         std::cout << dst_bits << '\n';
     }
     {
-        std::uint16_t src = -3;
-        std::bitset< 16u > src_bits(src);
+        constexpr std::uint16_t src = -3;
+        const std::bitset< 16u > src_bits(src);
         std::cout << src_bits << '\n';
 
-        std::int16_t dst = src;
-        std::bitset< 16u > dst_bits(dst);
+        constexpr std::int16_t dst = src;
+        const std::bitset< 16u > dst_bits(dst);
         std::cout << dst_bits << '\n';
     }
     
     {
-        std::int16_t src = -3;
-        std::bitset< 16u > src_bits(src);
+        constexpr std::int16_t src = -3;
+        const std::bitset< 16u > src_bits(src);
         std::cout << src_bits << '\n';
 
-        std::uint8_t dst = src;
-        std::bitset< 8u > dst_bits(dst);
+        constexpr std::uint8_t dst = src;
+        const std::bitset< 8u > dst_bits(dst);
         std::cout << "........" << dst_bits << '\n';
     }
     {
-        std::uint16_t src = -3;
-        std::bitset< 16u > src_bits(src);
+        constexpr std::uint16_t src = -3;
+        const std::bitset< 16u > src_bits(src);
         std::cout << src_bits << '\n';
 
-        std::int8_t dst = src;
-        std::bitset< 8u > dst_bits(dst);
+        constexpr std::int8_t dst = src;
+        const std::bitset< 8u > dst_bits(dst);
         std::cout << "........" << dst_bits << '\n';
     }
    
