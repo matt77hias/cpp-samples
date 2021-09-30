@@ -33,10 +33,10 @@ using U64 = unsigned long long;
         {                                                                     \
             const auto frequency_estimate                                     \
                 = static_cast< MAGE_FLOAT >(MAGE_TRUE_COUNT.load())           \
-                / static_cast< MAGE_FLOAT >(MAGE_TRUE_COUNT.load());          \
+                / static_cast< MAGE_FLOAT >(MAGE_COUNT.load());               \
             const auto variance_estimate                                      \
                 = frequency_estimate * (MAGE_FLOAT{ 1 } - frequency_estimate) \
-                / static_cast< MAGE_FLOAT >(MAGE_TRUE_COUNT.load() - 1u);     \
+                / static_cast< MAGE_FLOAT >(MAGE_COUNT.load() - 1u);          \
             const auto frequency_threshold                                    \
                 = frequency_estimate - (MAGE_FLOAT{ 2 } * variance_estimate); \
             if (frequency <= frequency_threshold)                             \
