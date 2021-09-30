@@ -47,14 +47,16 @@ using U64 = unsigned long long;
 	}                                                                         \
 	while(false)
 
-bool f(bool flag)
+auto f(bool flag)
+	noexcept -> bool
 {
     MAGE_ASSERT_RARE(0.0001f, flag);
 
     return flag;
 }
 
-bool g(bool flag)
+auto g(bool flag)
+	noexcept -> bool
 {
     MAGE_ASSERT_RARE(0.0001f, flag);
    
