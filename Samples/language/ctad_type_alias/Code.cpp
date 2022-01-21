@@ -10,7 +10,7 @@ auto main() -> int
 {
     int array[2u] = {};
 
-    Span span = array;
+    [[maybe_unused]] Span span = array;
     
     return 0;
 }
