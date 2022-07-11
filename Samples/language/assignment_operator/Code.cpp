@@ -150,7 +150,7 @@ struct Xyz : Vector
     }
 };
 
-int main()
+auto main() -> int
 {
    Vector v  = {};
    Rgb rgb = {};
