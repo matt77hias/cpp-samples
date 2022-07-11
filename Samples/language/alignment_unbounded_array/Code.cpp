@@ -1,7 +1,7 @@
 struct alignas(4u) A
 {};
 
-int main()
+auto main() -> int
 {
     return static_cast< int >(alignof(A[]));
 }
