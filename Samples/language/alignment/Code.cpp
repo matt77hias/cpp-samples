@@ -6,7 +6,7 @@ struct A
     float m_data[3] = {};
 };
 
-int main()
+auto main() -> int
 {
     std::cout << alignof(A) << std::endl;
     std::cout <<  sizeof(A) << std::endl;
