@@ -2,12 +2,13 @@
 #include <iostream>
 
 [[nodiscard]]
-constexpr int& f(int& i) noexcept
+constexpr auto f(int& i)
+	noexcept -> int&
 { 
     return i; 
 };
 
-int main()
+auto main() -> int
 {
     int i = 5;
     auto j = f(i);
