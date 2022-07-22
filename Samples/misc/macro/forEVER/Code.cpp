@@ -3,7 +3,7 @@
 
 #define EVER ;;
 
-int main()
+auto main() -> int
 {
     int i = 0;
     for (EVER)
