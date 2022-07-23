@@ -17,12 +17,12 @@ struct Widget
     //}
 };
 
-std::string Create()
+auto Create() -> std::string
 {
     return "string";
 }
 
-int main()
+auto main() -> int
 {
     [[maybe_unused]] Widget w(Create());
     return 0;
