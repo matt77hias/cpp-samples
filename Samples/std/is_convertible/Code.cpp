@@ -19,7 +19,7 @@ decltype(static_cast< std::remove_const_t< ToT > >(std::declval< std::remove_con
 template< typename FromT, typename ToT >
 constexpr bool is_static_castable_v = is_static_castable< FromT, ToT >::value;
 
-int main()
+auto main() -> int
 {
     std::cout << is_static_castable_v< float, unsigned int >;
     std::cout << is_static_castable_v< float, int >;
