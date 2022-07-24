@@ -51,5 +51,6 @@ auto main() -> int
     std::cout << std::is_nothrow_destructible_v< B > << std::endl;
     std::cout << std::is_nothrow_destructible_v< C > << std::endl;
     std::cout << std::is_nothrow_destructible_v< D > << std::endl;
+
     return 0;
 }
