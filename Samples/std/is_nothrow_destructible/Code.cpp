@@ -45,7 +45,7 @@ struct D
     {}
 };
 
-int main()
+auto main() -> int
 {
     std::cout << std::is_nothrow_destructible_v< A > << std::endl;
     std::cout << std::is_nothrow_destructible_v< B > << std::endl;
