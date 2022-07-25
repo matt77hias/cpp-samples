@@ -1,7 +1,7 @@
 // bit_width
 #include <bit>
 
-int main()
+auto main() -> int
 {
     return std::bit_width(0u);
 }
