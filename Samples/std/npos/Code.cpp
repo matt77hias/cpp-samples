@@ -3,7 +3,7 @@
 // string
 #include <string>
  
-int main()
+auto main() -> int
 {
     std::cout << static_cast< char >(std::string::npos);
 
