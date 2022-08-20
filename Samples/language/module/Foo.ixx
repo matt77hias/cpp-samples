@@ -4,6 +4,11 @@ import Bar;
 
 export namespace foo
 {
+	static_assert(sizeof(float) == 4u);
+	
+	template< typename T >
+	constexpr int g_value = 3;
+	
 	[[nodiscard]]
 	constexpr auto Test1()
 		noexcept -> int
@@ -17,11 +22,21 @@ export namespace foo
 	{
 		return bar::Test();
 	}
+
+	struct Struct
+	{
+		template< typename T >
+		[[nodiscard]]
+		constexpr auto Test() const
+			noexcept -> int;
+	};
 }
 
-// Not exported
 namespace foo
 {
+	template<>
+	constexpr int g_value< int > = 5;
+	
 	[[nodiscard]]
 	constexpr auto Test3()
 		noexcept -> int;
