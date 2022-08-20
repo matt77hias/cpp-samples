@@ -3,5 +3,7 @@ import Foo;
 auto main()
 	noexcept -> int
 {
-	return foo::Test2();
+	//foo::Test2()
+	//foo::Struct{}.Test< int >();
+	return foo::g_value< int >;
 }
