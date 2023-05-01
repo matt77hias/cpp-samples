@@ -16,7 +16,8 @@ void f(T t)
 
 }
 
-int main() 
+auto main()
+	-> int
 {
     //f(A{});
     f(B{});
