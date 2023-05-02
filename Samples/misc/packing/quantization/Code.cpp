@@ -1,3 +1,5 @@
+// size_t
+#include <cstddef>
 // uint32_t
 #include <cstdint>
 // cout, endl
@@ -8,7 +10,8 @@ using U32 = std::uint32_t;
 
 template< std::size_t QuantumSize >
 [[nodiscard]]
-constexpr F32 QuantizeSNorm(F32 x) noexcept
+constexpr auto QuantizeSNorm(F32 x)
+    noexcept -> F32
 {
     static_assert(QuantumSize <= 16u);
     constexpr U32 mx = 1u << (QuantumSize - 1u);
@@ -19,7 +22,8 @@ constexpr F32 QuantizeSNorm(F32 x) noexcept
 
 template< std::size_t QuantumSize >
 [[nodiscard]]
-constexpr F32 QuantizeUNorm(F32 x) noexcept
+constexpr auto QuantizeUNorm(F32 x)
+    noexcept -> F32
 {
     static_assert(QuantumSize <= 16u);
     constexpr U32 mx = 1u << QuantumSize;
@@ -28,7 +32,7 @@ constexpr F32 QuantizeUNorm(F32 x) noexcept
     return F32(ux) / (mx - 1u);
 }
 
-int main()
+auto main() -> int
 {
     std::cout << QuantizeUNorm< 8u >( 0.0f) << " , ";
     std::cout << QuantizeUNorm< 8u >( 0.5f) << " , ";
