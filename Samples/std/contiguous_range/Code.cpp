@@ -9,7 +9,7 @@ static_assert(std::ranges::contiguous_range< std::array< int, 5u > >);
 static_assert(std::ranges::contiguous_range< std::vector< int > >);
 static_assert(std::ranges::contiguous_range< std::vector< bool > > == false);
 
-int main()
+auto main() -> int
 {
     return 0;
 }
