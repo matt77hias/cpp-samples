@@ -53,7 +53,7 @@ struct Xyz : Vector
     }
 };
 
-int main()
+auto main() -> int
 {
     Xyz xyz;
     Rgb rgb1 = static_cast< Rgb >(xyz);
