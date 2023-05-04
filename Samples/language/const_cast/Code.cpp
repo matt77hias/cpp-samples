@@ -13,7 +13,7 @@ struct Baz
     mutable int m_i;
 };
 
-int main() 
+auto main() -> int
 {
     int i = 0; // i is not declared const
    
