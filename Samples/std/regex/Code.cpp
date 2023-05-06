@@ -9,7 +9,8 @@
 // string
 #include <string>
 
-int main()
+auto main()
+	-> int
 {
    const std::string text = "Quick \"\"\"\" \"brown fox\".";
    std::regex re(R"((\"[^\"]*\")|\S+)");
