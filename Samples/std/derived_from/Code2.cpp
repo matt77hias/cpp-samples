@@ -14,7 +14,8 @@ struct C
     static_assert(not std::derived_from< B, A >);
 };
 
-auto main() -> int
+auto main()
+	-> int
 {
     return 0;
 }
