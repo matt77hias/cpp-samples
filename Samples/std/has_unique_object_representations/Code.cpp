@@ -37,7 +37,8 @@ struct D
 static_assert(sizeof(D) == 6u);
 static_assert(not std::has_unique_object_representations_v< D >);
 
-auto main() -> int
+auto main()
+	-> int
 {
     return 0;
 }
