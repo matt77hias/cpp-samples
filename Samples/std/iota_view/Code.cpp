@@ -5,7 +5,8 @@
 // iota_view
 #include <ranges>
 
-int main()
+auto main()
+	-> int
 {
     constexpr std::ranges::iota_view< std::size_t, std::size_t > empty_range{};
     std::cout << *empty_range.begin() << std::endl; 
