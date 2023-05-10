@@ -1,7 +1,8 @@
 // unique_ptr
 #include <memory>
 
-int main()
+auto main()
+	-> int
 {
     std::unique_ptr< int > ptr(new int{});
 
