@@ -5,7 +5,8 @@
 // get, tuple, tuple_cat
 #include <tuple>
  
-int main()
+auto main()
+	-> int
 {
     constexpr std::array< int, 2u > a = { 1, 2 };
     constexpr std::tuple< int, int > t = std::tuple_cat(a);
