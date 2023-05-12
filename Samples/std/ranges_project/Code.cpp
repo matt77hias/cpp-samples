@@ -10,7 +10,8 @@
 struct Widget
 {
     [[nodiscard]]
-    constexpr auto operator <=>(const Widget& rhs) const noexcept = default;
+    constexpr auto operator <=>(const Widget& rhs) const
+		noexcept = default;
 };
 
 auto main()
