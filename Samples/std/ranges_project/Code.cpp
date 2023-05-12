@@ -13,7 +13,8 @@ struct Widget
     constexpr auto operator <=>(const Widget& rhs) const noexcept = default;
 };
 
-int main()
+auto main()
+	-> int
 {
     using key_type   = Widget;
     using Container  = std::vector< std::pair< Widget, int > >;
