@@ -3,7 +3,8 @@
 // cout, endl
 #include <iostream>
 
-int main()
+auto main()
+	-> int
 {
     constexpr auto a = 27u;
     constexpr auto b = 7u; // versus 0u
