@@ -21,7 +21,8 @@ void f(T f, [[maybe_unused]] Integral< T > c = T(0))
     std::cout << "Integral: " << f << std::endl;
 }
 
-int main()
+auto main()
+	-> int
 {
     FloatingPoint< float > f2f = 2.0f;
     //FloatingPoint< int > i2f = 2; 
