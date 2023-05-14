@@ -12,7 +12,8 @@ template< typename T >
 constexpr void f(typename T::type value)
 {}
 
-int main()
+auto main()
+	-> int
 {
     A< int >::type a = {};
     B< int >::type b = {};
