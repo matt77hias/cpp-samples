@@ -44,7 +44,8 @@ struct D
 
 static_assert(sizeof(D) == 32u);
 
-auto main() -> int
+auto main()
+	-> int
 {
    [[maybe_unused]] A a;
    [[maybe_unused]] B b;
