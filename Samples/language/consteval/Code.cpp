@@ -1,10 +1,12 @@
 [[nodiscard]]
-consteval int Foo() noexcept
+consteval auto Foo()
+	noexcept -> int
 {
     return 1;
 }
 
-int main()
+auto main()
+	-> int
 {
    int bar = 2;
    int baz = bar + Foo();
