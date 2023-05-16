@@ -5,7 +5,8 @@ struct Widget
     int  m_c;
 };
 
-int main() 
+auto main()
+	-> int
 {
     int i = 0;
     const Widget w{ .m_a = &i, .m_b = i, .m_c = i };
