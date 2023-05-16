@@ -33,7 +33,8 @@ struct DenseVector : Vector< DenseVector< T > >
     };
 };
 
-auto main() -> int
+auto main()
+	-> int
 {
     DenseVector< int > dv;
     const Vector< DenseVector< int > >& v = dv;
