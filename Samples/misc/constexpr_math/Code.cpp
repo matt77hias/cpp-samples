@@ -4,16 +4,19 @@
 #include <iostream>
 #include <type_traits>
 
-namespace details
+namespace internal
 {
     template< typename T, 
               typename = std::enable_if_t< std::is_unsigned_v< T > > >
     struct Factorial
 	{
-        constexpr T operator()(T x) const noexcept
+        [[nodiscard]]
+		constexpr auto operator ()(T x) const
+			noexcept -> T
 		{
-            T result(1);
-            for (T n = 2u; n <= x; ++n) {
+            T result{ 1u };
+            for (T n = 2u; n <= x; ++n)
+			{
                 result *= n;
             }
             return result;
@@ -21,7 +24,9 @@ namespace details
     };
     
     template< typename T >
-    constexpr T factorial(T x) noexcept
+    [[nodiscard]]
+	constexpr auto factorial(T x)
+	    noexcept -> T
 	{
         return Factorial< T >()(x);
     }
@@ -30,10 +35,13 @@ namespace details
               typename = std::enable_if_t< std::is_unsigned_v< E > > >
     struct Power
 	{
-        constexpr T operator()(T x, E e) const noexcept
+        [[nodiscard]]
+		constexpr auto operator ()(T x, E e) const 
+			noexcept -> T
 		{
-            T result = 1u;
-            for (std::size_t n = 0u; n < e; ++n) {
+            T result{ 1u };
+            for (std::size_t n = 0u; n < e; ++n)
+			{
                 result *= x;
             }
             return result;
@@ -41,7 +49,9 @@ namespace details
     };
     
     template< typename T, typename E >
-    constexpr T power(T x, E e) noexcept
+    [[nodiscard]]
+	constexpr auto power(T x, E e)
+		noexcept -> T
 	{
         return Power< T, E >()(x, e);
     }
@@ -50,10 +60,13 @@ namespace details
               typename = std::enable_if_t< std::is_floating_point_v< T > > >
     struct Sine
 	{
-        constexpr T operator()(T x) const noexcept
+		[[nodiscard]]
+		constexpr auto operator ()(T x) const
+			noexcept -> T
 		{
-            T result = 0;
-            for (std::size_t n = 0u; n < N; ++n) {
+            T result = {};
+            for (std::size_t n = 0u; n < N; ++n)
+			{
                 result += power(-1, n) * power(x, 2u * n + 1u) / factorial(2u * n + 1u);        
             }
             return result;
@@ -61,7 +74,8 @@ namespace details
     };
     
     template< typename T, std::size_t N >
-    constexpr T sin(T x) noexcept
+    [[nodiscard]]
+	constexpr T sin(T x) noexcept
 	{
         return Sine< T, N >()(x);
     }
@@ -70,10 +84,13 @@ namespace details
               typename = std::enable_if_t< std::is_floating_point_v< T > > >
     struct Cosine
 	{
-        constexpr T operator()(T x) const noexcept
+        [[nodiscard]]
+		constexpr auto operator ()(T x) const
+			noexcept -> T
 		{
-            T result = 0;
-            for (std::size_t n = 0u; n < N; ++n) {
+            T result = {};
+            for (std::size_t n = 0u; n < N; ++n)
+			{
                 result += power(-1, n) * power(x, 2u * n) / factorial(2u * n);        
             }
             return result;
@@ -81,7 +98,9 @@ namespace details
     };
     
     template< typename T, std::size_t N >
-    constexpr T cos(T x) noexcept
+    [[nodiscard]]
+	constexpr auto cos(T x)
+	    noexcept -> T
 	{
         return Cosine< T, N >()(x);
     }
@@ -89,30 +108,38 @@ namespace details
 
 // x!
 template< typename T >
-constexpr T factorial(T x) noexcept
+[[nodiscard]]
+constexpr auto factorial(T x)
+    noexcept -> T
 {
-    return details::factorial(x);
+    return internal::factorial(x);
 }
 
 // x^e
 template< typename T, typename E >
-constexpr T power(T x, E e) noexcept
+[[nodiscard]]
+constexpr auto power(T x, E e)
+    noexcept -> T
 {
-    return details::power(x, e);
+    return internal::power(x, e);
 }
 
 // sin(x)
 template< typename T, std::size_t N = 10 >
-constexpr T sin(T x) noexcept
+[[nodiscard]]
+constexpr auto sin(T x)
+    noexcept -> T
 {
-    return details::sin< T, N >(x);
+    return internal::sin< T, N >(x);
 }
 
 // cos(x)
 template< typename T, std::size_t N = 10 >
-constexpr T cos(T x) noexcept
+[[nodiscard]]
+constexpr auto cos(T x)
+    noexcept -> T
 {
-    return details::cos< T, N >(x);
+    return internal::cos< T, N >(x);
 }
 
 auto main()
