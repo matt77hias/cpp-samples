@@ -4,7 +4,8 @@
 #include <iostream>
 #include <type_traits>
 
-class ReferenceCounted {
+class ReferenceCounted
+{
 
 public:
 
@@ -88,23 +89,36 @@ private:
 	T *m_ptr;
 };
 
-struct A : ReferenceCounted {
-    A() { 
+struct A : ReferenceCounted
+{
+    A()
+	{ 
         std::cout << "A::A()" << std::endl; 
     }
-    A(const A&) noexcept { 
+
+    A(const A&)
+		noexcept
+	{ 
         std::cout << "A::A(const A&)" << std::endl; 
     }
-    A& operator=(const A&) noexcept { 
+
+    auto operator =(const A&)
+		noexcept -> A&
+	{ 
         std::cout << "A::perator=(const A&)" << std::endl; 
         return *this; 
     }
-    ~A() noexcept { 
+
+    ~A()
+		noexcept
+	{ 
         std::cout << "A::~A()" << std::endl; 
     }
 };
 
-int main() {
+auto main()
+	-> int
+{
     auto a1 = new A;
     auto a2 = new A;
     Reference< A > ref1(a1);
