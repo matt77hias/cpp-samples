@@ -70,9 +70,10 @@ struct BoolASCIITable< BoolSequence< Bs... > >
     using argument_type = char; 
     
 	[[nodiscard]]
-	constexpr bool operator()(const argument_type c) const noexcept
+	constexpr auto operator ()(const argument_type c) const
+		noexcept -> bool
 	{
-		constexpr bool table[256u] = { Bs... };
+		static constexpr bool table[256u] = { Bs... };
 		return table[static_cast< std::size_t >(c)];
 	}
 };
@@ -82,14 +83,17 @@ using Table  = BoolASCIITable< typename MakeSequence< 256u, BoolSequence<>, Deli
 
 template< typename I >
 [[nodiscard]]
-std::pair< I, I > getNextToken(I begin, I end)
+constexpr auto getNextToken(I begin, I end)
+	noexcept -> std::pair< I, I >
 {
 	const auto first  = std::find_if(begin, end, std::not1(Table{}));
 	const auto second = std::find_if(first, end, Table{});
+	
 	return std::make_pair(first,second);
 }
 
-int main()
+auto main()
+	-> int
 {
 	std::string s{"Some people, excluding those present, have been compile time constants - since puberty."};
 	
