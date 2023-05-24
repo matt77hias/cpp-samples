@@ -105,7 +105,7 @@ struct A : ReferenceCounted
     auto operator =(const A&)
 		noexcept -> A&
 	{ 
-        std::cout << "A::perator=(const A&)" << std::endl; 
+        std::cout << "A::operator =(const A&)" << std::endl; 
         return *this; 
     }
 
