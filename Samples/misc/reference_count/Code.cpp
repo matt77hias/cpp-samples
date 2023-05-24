@@ -9,78 +9,103 @@ class ReferenceCounted
 
 public:
 
-	std::uint32_t IncrementReferenceCount() noexcept {
+	auto IncrementReferenceCount()
+		noexcept -> std::uint32_t
+	{
 		return ++m_reference_count;
 	}
-	std::uint32_t DecrementReferenceCount() noexcept {
+
+	auto DecrementReferenceCount()
+		noexcept -> std::uint32_t
+	{
 		return --m_reference_count;
 	}
 
 protected:
 
-	ReferenceCounted() 
-		: m_reference_count(0u) {}
+	[[nodiscard]]
+	ReferenceCounted()
+		noexcept = default;
 		
 private:
 
-	std::atomic< std::uint32_t > m_reference_count;
+	std::atomic< std::uint32_t > m_reference_count = {};
 };
 
 template < typename T, 
            typename = std::enable_if_t< std::is_base_of_v< ReferenceCounted, T > > >
-class Reference final {
+class Reference final
+{
 
 public:
 
-	Reference(T* ptr = nullptr) noexcept 
-		: m_ptr(ptr) {
-			
-		if (m_ptr) {
+	[[nodiscard]]
+	Reference(T* ptr = nullptr)
+		noexcept 
+		: m_ptr(ptr)
+	{
+		if (m_ptr)
+		{
 			m_ptr->IncrementReferenceCount();
 		}
 	}
 	
-	explicit Reference(const Reference< T >& ref) noexcept 
-		: Reference(ref.m_ptr) {}
+	[[nodiscard]]
+	explicit Reference(const Reference< T >& ref)
+		noexcept 
+		: Reference(ref.m_ptr)
+	{}
 	
-	~Reference() {
-		if (m_ptr && 0u == m_ptr->DecrementReferenceCount()) {
+	~Reference()
+	{
+		if (m_ptr && 0u == m_ptr->DecrementReferenceCount())
+		{
 			delete m_ptr;
 		}
 	}
 	
-	Reference& operator=(T* ptr) {
-		if (ptr) {
+	auto operator =(T* ptr)
+		-> Reference&
+	{
+		if (ptr)
+		{
 			ptr->IncrementReferenceCount();
 		}
-		if (m_ptr && 0u == m_ptr->DecrementReferenceCount()) {
+		if (m_ptr && 0u == m_ptr->DecrementReferenceCount())
+		{
 			delete m_ptr;
 		}
 		m_ptr = ptr;
 		return *this;
 	}
 
-	Reference& operator=(const Reference< T >& ref) {
+	Reference& operator=(const Reference< T >& ref)
+	{
 		return operator=(ref.m_ptr);
 	}
 
-	T* operator->() noexcept { 
+	T* operator->() noexcept
+	{ 
 		return m_ptr; 
 	}
 	
-	const T* operator->() const noexcept { 
+	const T* operator->() const noexcept
+	{ 
 		return m_ptr; 
 	}
     
-    T* GetPtr() noexcept { 
+    T* GetPtr() noexcept
+	{ 
 		return m_ptr; 
 	}
 
-	const T* GetPtr() const noexcept { 
+	const T* GetPtr() const noexcept
+	{ 
 		return m_ptr; 
 	}
 
-	operator bool() const noexcept { 
+	operator bool() const noexcept
+	{ 
 		return nullptr != m_ptr; 
 	}
 
