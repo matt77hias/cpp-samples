@@ -1,5 +1,3 @@
-// TODO: update
-
 // atomic
 #include <atomic>
 // uint32_t
