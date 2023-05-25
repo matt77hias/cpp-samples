@@ -81,6 +81,7 @@ public:
 			delete m_ptr;
 		}
 		m_ptr = ptr;
+
 		return *this;
 	}
 
@@ -165,5 +166,6 @@ auto main()
     ref1 = nullptr;
     ref2 = ref1;
     std::cout << "a2 is dead" << std::endl;
+
     return 0;
 }
