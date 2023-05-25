@@ -1,5 +1,7 @@
 // atomic
 #include <atomic>
+// derived_from
+#include <concepts>
 // uint32_t
 #include <cstdint>
 // cout, endl
@@ -35,8 +37,7 @@ private:
 	std::atomic< std::uint32_t > m_reference_count = {};
 };
 
-template < typename T, 
-           typename = std::enable_if_t< std::is_base_of_v< ReferenceCounted, T > > >
+template< std::derived_from< ReferenceCounted > T >
 class Reference final
 {
 
@@ -54,7 +55,7 @@ public:
 	}
 	
 	[[nodiscard]]
-	explicit Reference(const Reference< T >& ref)
+	Reference(const Reference& ref)
 		noexcept 
 		: Reference(ref.m_ptr)
 	{}
@@ -70,7 +71,7 @@ public:
 	auto operator =(T* ptr)
 		noexcept -> Reference&
 	{
-		if (m_ptr != nullptr)
+		if (ptr != nullptr)
 		{
 			ptr->IncrementReferenceCount();
 		}
@@ -137,17 +138,17 @@ struct A : ReferenceCounted
         std::cout << "A::A(const A&)" << std::endl; 
     }
 
-    auto operator =(const A&)
-		noexcept -> A&
-	{ 
-        std::cout << "A::operator =(const A&)" << std::endl; 
-        return *this; 
-    }
-
     ~A()
 		noexcept
 	{ 
         std::cout << "A::~A()" << std::endl; 
+    }
+
+    auto operator =(const A&)
+		noexcept -> A&
+	{ 
+        std::cout << "A::operator =(const A&)" << std::endl;
+        return *this; 
     }
 };
 
