@@ -1,7 +1,12 @@
 // TODO: update
 
+// atomic
 #include <atomic>
+// uint32_t
+#include <cstdint>
+// cout, endl
 #include <iostream>
+// enable_if_t, is_base_of_v
 #include <type_traits>
 
 class ReferenceCounted
@@ -44,7 +49,7 @@ public:
 		noexcept 
 		: m_ptr(ptr)
 	{
-		if (m_ptr)
+		if (m_ptr != nullptr)
 		{
 			m_ptr->IncrementReferenceCount();
 		}
@@ -58,20 +63,20 @@ public:
 	
 	~Reference()
 	{
-		if (m_ptr && 0u == m_ptr->DecrementReferenceCount())
+		if ((m_ptr != nullptr) and (m_ptr->DecrementReferenceCount() == 0u))
 		{
 			delete m_ptr;
 		}
 	}
 	
 	auto operator =(T* ptr)
-		-> Reference&
+		noexcept -> Reference&
 	{
-		if (ptr)
+		if (m_ptr != nullptr)
 		{
 			ptr->IncrementReferenceCount();
 		}
-		if (m_ptr && 0u == m_ptr->DecrementReferenceCount())
+		if ((m_ptr != nullptr) and (m_ptr->DecrementReferenceCount() == 0u))
 		{
 			delete m_ptr;
 		}
@@ -79,39 +84,45 @@ public:
 		return *this;
 	}
 
-	Reference& operator=(const Reference< T >& ref)
+	auto operator =(const Reference< T >& ref)
+		noexcept -> Reference&
 	{
-		return operator=(ref.m_ptr);
+		return operator =(ref.m_ptr);
 	}
 
-	T* operator->() noexcept
+	auto operator ->()
+		noexcept -> T*
 	{ 
 		return m_ptr; 
 	}
 	
-	const T* operator->() const noexcept
+	auto operator ->() const
+		noexcept -> const T*
 	{ 
 		return m_ptr; 
 	}
     
-    T* GetPtr() noexcept
+    auto GetPtr()
+		noexcept -> T*
 	{ 
 		return m_ptr; 
 	}
 
-	const T* GetPtr() const noexcept
+	auto GetPtr() const
+		noexcept -> const T*
 	{ 
 		return m_ptr; 
 	}
 
-	operator bool() const noexcept
+	operator bool() const
+		noexcept
 	{ 
-		return nullptr != m_ptr; 
+		return m_ptr != nullptr; 
 	}
 
 private:
 
-	T *m_ptr;
+	T* m_ptr;
 };
 
 struct A : ReferenceCounted
