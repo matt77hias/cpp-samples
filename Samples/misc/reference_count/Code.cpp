@@ -6,8 +6,6 @@
 #include <cstdint>
 // cout, endl
 #include <iostream>
-// enable_if_t, is_base_of_v
-#include <type_traits>
 
 class ReferenceCounted
 {
