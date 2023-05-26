@@ -1,6 +1,6 @@
 // cout, endl
 #include <iostream>
-// shared_ptr
+// shared_ptr, static_pointer_cast
 #include <memory>
 
 struct Base
@@ -8,7 +8,8 @@ struct Base
     virtual ~Base() = default;
     
 	[[nodiscard]]
-    std::shared_ptr< Base > Clone() const
+    auto Clone() const
+		-> std::shared_ptr< Base >
     {
         std::cout << "Base::Clone" << std::endl;
         return CloneImplementation();
@@ -17,7 +18,8 @@ struct Base
 private:
 
 	[[nodiscard]]
-    virtual std::shared_ptr< Base > CloneImplementation() const
+    virtual auto CloneImplementation() const
+		-> std::shared_ptr< Base >
     {
         std::cout << "Base::CloneImplementation" << std::endl;
         return std::shared_ptr< Base >(new Base(*this));
@@ -27,7 +29,8 @@ private:
 struct Derived : public Base
 {
 	[[nodiscard]]
-    std::shared_ptr< Derived > Clone() const
+    auto Clone() const
+		-> std::shared_ptr< Derived >
     {
         std::cout << "Derived::Clone" << std::endl;
         return std::static_pointer_cast< Derived >(CloneImplementation());
@@ -36,14 +39,16 @@ struct Derived : public Base
 private:
 
 	[[nodiscard]]
-    virtual std::shared_ptr< Base > CloneImplementation() const override
+    auto CloneImplementation() const
+		-> std::shared_ptr< Base > override
     {
         std::cout << "Derived::CloneImplementation" << std::endl;
         return std::shared_ptr< Derived >(new Derived(*this));
     }
 };
 
-int main()
+auto main()
+	-> int
 {
     Base* b = new Derived;
     std::shared_ptr< Base > clone = b->Clone();
