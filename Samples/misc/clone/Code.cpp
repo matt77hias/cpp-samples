@@ -6,7 +6,8 @@ struct Base
     virtual ~Base() = default;
     
 	[[nodiscard]]
-    virtual Base* Clone() const
+    virtual auto Clone() const
+		-> Base*
     {
         std::cout << "Base::Clone" << std::endl;
         return new Base(*this);
@@ -16,14 +17,16 @@ struct Base
 struct Derived : public Base
 {
 	[[nodiscard]]
-	virtual Derived* Clone() const override
+	auto Clone() const
+		-> Derived* override
     {
         std::cout << "Derived::Clone" << std::endl;
         return new Derived(*this);
     }
 };
 
-int main()
+auto main()
+	-> int
 {
     Base* b = new Derived;
     Base* clone = b->Clone();
