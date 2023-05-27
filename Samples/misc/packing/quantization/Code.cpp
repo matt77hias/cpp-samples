@@ -32,7 +32,8 @@ constexpr auto QuantizeUNorm(F32 x)
     return F32(ux) / (mx - 1u);
 }
 
-auto main() -> int
+auto main()
+	-> int
 {
     std::cout << QuantizeUNorm< 8u >( 0.0f) << " , ";
     std::cout << QuantizeUNorm< 8u >( 0.5f) << " , ";
