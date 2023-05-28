@@ -4,12 +4,14 @@
 #include <iostream>
 
 [[nodiscard]]
-float Mod(float angle) noexcept
+auto Mod(float angle)
+	noexcept -> float
 {
     return angle - 360.0f * std::round(angle / 360.0f);
 }
 
-int main()
+auto main()
+	-> int
 {
     std::cout << Mod(-181.0f) << std::endl;
     std::cout << Mod(-180.0f) << std::endl;
