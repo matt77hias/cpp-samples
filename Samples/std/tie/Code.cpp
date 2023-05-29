@@ -3,7 +3,8 @@
 // tie
 #include <tuple>
 
-int main()
+auto main()
+	-> int
 {
     int a = 1;
     int b = 2;
