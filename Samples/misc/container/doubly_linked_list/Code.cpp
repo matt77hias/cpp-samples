@@ -132,7 +132,7 @@ public:
 
 	void Remove(T* data, bool data_destruction = true)
 	{
-        for (auto current = m_first; nullptr != current; current = current->m_next)
+        for (auto current = m_first; current != nullptr; current = current->m_next)
 		{
 			if (data != current->m_data)
 			{
@@ -175,9 +175,9 @@ public:
 			const auto current = m_last;
 			m_last = m_last->m_prev;
 
-			if (!data_destruction)
+			if (data_destruction == nullptr)
 			{
-				current->m_data = nullptr;
+				current->m_data = {};
 			}
 			else
 			{
@@ -236,7 +236,7 @@ public:
 	auto GetAt(size_t index) const
 		noexcept -> T*
 	{
-		if (index >= m_size)
+		if (m_size <= index)
 		{
 			return nullptr;
 		}
