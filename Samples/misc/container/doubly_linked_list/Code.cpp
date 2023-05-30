@@ -9,22 +9,27 @@ class LinkedList {
 
 public:
 
-	struct LinkedListElement final {
+	struct LinkedListElement
+	{
 
 	public:
 
 		explicit LinkedListElement(T* data) noexcept 
-			: m_data(data), 
-			m_next(nullptr), 
-			m_prev(nullptr) {}
+			: m_data(data)
+			, m_next(nullptr)
+			, m_prev(nullptr)
+		{}
 
-		~LinkedListElement() {
+		~LinkedListElement()
+		{
 			delete m_data;
 
-			if (m_next) {
+			if (m_next)
+			{
 				m_next->m_prev = m_prev;
 			}
-			if (m_prev) {
+			if (m_prev)
+			{
 				m_prev->m_next = m_next;
 			}
 		}
@@ -34,25 +39,33 @@ public:
 		LinkedListElement* m_prev;
 	};
 
-	LinkedList() noexcept 
-		: m_first(nullptr), 
-		m_last(nullptr), 
-		m_size(0u) {}
+	LinkedList()
+		noexcept 
+		: m_first(nullptr)
+		, m_last(nullptr)
+		, m_size(0u)
+	{}
 
-	~LinkedList() noexcept {
+	~LinkedList()
+		noexcept
+	{
 		Empty();
 	}
 
-	T* Add(T* data) {
-		if (!data) {
+	T* Add(T* data)
+	{
+		if (!data)
+		{
 			return nullptr;
 		}
 
-		if (!m_first) {
+		if (!m_first)
+		{
 			m_first = new LinkedListElement(data);
 			m_last  = m_first;
 		}
-		else {
+		else
+		{
 			m_last->m_next = new LinkedListElement(data);
 			m_last->m_next->m_prev = m_last;
 			m_last = m_last->m_next;
@@ -63,21 +76,25 @@ public:
 		return m_last->m_data;
 	}
 	
-	T* InsertBefore(T* data, LinkedListElement* element_next) {
-        if (!data) {
+	T* InsertBefore(T* data, LinkedListElement* element_next)
+	{
+        if (!data)
+		{
 			return nullptr;
 		}
         
         ++m_size;
         
 		const auto current = element_next->m_prev;
-		if (!current) {
+		if (!current)
+		{
 			m_first = new LinkedListElement(data);
 			m_first->m_next = element_next;
 			element_next->m_prev = m_first;
 			return m_first->m_data;
 		}
-		else {
+		else
+		{
 			current->m_next = new LinkedListElement(data);
 			current->m_next->m_prev = current;
 			current->m_next->m_next = element_next;
@@ -86,21 +103,25 @@ public:
 		}
 	}
 	
-	T* InsertAfter(T* data, LinkedListElement* element_prev) {
-        if (!data) {
+	T* InsertAfter(T* data, LinkedListElement* element_prev)
+	{
+        if (!data)
+		{
 			return nullptr;
 		}
         
         ++m_size;
         
 		const auto current = element_prev->m_next;
-		if (!current) {
+		if (!current)
+		{
 			m_last = new LinkedListElement(data);
 			m_last->m_prev = element_prev;
 			element_prev->m_next = m_last;
 			return m_last->m_data;
 		}
-		else {
+		else
+		{
 			current->m_prev = new LinkedListElement(data);
 			current->m_prev->m_next = current;
 			current->m_prev->m_prev = element_prev;
@@ -109,27 +130,35 @@ public:
 		}
 	}
 
-	void Remove(T* data, bool data_destruction = true) {
-        for (auto current = m_first; nullptr != current; current = current->m_next) {
-			if (data != current->m_data) {
+	void Remove(T* data, bool data_destruction = true)
+	{
+        for (auto current = m_first; nullptr != current; current = current->m_next)
+		{
+			if (data != current->m_data)
+			{
                 continue;
             }
             
-            if (m_first == current) {
+            if (m_first == current)
+			{
                 m_first = m_first->m_next;
-				if (m_first) {
+				if (m_first)
+				{
                     m_first->m_prev = nullptr;
                 }
 			}
             
-            if (m_last == current) {
+            if (m_last == current)
+			{
                 m_last = m_last->m_prev;
-                if (m_last) {
+                if (m_last)
+				{
                     m_last->m_next = nullptr;
 				}
             }
             
-            if (!data_destruction) {
+            if (!data_destruction)
+			{
                 current->m_data = nullptr;
 			}
 			
@@ -139,14 +168,19 @@ public:
 		}
 	}
 
-	void Empty(bool data_destruction = true) {
-		while (nullptr != m_last) {
+	void Empty(bool data_destruction = true)
+	{
+		while (nullptr != m_last)
+		{
 			const auto current = m_last;
 			m_last = m_last->m_prev;
 
-			if (!data_destruction) {
+			if (!data_destruction)
+			{
 				current->m_data = nullptr;
-			} else {
+			}
+			else
+			{
                 delete current;
             }
 		}
@@ -156,17 +190,21 @@ public:
 		m_size  = 0;
 	}
 
-	T* GetFirst() const noexcept {
+	T* GetFirst() const noexcept
+	{
 		return m_first ? m_first->m_data : nullptr;
 	}
     
-	T* GetLast() const noexcept {
+	T* GetLast() const noexcept
+	{
 		return m_last ? m_last->m_data : nullptr;
 	}
     
-	T* GetPrevious(const T* data) const noexcept {
+	T* GetPrevious(const T* data) const noexcept
+	{
 		const auto element = GetCompleteLinkedListElement(data);
-        if (!element) {
+        if (!element)
+		{
            return nullptr; 
         }
         
@@ -174,7 +212,8 @@ public:
         return element_prev ? element_prev->m_data : nullptr;
 	}
 
-	T* GetNext(const T* data) const noexcept {
+	T* GetNext(const T* data) const noexcept
+	{
         const auto element = GetCompleteLinkedListElement(data);
         if (!element) {
            return nullptr; 
@@ -184,7 +223,8 @@ public:
         return element_next ? element_next->m_data : nullptr;
 	}
 
-	T* GetAt(size_t index) const noexcept {
+	T* GetAt(size_t index) const noexcept
+	{
 		if (index >= m_size) {
 			return nullptr;
 		}
@@ -196,7 +236,8 @@ public:
 		return current->m_data;
 	}
 
-	LinkedListElement* GetCompleteLinkedListElement(const T* data) const noexcept {
+	LinkedListElement* GetCompleteLinkedListElement(const T* data) const noexcept
+	{
 		for (auto current = m_first; nullptr != current; current = current->m_next) {
 			if (data == current->m_data) {
 				return current;
@@ -205,7 +246,8 @@ public:
 		return nullptr;
 	}
 
-	uint64_t GetSize() const noexcept {
+	uint64_t GetSize() const noexcept
+	{
 		return m_size;
 	}
 
@@ -216,7 +258,9 @@ private:
 	size_t m_size;
 };
 
-int main() {
+auto main()
+	-> int
+{
     const auto i1 = new int(1);
     const auto i2 = new int(2);
     const auto i3 = new int(3);
