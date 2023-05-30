@@ -1,11 +1,11 @@
-// TODO: update
-
+// size_t
 #include <cstddef>
-#include <cstdint>
+// count, endl
 #include <iostream>
 
 template< typename T >
-class LinkedList {
+class LinkedList
+{
 
 public:
 
@@ -14,6 +14,7 @@ public:
 
 	public:
 
+		[[nodiscard]]
 		explicit LinkedListElement(T* data)
 			noexcept 
 			: m_data(data)
@@ -23,11 +24,11 @@ public:
 		{
 			delete m_data;
 
-			if (m_next)
+			if (m_next != nullptr)
 			{
 				m_next->m_prev = m_prev;
 			}
-			if (m_prev)
+			if (m_prev != nullptr)
 			{
 				m_prev->m_next = m_next;
 			}
@@ -38,12 +39,9 @@ public:
 		LinkedListElement* m_prev = {};
 	};
 
+	[[nodiscard]]
 	LinkedList()
-		noexcept 
-		: m_first(nullptr)
-		, m_last(nullptr)
-		, m_size(0u)
-	{}
+		noexcept = default;
 
 	~LinkedList()
 		noexcept
@@ -59,7 +57,7 @@ public:
 			return {};
 		}
 
-		if (!m_first)
+		if (m_first == nullptr)
 		{
 			m_first = new LinkedListElement(data);
 			m_last  = m_first;
@@ -79,15 +77,15 @@ public:
 	auto InsertBefore(T* data, LinkedListElement* element_next)
 		-> T*
 	{
-        if (!data)
+        if (data == nullptr)
 		{
-			return nullptr;
+			return {};
 		}
         
         ++m_size;
         
 		const auto current = element_next->m_prev;
-		if (!current)
+		if (current == nullptr)
 		{
 			m_first = new LinkedListElement(data);
 			m_first->m_next = element_next;
@@ -107,15 +105,15 @@ public:
 	auto InsertAfter(T* data, LinkedListElement* element_prev)
 		-> T*
 	{
-        if (!data)
+        if (data == nullptr)
 		{
-			return nullptr;
+			return {};
 		}
         
         ++m_size;
         
 		const auto current = element_prev->m_next;
-		if (!current)
+		if (current == nullptr)
 		{
 			m_last = new LinkedListElement(data);
 			m_last->m_prev = element_prev;
@@ -187,9 +185,9 @@ public:
             }
 		}
         
-		m_first = nullptr;
-        m_last  = nullptr;
-		m_size  = 0;
+		m_first = {};
+        m_last  = {};
+		m_size  = {};
 	}
 
 	[[nodiscard]]
@@ -211,7 +209,7 @@ public:
 		noexcept -> T*
 	{
 		const auto element = GetCompleteLinkedListElement(data);
-        if (!element)
+        if (element == nullptr)
 		{
            return nullptr; 
         }
@@ -225,7 +223,8 @@ public:
 		noexcept -> T*
 	{
         const auto element = GetCompleteLinkedListElement(data);
-        if (!element) {
+        if (element == nullptr)
+		{
            return nullptr; 
         }
         
