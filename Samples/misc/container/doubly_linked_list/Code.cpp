@@ -192,18 +192,21 @@ public:
 		m_size  = 0;
 	}
 
+	[[nodiscard]]
 	auto GetFirst() const
 		noexcept -> T*
 	{
 		return m_first ? m_first->m_data : nullptr;
 	}
     
+	[[nodiscard]]
 	auto GetLast() const
 		noexcept -> T*
 	{
 		return m_last ? m_last->m_data : nullptr;
 	}
     
+	[[nodiscard]]
 	auto GetPrevious(const T* data) const
 		noexcept -> T*
 	{
@@ -217,6 +220,7 @@ public:
         return element_prev ? element_prev->m_data : nullptr;
 	}
 
+	[[nodiscard]]
 	auto GetNext(const T* data) const
 		noexcept -> T*
 	{
@@ -229,6 +233,7 @@ public:
         return element_next ? element_next->m_data : nullptr;
 	}
 
+	[[nodiscard]]
 	auto GetAt(size_t index) const
 		noexcept -> T*
 	{
@@ -245,30 +250,32 @@ public:
 		return current->m_data;
 	}
 
+	[[nodiscard]]
 	auto GetCompleteLinkedListElement(const T* data) const
 		noexcept -> LinkedListElement*
 	{
-		for (auto current = m_first; nullptr != current; current = current->m_next)
+		for (auto current = m_first; current != nullptr; current = current->m_next)
 		{
 			if (data == current->m_data)
 			{
 				return current;
 			}
 		}
-		return nullptr;
+		return {};
 	}
 
+	[[nodiscard]]
 	auto GetSize() const
-		noexcept -> std::uint64_t
+		noexcept -> std::size_t
 	{
 		return m_size;
 	}
 
 private:
 	
-	LinkedListElement* m_first;
-	LinkedListElement* m_last;
-	size_t m_size;
+	LinkedListElement* m_first = {};
+	LinkedListElement* m_last = {};
+	std::size_t m_size = {};
 };
 
 auto main()
