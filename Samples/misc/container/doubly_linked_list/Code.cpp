@@ -14,10 +14,9 @@ public:
 
 	public:
 
-		explicit LinkedListElement(T* data) noexcept 
+		explicit LinkedListElement(T* data)
+			noexcept 
 			: m_data(data)
-			, m_next(nullptr)
-			, m_prev(nullptr)
 		{}
 
 		~LinkedListElement()
@@ -35,8 +34,8 @@ public:
 		}
 
 		T* m_data;
-		LinkedListElement* m_next;
-		LinkedListElement* m_prev;
+		LinkedListElement* m_next = {};
+		LinkedListElement* m_prev = {};
 	};
 
 	LinkedList()
@@ -52,11 +51,12 @@ public:
 		Empty();
 	}
 
-	T* Add(T* data)
+	auto Add(T* data)
+		-> T*
 	{
 		if (!data)
 		{
-			return nullptr;
+			return {};
 		}
 
 		if (!m_first)
@@ -76,7 +76,8 @@ public:
 		return m_last->m_data;
 	}
 	
-	T* InsertBefore(T* data, LinkedListElement* element_next)
+	auto InsertBefore(T* data, LinkedListElement* element_next)
+		-> T*
 	{
         if (!data)
 		{
@@ -103,7 +104,8 @@ public:
 		}
 	}
 	
-	T* InsertAfter(T* data, LinkedListElement* element_prev)
+	auto InsertAfter(T* data, LinkedListElement* element_prev)
+		-> T*
 	{
         if (!data)
 		{
@@ -190,17 +192,20 @@ public:
 		m_size  = 0;
 	}
 
-	T* GetFirst() const noexcept
+	auto GetFirst() const
+		noexcept -> T*
 	{
 		return m_first ? m_first->m_data : nullptr;
 	}
     
-	T* GetLast() const noexcept
+	auto GetLast() const
+		noexcept -> T*
 	{
 		return m_last ? m_last->m_data : nullptr;
 	}
     
-	T* GetPrevious(const T* data) const noexcept
+	auto GetPrevious(const T* data) const
+		noexcept -> T*
 	{
 		const auto element = GetCompleteLinkedListElement(data);
         if (!element)
@@ -212,7 +217,8 @@ public:
         return element_prev ? element_prev->m_data : nullptr;
 	}
 
-	T* GetNext(const T* data) const noexcept
+	auto GetNext(const T* data) const
+		noexcept -> T*
 	{
         const auto element = GetCompleteLinkedListElement(data);
         if (!element) {
@@ -223,30 +229,37 @@ public:
         return element_next ? element_next->m_data : nullptr;
 	}
 
-	T* GetAt(size_t index) const noexcept
+	auto GetAt(size_t index) const
+		noexcept -> T*
 	{
-		if (index >= m_size) {
+		if (index >= m_size)
+		{
 			return nullptr;
 		}
 
 		auto current = m_first;
-		for (size_t i = 0; i < index; ++i) {
+		for (size_t i = 0; i < index; ++i)
+		{
 			current = current->m_next;
         }
 		return current->m_data;
 	}
 
-	LinkedListElement* GetCompleteLinkedListElement(const T* data) const noexcept
+	auto GetCompleteLinkedListElement(const T* data) const
+		noexcept -> LinkedListElement*
 	{
-		for (auto current = m_first; nullptr != current; current = current->m_next) {
-			if (data == current->m_data) {
+		for (auto current = m_first; nullptr != current; current = current->m_next)
+		{
+			if (data == current->m_data)
+			{
 				return current;
 			}
 		}
 		return nullptr;
 	}
 
-	uint64_t GetSize() const noexcept
+	auto GetSize() const
+		noexcept -> std::uint64_t
 	{
 		return m_size;
 	}
