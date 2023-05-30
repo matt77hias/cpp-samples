@@ -151,7 +151,7 @@ public:
             if (m_last == current)
 			{
                 m_last = m_last->m_prev;
-                if (m_last)
+                if (m_last != nullptr)
 				{
                     m_last->m_next = nullptr;
 				}
