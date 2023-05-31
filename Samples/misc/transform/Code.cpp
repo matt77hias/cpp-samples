@@ -28,8 +28,8 @@ constexpr auto TransformArray(ActionT&& action,
 }
 
 template< typename T, std::size_t N >
-std::ostream& operator<<(std::ostream& os,
-                         const std::array< T, N >& a)
+auto operator <<(std::ostream& os, const std::array< T, N >& a)
+	-> std::ostream&
 {
     for (auto i : a)
     {
@@ -39,7 +39,8 @@ std::ostream& operator<<(std::ostream& os,
     return os << '\n';
 }
 
-int main()
+auto main()
+	-> int
 {
     constexpr std::array< float, 5u > a = { 1, 2, 3, 4, 5 };
     constexpr auto f = [](float x) { return x * x; };
