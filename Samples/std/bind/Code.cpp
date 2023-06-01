@@ -16,7 +16,7 @@ struct Widget
     }
 };
 
-quto main()
+auto main()
 	-> int
 {
 	std::vector< int > values = { 1, 2 };
