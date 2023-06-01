@@ -9,13 +9,15 @@
 
 struct Widget
 {
-    void Print(int value) const noexcept
+    void Print(int value) const
+		noexcept
     {
         std::cout << value << std::endl;
     }
 };
 
-int main()
+quto main()
+	-> int
 {
 	std::vector< int > values = { 1, 2 };
 
