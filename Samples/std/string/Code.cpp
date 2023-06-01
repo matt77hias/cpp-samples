@@ -1,7 +1,8 @@
 // string
 #include <string>
 
-int main()
+auto main()
+	-> int
 {
    return std::string("1234").size();
 }
