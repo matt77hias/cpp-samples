@@ -2,7 +2,8 @@
 #include <utility>
 
 [[nodiscard]]
-auto test(bool flag) noexcept -> int
+auto test(bool flag)
+	noexcept -> int
 {
     if (true)
     {
@@ -15,7 +16,8 @@ auto test(bool flag) noexcept -> int
     }
 }
 
-auto main() -> int
+auto main()
+	-> int
 {
     return test(true);
 }
