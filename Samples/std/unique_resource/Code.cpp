@@ -1,4 +1,8 @@
+// size_t
+#include <cstddef>
+// cout, endl
 #include <iostream>
+// unique_resource
 #include <https://raw.githubusercontent.com/PeterSommerlad/scope17/master/scope.hpp>
 
 struct ResourceManager
@@ -6,7 +10,8 @@ struct ResourceManager
     using Handle = std::size_t;
     
     [[nodiscard("Resource leak")]]
-    Handle Acquire()
+    auto Acquire()
+		-> Handle
     {
         std::cout << "ResourceManager::Acquire" << std::endl;
         return 1u;
@@ -19,7 +24,8 @@ struct ResourceManager
 
     struct Deleter
     {
-        void operator ()(Handle resource) const noexcept
+        void operator ()(Handle resource) const
+			noexcept
         {
             std::cout << "DeleteResource" << std::endl << "  ";
             m_manager->Release(resource);
@@ -31,14 +37,16 @@ struct ResourceManager
     using UniqueHandle = SCOPE_NS_PREFIX::unique_resource< ResourceManager::Handle, ResourceManager::Deleter >;
 
     [[nodiscard]]
-    UniqueHandle Create()
+    auto Create()
+		-> UniqueHandle
     {
         std::cout << "CreateResource" << std::endl << "  ";
         return { Acquire(), Deleter{ this } };
     }
 };
 
-int main()
+auto main()
+	-> int
 {
 	ResourceManager manager;
     auto resource = manager.Create();
