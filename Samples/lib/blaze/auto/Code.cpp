@@ -3,7 +3,8 @@
 // cout, endl
 #include <iostream>
 
-int main()
+auto main()
+    -> int
 {
 	using F32x4 = blaze::StaticVector< float, 4u, blaze::rowVector >;
 
