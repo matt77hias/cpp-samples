@@ -21,7 +21,8 @@ void Foobar(const StaticF32x3& v)
     std::cout << "Foobar(const StaticF32x3& v)";
 }
 
-auto main() -> int
+auto main()
+    -> int
 {
     const StaticF32x3 v = {};
     const auto result = v + v;
