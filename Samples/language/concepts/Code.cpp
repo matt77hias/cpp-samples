@@ -13,7 +13,8 @@ namespace v0
     template< typename T,
 		      typename... ConstructorArgsT,
 		      typename std::enable_if< !std::is_array< T >::value, int >::type = 0 >
-	inline std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args)
+	inline auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(std::forward< ConstructorArgsT >(args)...); // C++14
     }
@@ -21,11 +22,13 @@ namespace v0
 	template< typename T,
 		      typename... ConstructorArgsT,
 		      typename std::enable_if< (std::extent< T >::value != 0u), int >::type = 0 >
-	std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args) = delete;
+	auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T > = delete;
 
 	template< typename T,
 		      typename std::enable_if< std::is_array< T >::value && (std::extent< T >::value == 0u), int >::type = 0 >
-	inline std::unique_ptr< T > MakeUnique(std::size_t size)
+	inline auto MakeUnique(std::size_t size)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(size); // C++14
     }
