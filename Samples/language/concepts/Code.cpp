@@ -106,18 +106,21 @@ namespace v3
     
     template< NonArray T, typename... ConstructorArgsT >
 	[[nodiscard]]
-	inline std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args)
+	inline auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(std::forward< ConstructorArgsT >(args)...);
     }
 
 	template< StackArray T, typename... ConstructorArgsT >
 	[[nodiscard]]
-	std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args) = delete;
+	auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T > = delete;
 
 	template< HeapArray T >
 	[[nodiscard]]
-	inline std::unique_ptr< T > MakeUnique(std::size_t size)
+	inline auto MakeUnique(std::size_t size)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(size);
     }
