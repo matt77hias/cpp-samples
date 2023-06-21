@@ -40,7 +40,8 @@ namespace v1
     template< typename T,
 		      typename... ConstructorArgsT,
 		      std::enable_if_t< !std::is_array_v< T >, int > = 0 >
-	inline std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args)
+	inline auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(std::forward< ConstructorArgsT >(args)...);
     }
@@ -48,11 +49,13 @@ namespace v1
 	template< typename T,
 		      typename... ConstructorArgsT,
 		      std::enable_if_t< (std::extent_v< T > != 0u), int > = 0 >
-	std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args) = delete;
+	auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T > = delete;
 
 	template< typename T,
 		      std::enable_if_t< std::is_array_v< T > && (std::extent_v< T > == 0u), int > = 0 >
-	inline std::unique_ptr< T > MakeUnique(std::size_t size)
+	inline auto MakeUnique(std::size_t size)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(size);
     }
@@ -64,7 +67,8 @@ namespace v2
     template< typename T, typename... ConstructorArgsT >
 	requires (std::is_array_v< T > == false)
 	[[nodiscard]]
-	inline std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args)
+	inline auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(std::forward< ConstructorArgsT >(args)...);
     }
@@ -72,12 +76,14 @@ namespace v2
 	template< typename T, typename... ConstructorArgsT >
 	requires (std::extent_v< T > != 0u)
 	[[nodiscard]]
-	std::unique_ptr< T > MakeUnique(ConstructorArgsT&&... args) = delete;
+	auto MakeUnique(ConstructorArgsT&&... args)
+		-> std::unique_ptr< T > = delete;
 
 	template< typename T >
 	requires (std::is_array_v< T > && (std::extent_v< T > == 0u))
 	[[nodiscard]]
-	inline std::unique_ptr< T > MakeUnique(std::size_t size)
+	inline auto MakeUnique(std::size_t size)
+		-> std::unique_ptr< T >
     {
         return std::make_unique< T >(size);
     }
