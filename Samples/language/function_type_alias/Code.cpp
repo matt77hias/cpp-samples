@@ -3,7 +3,8 @@
 template< typename F >
 using Function = std::function< F >;
 
-auto main() -> int
+auto main()
+   -> int
 {
     [[maybe_unused]] Function< void () > f;
     
