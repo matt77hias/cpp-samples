@@ -18,7 +18,8 @@ void Widget< T >
     T::reserve(capacity);
 }
 
-int main()
+auto main()
+   -> int
 {
     Widget< std::deque< int > > widget;
     //widget.reserve(2u);
