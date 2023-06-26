@@ -17,7 +17,8 @@ constexpr auto getY(uint i)
     return ((i & 1u) << 2u) - 1.0f;
 }
 
-auto main() -> int
+auto main()
+   -> int
 {
     for (uint i = 0u; i < 3u; ++i)
     {
