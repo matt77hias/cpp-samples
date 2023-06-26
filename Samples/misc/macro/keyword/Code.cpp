@@ -4,7 +4,8 @@
 #define RETURN(arg) return (arg)
 
 [[nodiscard]]
-auto f() noexcept -> int
+auto f()
+   noexcept -> int
 {
     int i = 5;
     while (true)
@@ -18,7 +19,8 @@ auto f() noexcept -> int
     RETURN(i);
 }
 
-auto main() -> int
+auto main()
+   -> int
 {
    return f();
 }
