@@ -10,7 +10,8 @@ struct alignas(A) StaticArray : std::array< T, N >
 template< typename T, typename... Ts >
 StaticArray(T, Ts...) -> StaticArray< T, 1u + sizeof...(Ts) >;
 
-int main()
+auto main()
+    -> int
 {
     // 1D
     
