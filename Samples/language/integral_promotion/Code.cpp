@@ -1,7 +1,8 @@
 // same_as
 #include <concepts>
 
-int main()
+auto main()
+   -> int
 {
 	unsigned short a = 0;
     unsigned short b = 1;
