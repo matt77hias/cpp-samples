@@ -1,7 +1,8 @@
 // cout, endl
 #include <iostream>
 
-int main()
+auto main()
+    -> int
 {
 	int a = 5;
     int b = 2;
