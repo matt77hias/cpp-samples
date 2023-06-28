@@ -1,10 +1,12 @@
 struct Widget
 {
     [[nodiscard]]
-    constexpr explicit Widget() noexcept = default;
+    constexpr explicit Widget()
+        noexcept = default;
 };
 
-int main()
+auto main()
+   -> int
 {
 	// [[maybe_unused]] Widget w = {};
     [[maybe_unused]] Widget w = Widget{};
