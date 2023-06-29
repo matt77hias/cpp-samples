@@ -241,7 +241,9 @@ private:
 };
 
 
-int main() {
+auto main()
+    -> int
+{
     std::vector< int > a = { 5, 4, 3, 2, 1 };
     std::vector< int > b = { 5, 4, 3, 2, 1 };
     
@@ -249,11 +251,13 @@ int main() {
     BiRandomAccessIterator end   = { a.end(),   b.end()   };
     std::remove(begin, end, 5);
     
-    for (auto e : a) {
+    for (auto e : a)
+	{
         std::cout << e;
     }
     std::cout << std::endl;
-    for (auto e : b) {
+    for (auto e : b)
+	{
         std::cout << e;
     }
     
