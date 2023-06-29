@@ -150,7 +150,9 @@ private:
 };
 
 
-int main() {
+auto main()
+    -> int
+{
     std::vector< int > a = { 5, 4, 3, 2, 1 };
     std::vector< int > b = { 5, 4, 3, 2, 1 };
     
@@ -161,11 +163,13 @@ int main() {
     //std::remove(begin, end, std::pair< int, int >(5,5));
     std::remove(begin, end, std::make_pair(std::ref(i), std::ref(i)));
     
-    for (auto e : a) {
+    for (auto e : a)
+	{
         std::cout << e;
     }
     std::cout << std::endl;
-    for (auto e : b) {
+    for (auto e : b)
+	{
         std::cout << e;
     }
     
