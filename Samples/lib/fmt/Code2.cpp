@@ -43,7 +43,8 @@ namespace fmt
 	struct formatter< UTF16toUTF8, char >
 	{
 		template< typename ParseContextT >
-		typename ParseContextT::iterator parse(ParseContextT& ctx)
+		auto parse(ParseContextT& ctx)
+			-> typename ParseContextT::iterator
 		{
 			return ctx.begin();
 		}
@@ -59,7 +60,8 @@ namespace fmt
 	struct formatter< UTF8toUTF16, wchar_t >
 	{
 		template< typename ParseContextT >
-		typename ParseContextT::iterator parse(ParseContextT& ctx)
+		auto parse(ParseContextT& ctx)
+			-> typename ParseContextT::iterator
 		{
 			return ctx.begin();
 		}
