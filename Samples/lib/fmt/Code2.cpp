@@ -12,7 +12,8 @@ struct UTF16toUTF8
 	{}
     
 	[[nodiscard]]
-    explicit operator std::string_view() const noexcept
+    explicit operator std::string_view() const
+        noexcept
 	{
         return m_str;
     }
@@ -27,7 +28,8 @@ struct UTF8toUTF16
 	{}
     
 	[[nodiscard]]
-    explicit operator std::wstring_view() const noexcept
+    explicit operator std::wstring_view() const
+        noexcept
 	{
         return m_str;
     }
@@ -82,7 +84,8 @@ inline void Print(std::wstring_view format_str, const ArgsT&... args)
     return fmt::print(format_str, args...);
 }
 
-int main()
+auto main()
+    -> int
 {
     std::string s = "foo";
     std::string_view sv = s;
