@@ -52,7 +52,7 @@ public:
 	auto Add(T* data)
 		-> T*
 	{
-		if (!data)
+		if (data == nullptr)
 		{
 			return {};
 		}
