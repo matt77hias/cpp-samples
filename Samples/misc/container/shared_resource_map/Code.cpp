@@ -55,12 +55,14 @@ public:
         @param[in]		map
                     A reference to the shared resource map to move.
         */
-    SharedResourceMap(SharedResourceMap&& map) noexcept;
+    SharedResourceMap(SharedResourceMap&& map)
+        noexcept;
 
     /**
         Destructs this shared resource map.
         */
-    ~SharedResourceMap() noexcept
+    ~SharedResourceMap()
+        noexcept
     {
         RemoveAll();
     }
@@ -77,7 +79,8 @@ public:
         @return		A reference to the copy of the given shared resource 
                     map (i.e. this shared resource map).
         */
-    SharedResourceMap& operator=(const SharedResourceMap& map) = delete;
+    auto operator =(const SharedResourceMap& map)
+        -> SharedResourceMap& = delete;
 
     /**
         Moves the given shared resource map to this shared resource map.
@@ -87,7 +90,8 @@ public:
         @return		A reference to the moved shared resource map (i.e. this
                     shared resource map).
         */
-    SharedResourceMap& operator=(SharedResourceMap&& map) = delete;
+    auto operator =(SharedResourceMap&& map)
+        -> SharedResourceMap& = delete;
 
     //---------------------------------------------------------------------
     // Member Methods
@@ -100,7 +104,8 @@ public:
                     otherwise.
         */
     [[nodiscard]]
-    bool empty() const noexcept;
+    auto empty() const
+        noexcept -> bool;
 
     /**
         Returns the number of resources contained in this shared resource map.
@@ -109,7 +114,8 @@ public:
                     resource map.
         */
     [[nodiscard]]
-    std::size_t size() const noexcept;
+    auto size() const
+        noexcept -> std::size_t;
 
     /**
         Checks whether this shared resource map contains a resource
