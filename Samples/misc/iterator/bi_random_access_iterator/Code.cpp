@@ -22,51 +22,64 @@ public:
     BiRandomAccessIterator& operator=(const BiRandomAccessIterator& it) = default;
     BiRandomAccessIterator& operator=(BiRandomAccessIterator&& it) = default;
 
-    auto operator*() noexcept {
+    auto operator *()
+        noexcept
+    {
         return std::make_pair(std::ref(*m_it1), std::ref(*m_it2));
     }
 
-    auto operator*() const noexcept {
+    auto operator *() const
+        noexcept
+    {
         return std::make_pair(std::cref(*m_it1), std::cref(*m_it2));
     }
 
-    auto operator->() noexcept {
+    auto operator ->()
+        noexcept
+    {
         return std::make_pair(&*m_it1, &*m_it2);
     }
 
-    auto operator->() const noexcept {
+    auto operator ->() const
+        noexcept
+    {
         return std::make_pair(&*m_it1, &*m_it2);
     }
 
     [[nodiscard]]
-    std::size_t operator-(const BiRandomAccessIterator& bit) const {
+    std::size_t operator -(const BiRandomAccessIterator& bit) const
+    {
         return m_it1 - bit.m_it1;
     }
 
     [[nodiscard]]
-    const BiRandomAccessIterator operator+(std::size_t n) const {
+    const BiRandomAccessIterator operator+(std::size_t n) const
+    {
         return { m_it1 + n, m_it2 + n };
     }
 
     [[nodiscard]]
-    const BiRandomAccessIterator operator-(std::size_t n) const {
+    const BiRandomAccessIterator operator-(std::size_t n) const
+    {
         return { m_it1 - n, m_it2 - n };
     }
 
     [[nodiscard]]
     friend const BiRandomAccessIterator 
-        operator+(std::size_t n, const BiRandomAccessIterator& bit) {
-
+        operator+(std::size_t n, const BiRandomAccessIterator& bit)
+    {
         return bit + n;
     }
 
-    BiRandomAccessIterator& operator++() {
+    BiRandomAccessIterator& operator ++()
+    {
         ++m_it1;
         ++m_it2;
         return *this;
     }
 
-    BiRandomAccessIterator& operator--() {
+    BiRandomAccessIterator& operator --()
+    {
         --m_it1;
         --m_it2;
         return *this;
@@ -74,37 +87,43 @@ public:
 
     [[nodiscard]]
     friend const BiRandomAccessIterator 
-        operator++(const BiRandomAccessIterator& bit) {
-
+        operator++(const BiRandomAccessIterator& bit)
+    {
         return { bit.m_it1 + 1u, bit.m_it2 + 1u };
     }
 
     [[nodiscard]]
     friend const BiRandomAccessIterator 
-        operator--(const BiRandomAccessIterator& bit) {
-
+        operator--(const BiRandomAccessIterator& bit)
+    {
         return { bit.m_it1 - 1u, bit.m_it2 - 1u };
     }
 
-    BiRandomAccessIterator& operator+=(std::size_t n) {
+    BiRandomAccessIterator& operator+=(std::size_t n)
+    {
         m_it1 += n;
         m_it2 += n;
         return *this;
     }
 
-    BiRandomAccessIterator& operator-=(std::size_t n) {
+    BiRandomAccessIterator& operator-=(std::size_t n)
+    {
         m_it1 -= n;
         m_it2 -= n;
         return *this;
     }
 
     [[nodiscard]]
-    auto operator[](std::size_t n) noexcept {
+    auto operator [](std::size_t n)
+		noexcept
+    {
         return std::make_pair(std::ref(m_it1[n]), std::ref(m_it2[n]));
     }
 
     [[nodiscard]]
-    auto operator[](std::size_t n) const noexcept {
+    auto operator [](std::size_t n) const
+        noexcept
+	{
         return std::make_pair(std::cref(m_it1[n]), std::cref(m_it2[n]));
     }
 
