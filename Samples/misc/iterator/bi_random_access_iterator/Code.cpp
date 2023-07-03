@@ -11,9 +11,11 @@ class BiRandomAccessIterator {
 
 public:
 
-    BiRandomAccessIterator() noexcept
+    BiRandomAccessIterator()
+        noexcept
         : m_it1{}, m_it2{} {}
-    BiRandomAccessIterator(FirstT it1, SecondT it2) noexcept
+    BiRandomAccessIterator(FirstT it1, SecondT it2)
+        noexcept
         : m_it1(std::move(it1)), m_it2(std::move(it2)) {}
     BiRandomAccessIterator(const BiRandomAccessIterator& it) = default;
     BiRandomAccessIterator(BiRandomAccessIterator&& it) = default;
@@ -128,38 +130,53 @@ public:
     }
 
     [[nodiscard]]
-    constexpr bool operator==(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator ==(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 == rhs.m_it1;
     }
 
     [[nodiscard]]
-    constexpr bool operator!=(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator !=(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 != rhs.m_it1;
     }
 
     [[nodiscard]]
-    constexpr bool operator<=(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator <=(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 <= rhs.m_it1;
     }
 
     [[nodiscard]]
-    constexpr bool operator>=(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator >=(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 >= rhs.m_it1;
     }
 
     [[nodiscard]]
-    constexpr bool operator<(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator <(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 < rhs.m_it1;
     }
 
     [[nodiscard]]
-    constexpr bool operator>(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator >(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 > rhs.m_it1;
     }
 
-    void swap(BiRandomAccessIterator& other) noexcept {
-        std::swap(m_it1, other.m_it1);
-        std::swap(m_it2, other.m_it2);
+    void swap(BiRandomAccessIterator& other)
+        noexcept
+    {
+        using std::swap; // ADL
+		swap(m_it1, other.m_it1);
+        swap(m_it2, other.m_it2);
     }
 
 private:
