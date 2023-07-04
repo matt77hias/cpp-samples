@@ -42,7 +42,8 @@ void QuickSort(I first, I last, CompareT compare)
     QuickSort(std::ranges::next(middle), last, compare);
 }
 
-auto main() -> int
+auto main()
+   -> int
 {
     std::list values = { 5, 4, 3, 2, 1, 3 };
     for (const auto value : values)
