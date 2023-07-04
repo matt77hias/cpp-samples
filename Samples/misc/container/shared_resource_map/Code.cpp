@@ -285,7 +285,8 @@ private:
             @param[in]		resource
                         A reference to the resource to move.
             */
-        Resource(Resource&& resource) noexcept;
+        Resource(Resource&& resource)
+            noexcept;
 
         /**
             Destructs this resource.
