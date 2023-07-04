@@ -128,7 +128,8 @@ public:
                     otherwise.
         */
     [[nodiscard]]
-    bool Contains(const KeyT& key) noexcept;
+    auto Contains(const KeyT& key)
+        noexcept -> bool;
 
     /**
         Returns the resource corresponding to the given key from this shared
@@ -142,7 +143,8 @@ public:
                     key from this shared resource map.
         */
     [[nodiscard]]
-    std::shared_ptr< ResourceT > Get(const KeyT& key) noexcept;
+    auto Get(const KeyT& key)
+        noexcept -> std::shared_ptr< ResourceT >;
 
     /**
         Returns the resource corresponding to the given key from this shared
@@ -162,8 +164,8 @@ public:
                     key from this shared resource map.
         */
     template< typename... ConstructorArgsT >
-    std::shared_ptr< ResourceT >
-        GetOrCreate(const KeyT& key, ConstructorArgsT&& ... args);
+    auto GetOrCreate(const KeyT& key, ConstructorArgsT&& ... args)
+        -> std::shared_ptr< ResourceT >;
 
     /**
         Returns the resource corresponding to the given key from this shared
@@ -186,8 +188,8 @@ public:
                     key from this shared resource map.
         */
     template< typename DerivedResourceT, typename... ConstructorArgsT >
-    std::shared_ptr< ResourceT >
-        GetOrCreateDerived(const KeyT& key, ConstructorArgsT&& ... args);
+    auto GetOrCreateDerived(const KeyT& key, ConstructorArgsT&& ... args)
+        -> std::shared_ptr< ResourceT >;
 
     /**
         Removes the resource corresponding to the given key from this shared
@@ -201,7 +203,8 @@ public:
     /**
         Removes all resources from this shared resource map.
         */
-    void RemoveAll() noexcept;
+    void RemoveAll()
+        noexcept;
 
 private:
 
