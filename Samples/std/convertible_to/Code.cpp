@@ -12,9 +12,7 @@ struct C : B
 
 template< std::convertible_to< B > T >
 void f(T t)
-{
-
-}
+{}
 
 auto main()
 	-> int
