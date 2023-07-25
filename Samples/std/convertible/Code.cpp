@@ -17,7 +17,8 @@ struct Bar
 static_assert(std::is_constructible_v< Foo, Bar >);
 static_assert(std::is_convertible_v< Bar, Foo >);
 
-auto main() -> int
+auto main()
+   -> int
 {
     return 0;
 }
