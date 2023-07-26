@@ -3,14 +3,15 @@
 
 struct Widget
 {
-    int m_value;
+    int m_value = {};
 
 	static_assert(std::same_as< decltype(m_value), int >);
 };
 
 static_assert(std::same_as< decltype(Widget::m_value), int >);
 
-int main()
+auto main()
+	-> int
 {
     return 0;
 }
