@@ -10,7 +10,8 @@ struct Pack
     static_assert((... || Bs) == false);
 };
 
-int main()
+auto main()
+	-> int
 {
     Pack<> p;
 
