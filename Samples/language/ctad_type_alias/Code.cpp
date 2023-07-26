@@ -6,7 +6,8 @@
 template< typename T, std::size_t N = std::dynamic_extent >
 using Span = std::span< T, N >;
 
-auto main() -> int
+auto main()
+	-> int
 {
     int array[2u] = {};
 
