@@ -7,19 +7,20 @@
 
 template< typename FromT, typename ToT, typename = ToT >
 struct is_static_castable 
-    : public std::false_type
+    : std::false_type
 {};
 
 template< typename FromT, typename ToT >
 struct is_static_castable< FromT, ToT, 
 decltype(static_cast< std::remove_const_t< ToT > >(std::declval< std::remove_const_t< FromT > >())) > 
-    : public std::true_type
+    : std::true_type
 {};
 
 template< typename FromT, typename ToT >
-constexpr bool is_static_castable_v = is_static_castable< FromT, ToT >::value;
+inline constexpr bool is_static_castable_v = is_static_castable< FromT, ToT >::value;
 
-auto main() -> int
+auto main()
+    -> int
 {
     std::cout << is_static_castable_v< float, unsigned int >;
     std::cout << is_static_castable_v< float, int >;
