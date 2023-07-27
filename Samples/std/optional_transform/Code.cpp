@@ -3,7 +3,8 @@
 // optional
 #include <optional>
 
-auto main() -> int
+auto main()
+    -> int
 {
     std::optional< const int > i = 7;
     constexpr auto function = [](int i) noexcept -> const float
