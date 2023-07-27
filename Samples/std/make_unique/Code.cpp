@@ -71,7 +71,8 @@ struct B
     A m_a = {};
 };
 
-auto main() -> int
+auto main()
+    -> int
 { 
     g_logging = true;
     try { std::make_unique< B >(); } catch (...) {}
