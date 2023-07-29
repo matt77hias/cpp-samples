@@ -6,12 +6,14 @@
 #include <vector>
 
 [[nodiscard]]
-constexpr bool predicate(int x) noexcept
+constexpr auto predicate(int x)
+    noexcept -> bool
 {
     return x == 2;
 }
 
-int main()
+auto main()
+    -> int
 {
     const std::vector v = { 1, 2, 3, 4 };
     std::cout << (std::find_if(v.begin(), v.end(), predicate) != v.end()) << std::endl;
