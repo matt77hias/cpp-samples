@@ -21,7 +21,8 @@ namespace ns
 struct C
 {};
 
-int main()
+auto main()
+    -> int
 {
    ns::A::type a0 = ns::B::type{};
    ns::A::type a1 = Tag< ns::C >{};
