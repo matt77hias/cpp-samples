@@ -15,7 +15,8 @@ struct D : public B
 
 static_assert(std::is_base_of_v< A, D >);
 
-auto main() -> int
+auto main()
+    -> int
 {
     return 0;
 }
