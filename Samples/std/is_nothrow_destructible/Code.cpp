@@ -5,12 +5,14 @@
 // declval
 #include <utility>
 
-int FuncA()
+auto FuncA()
+    -> int
 {
     return 1;
 }
 
-int FuncB() noexcept
+auto FuncB()
+    noexcept -> int
 {
     return 1;
 }
@@ -45,7 +47,8 @@ struct D
     {}
 };
 
-auto main() -> int
+auto main()
+    -> int
 {
     std::cout << std::is_nothrow_destructible_v< A > << std::endl;
     std::cout << std::is_nothrow_destructible_v< B > << std::endl;
