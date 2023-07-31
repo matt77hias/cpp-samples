@@ -418,8 +418,9 @@ std::shared_ptr< ResourceT > SharedResourceMap< KeyT, ResourceT >
 
 template< typename KeyT, typename ResourceT >
 template< typename... ConstructorArgsT >
-inline std::shared_ptr< ResourceT > SharedResourceMap< KeyT, ResourceT >
+inline auto SharedResourceMap< KeyT, ResourceT >
     ::GetOrCreate(const KeyT& key, ConstructorArgsT&& ... args)
+    -> std::shared_ptr< ResourceT >
 {
     return GetOrCreateDerived< ResourceT, ConstructorArgsT... >(
         key, std::forward< ConstructorArgsT >(args)...);
@@ -427,8 +428,9 @@ inline std::shared_ptr< ResourceT > SharedResourceMap< KeyT, ResourceT >
 
 template< typename KeyT, typename ResourceT >
 template< typename DerivedResourceT, typename... ConstructorArgsT >
-std::shared_ptr< ResourceT > SharedResourceMap< KeyT, ResourceT >
+auto SharedResourceMap< KeyT, ResourceT >
     ::GetOrCreateDerived(const KeyT& key, ConstructorArgsT&& ... args)
+    -> std::shared_ptr< ResourceT >
 {
     const std::scoped_lock lock(m_mutex);
 
@@ -454,7 +456,8 @@ std::shared_ptr< ResourceT > SharedResourceMap< KeyT, ResourceT >
 }
 
 template< typename KeyT, typename ResourceT >
-void SharedResourceMap< KeyT, ResourceT >::Remove(const KeyT& key)
+void SharedResourceMap< KeyT, ResourceT >
+    ::Remove(const KeyT& key)
 {
     const std::scoped_lock lock(m_mutex);
 
@@ -466,7 +469,8 @@ void SharedResourceMap< KeyT, ResourceT >::Remove(const KeyT& key)
 }
 
 template< typename KeyT, typename ResourceT >
-inline void SharedResourceMap< KeyT, ResourceT >::RemoveAll() noexcept
+inline void SharedResourceMap< KeyT, ResourceT >
+    ::RemoveAll() noexcept
 {
     const std::scoped_lock lock(m_mutex);
 
@@ -507,9 +511,10 @@ struct A
     virtual ~A() = default;
 };
 
-int main()
+auto main()
+    -> int
 {
-    SharedResourceMap< int, A > map;
+    [[maybe_unused]] SharedResourceMap< int, A > map;
 
     return 0;
 }
