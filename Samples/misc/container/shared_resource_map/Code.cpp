@@ -477,7 +477,8 @@ void SharedResourceMap< KeyT, ResourceT >
 
 template< typename KeyT, typename ResourceT >
 inline void SharedResourceMap< KeyT, ResourceT >
-    ::RemoveAll() noexcept
+    ::RemoveAll()
+    noexcept
 {
     const std::scoped_lock lock(m_mutex);
 
@@ -503,7 +504,8 @@ SharedResourceMap< KeyT, ResourceT >::Resource< DerivedResourceT >
 template< typename KeyT, typename ResourceT >
 template< typename DerivedResourceT >
 SharedResourceMap< KeyT, ResourceT >::Resource< DerivedResourceT >
-    ::Resource(Resource&& resource) noexcept = default;
+    ::Resource(Resource&& resource)
+    noexcept = default;
 
 template< typename KeyT, typename ResourceT >
 template< typename DerivedResourceT >
