@@ -346,8 +346,8 @@ template< typename KeyT, typename ResourceT >
 SharedResourceMap< KeyT, ResourceT >
     ::SharedResourceMap(SharedResourceMap&& map)
     noexcept
-    : m_resource_map(),
-    m_mutex()
+    : m_resource_map()
+    , m_mutex()
 {
     const std::scoped_lock lock(map.m_mutex);
 
@@ -496,9 +496,9 @@ SharedResourceMap< KeyT, ResourceT >::Resource< DerivedResourceT >
     ::Resource(SharedResourceMap& resource_map,
                 const KeyT& resource_key,
                 ConstructorArgsT&& ... args)
-    : DerivedResourceT(std::forward< ConstructorArgsT >(args)...),
-    m_resource_map(resource_map),
-    m_resource_key(resource_key)
+    : DerivedResourceT(std::forward< ConstructorArgsT >(args)...)
+    , m_resource_map(resource_map)
+    , m_resource_key(resource_key)
 {}
 
 template< typename KeyT, typename ResourceT >
