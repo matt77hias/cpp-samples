@@ -32,17 +32,17 @@ struct Contains;
 
 template< char C, char... Cs, char Match >
 struct Contains< CharSequence< C, Cs... >, Match > 
-    : public Contains< CharSequence< Cs... >, Match >
+    : Contains< CharSequence< Cs... >, Match >
 {};
 
 template< char C, char... Cs >
 struct Contains< CharSequence< C, Cs... >, C > 
-    : public std::true_type
+    : std::true_type
 {};
 
 template< char Match >
 struct Contains< CharSequence<>, Match > 
-    : public std::false_type
+    : std::false_type
 {};
 
 // MakeSequence
@@ -52,7 +52,7 @@ struct MakeSequence;
 
 template< std::size_t Index, bool... Bs, typename Delims > 
 struct MakeSequence< Index, BoolSequence< Bs... >, Delims > 
-    : public MakeSequence< Index - 1u, BoolSequence< Contains< Delims, Index - 1u >::value, Bs... >, Delims >
+    : MakeSequence< Index - 1u, BoolSequence< Contains< Delims, Index - 1u >::value, Bs... >, Delims >
 {};
 
 template< bool... Bs, typename Delims > 
