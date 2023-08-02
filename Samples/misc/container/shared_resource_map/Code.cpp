@@ -356,7 +356,8 @@ SharedResourceMap< KeyT, ResourceT >
 
 template< typename KeyT, typename ResourceT >
 [[nodiscard]]
-inline auto SharedResourceMap< KeyT, ResourceT >::empty() const
+inline auto SharedResourceMap< KeyT, ResourceT >
+    ::empty() const
     noexcept -> bool
 {
     const std::scoped_lock lock(m_mutex);
@@ -367,7 +368,8 @@ inline auto SharedResourceMap< KeyT, ResourceT >::empty() const
 
 template< typename KeyT, typename ResourceT >
 [[nodiscard]]
-inline auto SharedResourceMap< KeyT, ResourceT >::size() const
+inline auto SharedResourceMap< KeyT, ResourceT >
+    ::size() const
     noexcept -> std::size_t
 {
     const std::scoped_lock lock(m_mutex);
@@ -378,7 +380,8 @@ inline auto SharedResourceMap< KeyT, ResourceT >::size() const
 
 template< typename KeyT, typename ResourceT >
 [[nodiscard]]
-auto SharedResourceMap< KeyT, ResourceT >::Contains(const KeyT& key)
+auto SharedResourceMap< KeyT, ResourceT >
+    ::Contains(const KeyT& key)
     noexcept -> bool
 {
     const std::scoped_lock lock(m_mutex);
