@@ -1,8 +1,15 @@
-// TODO: update
-
+// size_t
+#include <cstddef>
+// map
 #include <map>
+// shared_ptr, weak_ptr
 #include <memory>
+// mutex, scoped_lock
 #include <mutex>
+// is_base_of_v
+#include <type_traits>
+// forward, move
+#include <utility>
 
 /**
     A class of shared resource maps.
@@ -305,7 +312,7 @@ private:
             @return		A reference to the copy of the given resource (i.e.
                         this resource).
             */
-        auto operator=(const Resource& resource)
+        auto operator =(const Resource& resource)
               -> Resource& = delete;
 
         /**
@@ -316,7 +323,7 @@ private:
             @return		A reference to the moved resource (i.e. this
                         resource).
             */
-        auto operator=(Resource&& resource)
+        auto operator =(Resource&& resource)
               -> Resource& = delete;
 
     private:
@@ -374,8 +381,7 @@ inline auto SharedResourceMap< KeyT, ResourceT >
 {
     const std::scoped_lock lock(m_mutex);
 
-    using std::size;
-    return size(m_resource_map);
+    return m_resource_map.size();
 }
 
 template< typename KeyT, typename ResourceT >
