@@ -369,8 +369,7 @@ inline auto SharedResourceMap< KeyT, ResourceT >
 {
     const std::scoped_lock lock(m_mutex);
 
-    using std::empty;
-    return empty(m_resource_map);
+    return m_resource_map.empty();
 }
 
 template< typename KeyT, typename ResourceT >
