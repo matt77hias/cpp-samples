@@ -12,7 +12,8 @@ const Edge operator,(Node p1, Node p2)
     return { p1, p2 };
 }
 
-int main()
+auto main()
+    -> int
 { 
     std::map< Edge, double > lengths;
     lengths[A, B] = 123.0;
