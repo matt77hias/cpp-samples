@@ -46,7 +46,8 @@ namespace std
 template< std::size_t I, typename T >
 requires(std::same_as< T, typename Outer< typename T::value_type >::Inner >)
 [[nodiscard]]
-inline std::tuple_element_t< I, T >& get(T& src)
+inline auto get(T& src)
+    -> std::tuple_element_t< I, T >&
 {
     if constexpr (I == 0u)
     {
@@ -61,7 +62,8 @@ inline std::tuple_element_t< I, T >& get(T& src)
 template< std::size_t I, typename T >
 requires(std::same_as< T, typename Outer< typename T::value_type >::Inner >)
 [[nodiscard]]
-inline const std::tuple_element_t< I, T >& get(const T& src)
+inline auto get(const T& src)
+    -> const std::tuple_element_t< I, T >&
 {
     if constexpr (I == 0u)
     {
@@ -76,7 +78,8 @@ inline const std::tuple_element_t< I, T >& get(const T& src)
 template< std::size_t I, typename T >
 requires(std::same_as< T, typename Outer< typename T::value_type >::Inner >)
 [[nodiscard]]
-inline std::tuple_element_t< I, T >&& get(T&& src)
+inline auto get(T&& src)
+    -> std::tuple_element_t< I, T >&&
 {
     if constexpr (I == 0u)
     {
@@ -91,7 +94,8 @@ inline std::tuple_element_t< I, T >&& get(T&& src)
 template< std::size_t I, typename T >
 requires(std::same_as< T, typename Outer< typename T::value_type >::Inner >)
 [[nodiscard]]
-inline const std::tuple_element_t< I, T >&& get(const T&& src)
+inline auto get(const T&& src)
+    -> const std::tuple_element_t< I, T >&&
 {
     if constexpr (I == 0u)
     {
@@ -103,7 +107,8 @@ inline const std::tuple_element_t< I, T >&& get(const T&& src)
     }
 }
 
-int main()
+auto main()
+    -> int
 {
     Outer< int >::Inner ref;
     auto& [f, s] = ref;
