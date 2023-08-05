@@ -63,7 +63,8 @@ public:
     virtual ~D() = default;
 };
 
-int main()
+auto main()
+    -> int
 {
     D d;
     std::cout << d.m_a;
