@@ -7,16 +7,18 @@
 #include <vector>
 
 template< typename FirstT, typename SecondT >
-class BiRandomAccessIterator {
+class BiRandomAccessIterator
+{
 
 public:
 
     BiRandomAccessIterator()
-        noexcept
-        : m_it1{}, m_it2{} {}
+        noexcept = default;
     BiRandomAccessIterator(FirstT it1, SecondT it2)
         noexcept
-        : m_it1(std::move(it1)), m_it2(std::move(it2)) {}
+        : m_it1(std::move(it1))
+        , m_it2(std::move(it2))
+    {}
     BiRandomAccessIterator(const BiRandomAccessIterator& it) = default;
     BiRandomAccessIterator(BiRandomAccessIterator&& it) = default;
     ~BiRandomAccessIterator() = default;
