@@ -19,12 +19,20 @@ public:
         : m_it1(std::move(it1))
         , m_it2(std::move(it2))
     {}
-    BiRandomAccessIterator(const BiRandomAccessIterator& it) = default;
-    BiRandomAccessIterator(BiRandomAccessIterator&& it) = default;
+
+    BiRandomAccessIterator(const BiRandomAccessIterator& src)
+        noexcept = default;
+
+    BiRandomAccessIterator(BiRandomAccessIterator&& src)
+        noexcept = default;
+
     ~BiRandomAccessIterator() = default;
 
-    BiRandomAccessIterator& operator=(const BiRandomAccessIterator& it) = default;
-    BiRandomAccessIterator& operator=(BiRandomAccessIterator&& it) = default;
+    auto operator =(const BiRandomAccessIterator& src)
+        noexcept -> BiRandomAccessIterator& = default;
+
+    auto operator =(BiRandomAccessIterator&& src)
+        noexcept -> BiRandomAccessIterator& = default;
 
     auto operator *()
         noexcept
