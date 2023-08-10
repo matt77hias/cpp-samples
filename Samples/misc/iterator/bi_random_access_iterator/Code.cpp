@@ -179,20 +179,11 @@ public:
         return m_it1 > rhs.m_it1;
     }
 
-    void swap(BiRandomAccessIterator& other)
-        noexcept
-    {
-        using std::swap; // ADL
-		swap(m_it1, other.m_it1);
-        swap(m_it2, other.m_it2);
-    }
-
 private:
 
     FirstT  m_it1;
     SecondT m_it2;
 };
-
 
 auto main()
     -> int
