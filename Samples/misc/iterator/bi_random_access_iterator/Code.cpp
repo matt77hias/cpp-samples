@@ -59,26 +59,26 @@ public:
     }
 
     [[nodiscard]]
-    std::size_t operator -(const BiRandomAccessIterator& bit) const
+    auto operator -(const BiRandomAccessIterator& bit) const
+        -> std::size_t
     {
         return m_it1 - bit.m_it1;
     }
 
     [[nodiscard]]
-    const BiRandomAccessIterator operator +(std::size_t n) const
+    BiRandomAccessIterator operator +(std::size_t n) const
     {
         return { m_it1 + n, m_it2 + n };
     }
 
     [[nodiscard]]
-    const BiRandomAccessIterator operator -(std::size_t n) const
+    BiRandomAccessIterator operator -(std::size_t n) const
     {
         return { m_it1 - n, m_it2 - n };
     }
 
     [[nodiscard]]
-    friend const BiRandomAccessIterator 
-        operator+(std::size_t n, const BiRandomAccessIterator& bit)
+    friend BiRandomAccessIterator operator +(std::size_t n, const BiRandomAccessIterator& bit)
     {
         return bit + n;
     }
@@ -98,15 +98,13 @@ public:
     }
 
     [[nodiscard]]
-    friend const BiRandomAccessIterator 
-        operator ++(const BiRandomAccessIterator& bit)
+    friend BiRandomAccessIterator operator ++(const BiRandomAccessIterator& bit)
     {
         return { bit.m_it1 + 1u, bit.m_it2 + 1u };
     }
 
     [[nodiscard]]
-    friend const BiRandomAccessIterator 
-        operator --(const BiRandomAccessIterator& bit)
+    friend BiRandomAccessIterator operator --(const BiRandomAccessIterator& bit)
     {
         return { bit.m_it1 - 1u, bit.m_it2 - 1u };
     }
