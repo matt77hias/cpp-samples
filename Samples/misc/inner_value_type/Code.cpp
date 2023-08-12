@@ -18,7 +18,8 @@ struct inner_value< T, std::conditional_t< false, typename T::value_type, void >
 template< typename T >
 using inner_value_t = typename inner_value< T >::type;
 
-int main()
+auto main()
+    -> int
 {
     using type1d = unsigned int;
     using type2d = std::array< type1d, 1u >;
