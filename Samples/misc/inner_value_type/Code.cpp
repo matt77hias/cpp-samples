@@ -12,11 +12,11 @@ struct inner_value
 template< typename T >
 struct inner_value< T, std::conditional_t< false, typename T::value_type, void > >
 {
-    using type = typename inner_value< typename T::value_type >::type;
+    using type = inner_value< typename T::value_type >::type;
 };
 
 template< typename T >
-using inner_value_t = typename inner_value< T >::type;
+using inner_value_t = inner_value< T >::type;
 
 auto main()
     -> int
