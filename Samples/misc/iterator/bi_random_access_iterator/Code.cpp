@@ -14,6 +14,7 @@ public:
 
     BiRandomAccessIterator()
         noexcept = default;
+
     BiRandomAccessIterator(FirstT it1, SecondT it2)
         noexcept
         : m_it1(std::move(it1))
@@ -34,6 +35,7 @@ public:
     auto operator =(BiRandomAccessIterator&& src)
         noexcept -> BiRandomAccessIterator& = default;
 
+    [[nodiscard]]
     auto operator *() const
         noexcept
     {
@@ -94,14 +96,14 @@ public:
     friend auto operator ++(const BiRandomAccessIterator& bit)
         noexcept -> BiRandomAccessIterator
     {
-        return { bit.m_it1 + 1u, bit.m_it2 + 1u };
+        return { bit.m_it1 + 1, bit.m_it2 + 1 };
     }
 
     [[nodiscard]]
     friend auto operator --(const BiRandomAccessIterator& bit)
         noexcept -> BiRandomAccessIterator
     {
-        return { bit.m_it1 - 1u, bit.m_it2 - 1u };
+        return { bit.m_it1 - 1, bit.m_it2 - 1 };
     }
 
     auto operator +=(std::size_t n)
@@ -128,18 +130,8 @@ public:
     }
 
     [[nodiscard]]
-    constexpr auto operator ==(const BiRandomAccessIterator& rhs) const
-        noexcept -> bool
-    {
-        return m_it1 == rhs.m_it1;
-    }
-
-    [[nodiscard]]
-    constexpr auto operator !=(const BiRandomAccessIterator& rhs) const
-        noexcept -> bool
-    {
-        return m_it1 != rhs.m_it1;
-    }
+    friend constexpr auto operator ==(const BiRandomAccessIterator& lhs, const BiRandomAccessIterator& rhs) const
+        noexcept -> bool = default;
 
     [[nodiscard]]
     constexpr auto operator <=(const BiRandomAccessIterator& rhs) const
