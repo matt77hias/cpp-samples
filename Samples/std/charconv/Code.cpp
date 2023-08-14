@@ -9,7 +9,8 @@
 // string_view
 #include <string_view>
  
-auto main() -> int
+auto main()
+    -> int
 {
     constexpr std::string_view strs[] = { "K", "10", "10K" };
     int results[std::size(strs)];
