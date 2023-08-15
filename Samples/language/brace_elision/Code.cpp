@@ -8,7 +8,8 @@ struct alignas(A) StaticArray : std::array< T, N >
 {};
 
 template< typename T, typename... Ts >
-StaticArray(T, Ts...) -> StaticArray< T, 1u + sizeof...(Ts) >;
+StaticArray(T, Ts...)
+   -> StaticArray< T, 1u + sizeof...(Ts) >;
 
 auto main()
     -> int
