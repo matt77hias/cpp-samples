@@ -128,9 +128,10 @@ inline std::chrono::milliseconds Date::MilliSeconds() const noexcept
     return hh_mm_ss.subseconds();
 }
 
-int main()
+auto main()
+    -> int
 {
-    Date date;
+    [[maybe_unused]] Date date;
 
     return 0;
 }
