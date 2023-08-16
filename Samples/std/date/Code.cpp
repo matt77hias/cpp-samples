@@ -13,34 +13,44 @@ struct Date
 	using duration = typename Clock::duration;
     
     [[nodiscard]]
-    std::chrono::year_month_day YearMonthDay() const noexcept;
+    auto YearMonthDay() const
+        noexcept -> std::chrono::year_month_day;
 
     [[nodiscard]]
-    std::chrono::year Year() const noexcept;
+    auto Year() const
+        noexcept -> std::chrono::year;
     
     [[nodiscard]]
-    std::chrono::month Month() const noexcept;
+    auto Month() const
+        noexcept -> std::chrono::month;
     
     [[nodiscard]]
-    std::chrono::day Day() const noexcept;
+    auto Day() const
+        noexcept -> std::chrono::day;
 
     [[nodiscard]]
-    std::chrono::hh_mm_ss< std::chrono::milliseconds > HoursMinutesSeconds() const noexcept;
+    auto HoursMinutesSeconds() const
+        noexcept -> std::chrono::hh_mm_ss< std::chrono::milliseconds >;
     
     [[nodiscard]]
-    std::chrono::hours Hours() const noexcept;
+    auto Hours() const
+        noexcept -> std::chrono::hours;
     
     [[nodiscard]]
-    std::chrono::minutes Minutes() const noexcept;
+    auto Minutes() const
+        noexcept -> std::chrono::minutes;
    
     [[nodiscard]]
-    std::chrono::seconds Seconds() const noexcept;
+    auto Seconds() const
+        noexcept -> std::chrono::seconds;
     
     [[nodiscard]]
-    std::chrono::milliseconds MilliSeconds() const noexcept;
+    auto MilliSeconds() const
+        noexcept -> std::chrono::milliseconds;
 
     [[nodiscard]]
-    std::strong_ordering operator <=>(const Date& rhs) const noexcept = default;
+    auto operator <=>(const Date& rhs) const
+        noexcept -> std::strong_ordering = default;
 
     time_point m_time_point = Clock::now();
 };
