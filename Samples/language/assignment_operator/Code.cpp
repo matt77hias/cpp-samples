@@ -29,17 +29,17 @@ struct Vector
 
     ~Vector() = default;
 
-    auto operator=(const Vector&)
+    auto operator =(const Vector&)
 		-> Vector&
     {
-       std::cout << "operator=(const Vector&)" << std::endl;
+       std::cout << "operator =(const Vector&)" << std::endl;
        return *this;
     }
 
-    auto operator=(Vector&&)
+    auto operator =(Vector&&)
 		-> Vector&
     {
-       std::cout << "operator=(Vector&&)" << std::endl;
+       std::cout << "operator =(Vector&&)" << std::endl;
        return *this;
     }
 };
@@ -76,19 +76,19 @@ struct Rgb : Vector
 
     ~Rgb() = default;
 
-    auto operator=(const Rgb& rgb)
+    auto operator =(const Rgb& rgb)
 		-> Rgb&
     {
-       Vector::operator=(rgb);
-       std::cout << "operator=(const Rgb&)" << std::endl;
+       Vector::operator =(rgb);
+       std::cout << "operator =(const Rgb&)" << std::endl;
        return *this;
     }
 
-    auto operator=(Rgb&& rgb)
+    auto operator =(Rgb&& rgb)
 		-> Rgb&
     {
-        Vector::operator=(std::move(rgb));
-        std::cout << "operator=(Rgb&&)" << std::endl;
+        Vector::operator =(std::move(rgb));
+        std::cout << "operator =(Rgb&&)" << std::endl;
         return *this;
     }
 };
@@ -139,19 +139,19 @@ struct Xyz : Vector
 
     ~Xyz() = default;
 
-    auto operator=(const Xyz& xyz)
+    auto operator =(const Xyz& xyz)
 		-> Xyz&
     {
-       Vector::operator=(xyz);
-       std::cout << "operator=(const Xyz&)" << std::endl;
+       Vector::operator =(xyz);
+       std::cout << "operator =(const Xyz&)" << std::endl;
        return *this;
     }
 
-    auto operator=(Xyz&& xyz)
+    auto operator =(Xyz&& xyz)
 		-> Xyz&
     {
-        Vector::operator=(std::move(xyz));
-        std::cout << "operator=(Xyz&&)" << std::endl;
+        Vector::operator =(std::move(xyz));
+        std::cout << "operator =(Xyz&&)" << std::endl;
         return *this;
     }
 };
