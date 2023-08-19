@@ -118,7 +118,8 @@ inline void Print(std::wstring_view format_str, const ArgsT&... args)
     return fmt::print(format_str, args...);
 }
 
-int main()
+auto main()
+    -> int
 {
     std::string s = "foo";
     std::string_view sv = s;
