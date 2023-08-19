@@ -41,7 +41,8 @@ struct Xyz : Vector
     }
 };
 
-int main()
+auto main()
+    -> int
 {
     constexpr Xyz xyz;
     constexpr Rgb rgb1 = static_cast< Rgb >(xyz);
