@@ -13,7 +13,7 @@ struct Pack
 auto main()
 	-> int
 {
-    Pack<> p;
+    [[maybe_unused]] Pack<> p;
 
     return 0;
 }
