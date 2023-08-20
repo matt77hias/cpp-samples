@@ -26,7 +26,8 @@ const Widget make_const_widget()
     return Widget();
 }
 
-int main()
+auto main()
+    -> int
 {
     const Widget w0 = make_widget();
     const Widget w1 = make_const_widget();
