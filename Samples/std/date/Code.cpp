@@ -56,32 +56,36 @@ struct Date
 };
 
 [[nodiscard]]
-inline std::chrono::year_month_day Date
-    ::YearMonthDay() const noexcept
+inline auto Date
+    ::YearMonthDay() const
+	noexcept -> std::chrono::year_month_day
 {
     const auto day_point = std::chrono::floor< std::chrono::days >(m_time_point);
     return std::chrono::year_month_day{ day_point };
 }
 
 [[nodiscard]]
-inline std::chrono::year Date
-    ::Year() const noexcept
+inline auto Date
+    ::Year() const
+	noexcept -> std::chrono::year
 {
     const auto year_month_day = YearMonthDay();
     return year_month_day.year();
 }
     
 [[nodiscard]]
-inline std::chrono::month Date
-    ::Month() const noexcept
+inline auto Date
+    ::Month() const
+	noexcept -> std::chrono::month
 {
     const auto year_month_day = YearMonthDay();
     return year_month_day.month();
 }
     
 [[nodiscard]]
-inline std::chrono::day Date
-    ::Day() const noexcept
+inline auto Date
+    ::Day() const
+	noexcept -> std::chrono::day
 {
     const auto year_month_day = YearMonthDay();
     return year_month_day.day();
@@ -89,7 +93,8 @@ inline std::chrono::day Date
 
 [[nodiscard]]
 inline auto Date
-    ::HoursMinutesSeconds() const noexcept -> std::chrono::hh_mm_ss< std::chrono::milliseconds >
+    ::HoursMinutesSeconds() const
+	noexcept -> std::chrono::hh_mm_ss< std::chrono::milliseconds >
 {
     const auto day_point   = std::chrono::floor< std::chrono::days >(m_time_point);
     const auto ms_duration = std::chrono::floor< std::chrono::milliseconds >(
