@@ -103,31 +103,36 @@ inline auto Date
 }
     
 [[nodiscard]]
-inline std::chrono::hours Date
-    ::Hours() const noexcept
+inline auto Date
+    ::Hours() const
+	noexcept -> std::chrono::hours
 {
     const auto hh_mm_ss = HoursMinutesSeconds();
     return hh_mm_ss.hours();
 }
     
 [[nodiscard]]
-inline std::chrono::minutes Date
-    ::Minutes() const noexcept
+inline auto Date
+    ::Minutes() const
+	noexcept -> std::chrono::minutes
 {
     const auto hh_mm_ss = HoursMinutesSeconds();
     return hh_mm_ss.minutes();
 }
    
 [[nodiscard]]
-inline std::chrono::seconds Date
-    ::Seconds() const noexcept
+inline auto Date
+    ::Seconds() const
+	noexcept -> std::chrono::seconds
 {
     const auto hh_mm_ss = HoursMinutesSeconds();
     return hh_mm_ss.seconds();
 }
     
 [[nodiscard]]
-inline std::chrono::milliseconds Date::MilliSeconds() const noexcept
+inline auto Date
+    ::MilliSeconds() const
+	noexcept -> std::chrono::milliseconds
 {
     const auto hh_mm_ss = HoursMinutesSeconds();
     return hh_mm_ss.subseconds();
