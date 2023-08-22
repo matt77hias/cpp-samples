@@ -3,10 +3,11 @@
 // tuple
 #include <tuple>
 
-auto main() -> int
+auto main()
+   -> int
 {
-   std::array< int, 0u > a;
-   std::tuple<> t;
+   [[maybe_unused]] std::array< int, 0u > a;
+   [[maybe_unused]] std::tuple<> t;
 
    return 0;
 }
