@@ -21,7 +21,7 @@ void Widget< T >
 auto main()
    -> int
 {
-    Widget< std::deque< int > > widget;
+    [[maybe_unused]] Widget< std::deque< int > > widget;
     //widget.reserve(2u);
 
     return 0;
