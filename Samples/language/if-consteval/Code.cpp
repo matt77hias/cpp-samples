@@ -26,8 +26,7 @@ constexpr auto test(bool value)
 
 auto main() -> int
 { 
-    [[maybe_unused]]
-    constexpr auto t1 = test(true);
+    [[maybe_unused]] constexpr auto t1 = test(true);
     //constexpr auto t2 = test(false);
 
     return 0;
