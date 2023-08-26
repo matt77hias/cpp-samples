@@ -24,8 +24,8 @@ struct C
 auto main()
     -> int
 {
-   ns::A::type a0 = ns::B::type{};
-   ns::A::type a1 = Tag< ns::C >{};
+   [[maybe_unused]] ns::A::type a0 = ns::B::type{};
+   [[maybe_unused]] ns::A::type a1 = Tag< ns::C >{};
    //ns::A::type a1 = Tag< C >{};
    
    return 0;
