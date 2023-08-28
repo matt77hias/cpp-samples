@@ -31,7 +31,7 @@ static_assert(not IsWidgetAdapter< int >);
 auto main()
     -> int
 {
-    constexpr auto _ = IsWidgetAdapter< int >;
+    [[maybe_unused]] constexpr auto _ = IsWidgetAdapter< int >;
     
     return 0;
 }
