@@ -24,7 +24,8 @@ constexpr auto test(bool value)
     return value;
 };
 
-auto main() -> int
+auto main()
+    -> int
 { 
     [[maybe_unused]] constexpr auto t1 = test(true);
     //constexpr auto t2 = test(false);
