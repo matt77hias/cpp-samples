@@ -5,7 +5,7 @@ struct Widget
 
 int main()
 {
-    const auto ptr = new Widget{ .m_value = 1 };
+    [[maybe_unused]] const auto ptr = new Widget{ .m_value = 1 };
     
     return 0;
 }
