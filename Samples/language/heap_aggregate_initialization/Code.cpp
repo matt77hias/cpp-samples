@@ -3,7 +3,8 @@ struct Widget
     int m_value = {};
 };
 
-int main()
+auto main()
+    -> int
 {
     [[maybe_unused]] const auto ptr = new Widget{ .m_value = 1 };
     
