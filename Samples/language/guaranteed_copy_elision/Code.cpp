@@ -29,8 +29,8 @@ const Widget make_const_widget()
 auto main()
     -> int
 {
-    const Widget w0 = make_widget();
-    const Widget w1 = make_const_widget();
+    [[maybe_unused]] const Widget w0 = make_widget();
+    [[maybe_unused]] const Widget w1 = make_const_widget();
 
     return 0;
 }
