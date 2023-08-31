@@ -1,7 +1,8 @@
 struct Base
 {
     [[nodiscard]]
-	explicit operator int () const noexcept
+	explicit operator int () const
+		noexcept
 	{
 		return 7;
 	}
