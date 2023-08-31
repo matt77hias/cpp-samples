@@ -13,7 +13,8 @@ struct Derived : Base
     using Base::operator int;
 };
 
-int main()
+auto main()
+    -> int
 {
     return static_cast< int >(Derived{});
 }
