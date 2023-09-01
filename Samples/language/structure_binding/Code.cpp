@@ -27,7 +27,8 @@ namespace std
 	};
 }
 
-int main()
+auto main()
+	-> int
 {
     constexpr std::array< int, 3u > a = { 1, 2, 3 };
     constexpr Array< int, 3u > b      = { 4, 5, 6 };
