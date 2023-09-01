@@ -24,7 +24,8 @@ namespace inner
     }
 }
 
-auto main() -> int
+auto main()
+    -> int
 {
     inner::main();
 
