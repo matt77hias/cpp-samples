@@ -22,4 +22,6 @@ auto main()
     //f(A{});
     f(B{});
     f(C{});
+
+	return 0;
 }
