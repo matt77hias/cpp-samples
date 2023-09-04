@@ -13,17 +13,19 @@ struct Widget
 };
 
 [[nodiscard]]
-Widget make_widget()
+auto make_widget()
+    -> Widget
 {
     std::cout << "f_non_const" << std::endl;
-    return Widget();
+    return {};
 }
 
 [[nodiscard]]
-const Widget make_const_widget()
+auto make_const_widget()
+    -> const Widget
 {
     std::cout << "f_const" << std::endl;
-    return Widget();
+    return {};
 }
 
 auto main()
