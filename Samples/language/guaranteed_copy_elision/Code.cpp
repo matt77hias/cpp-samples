@@ -4,12 +4,25 @@
 struct Widget
 {
     [[nodiscard]]
-	Widget() { std::cout << "Widget::Widget()" << std::endl; };
+	Widget()
+	{
+		std::cout << "Widget::Widget()" << std::endl;
+	};
+
     Widget(const Widget&) = delete;
+
     Widget(const Widget&&) = delete;
-    ~Widget() { std::cout << "Widget::~Widget()" << std::endl; };
-    Widget &operator=(const Widget&) = delete;
-    Widget &operator=(const Widget&&) = delete;
+
+    ~Widget()
+    {
+		std::cout << "Widget::~Widget()" << std::endl;
+	};
+
+    auto operator =(const Widget&)
+        -> Widget& = delete;
+
+    auto operator =(const Widget&&)
+        -> Widget& = delete;
 };
 
 [[nodiscard]]
