@@ -16,7 +16,7 @@ struct Widget
 auto make_widget()
     -> Widget
 {
-    std::cout << "f_non_const" << std::endl;
+    std::cout << "make_widget" << std::endl;
     return {};
 }
 
@@ -24,7 +24,7 @@ auto make_widget()
 auto make_const_widget()
     -> const Widget
 {
-    std::cout << "f_const" << std::endl;
+    std::cout << "make_const_widget" << std::endl;
     return {};
 }
 
