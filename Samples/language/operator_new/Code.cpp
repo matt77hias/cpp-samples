@@ -10,15 +10,23 @@ struct A
 
 struct B
 {
-    B() { throw std::logic_error("Called: B::B()"); }
-    B(int i) : m_i(i) {}
-    int m_i = {};
+   B()
+   {
+   	   throw std::logic_error("Called: B::B()");
+   }
+
+   B(int i)
+   : m_i(i)
+   {}
+
+   int m_i = {};
 };
 
 B g_b(0);
 
 [[nodiscard]]
-void* operator new(std::size_t size, A)
+auto operator new(std::size_t size, A)
+   -> void*
 {
     std::cout << "Called: void* operator new(std::size_t size, A)" << std::endl;
     std::cout << "Size: " << size << std::endl;
@@ -26,14 +34,16 @@ void* operator new(std::size_t size, A)
 }
 
 [[nodiscard]]
-void* operator new[](std::size_t size, A)
+auto operator new [](std::size_t size, A)
+   -> void*
 {
     std::cout << "Called: void* operator new[](std::size_t size, A)" << std::endl;
     std::cout << "Size: " << size << std::endl;
     return &g_b;
 }
 
-void operator delete(void* ptr) noexcept
+void operator delete(void* ptr)
+   noexcept
 {
     if (ptr == &g_b) 
     {
@@ -41,7 +51,8 @@ void operator delete(void* ptr) noexcept
     }
 }
 
-void operator delete(void* ptr, A) noexcept
+void operator delete(void* ptr, A)
+   noexcept
 {
     if (ptr == &g_b) 
     {
@@ -49,7 +60,8 @@ void operator delete(void* ptr, A) noexcept
     }   
 }
 
-void operator delete[](void* ptr) noexcept
+void operator delete [](void* ptr)
+   noexcept
 {
     if (ptr == &g_b) 
     {
@@ -57,7 +69,8 @@ void operator delete[](void* ptr) noexcept
     }
 }
 
-void operator delete[](void* ptr, A) noexcept
+void operator delete [](void* ptr, A)
+   noexcept
 {
     if (ptr == &g_b) 
     {
@@ -65,10 +78,12 @@ void operator delete[](void* ptr, A) noexcept
     }
 }
 
-int main()
+auto main()
+   -> int
 {
    A a;
    try { const auto b1 = new (a) B; }    catch (...) {}
    try { const auto b2 = new (a) B[5]; } catch (...) {}
+
    return 0;
 }
