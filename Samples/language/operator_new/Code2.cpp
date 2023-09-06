@@ -69,7 +69,8 @@ void operator delete[](void* ptr, A) noexcept
 }
 */
 
-int main()
+auto main()
+   -> int
 {
    A a;
    try { const auto b1 = new (a) B; }    catch (...) {}
