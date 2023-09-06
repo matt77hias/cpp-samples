@@ -65,7 +65,7 @@ void operator delete [](void* ptr)
 {
     if (ptr == &g_b) 
     {
-        std::cout << "Called: delete[](void* ptr)" << std::endl;
+        std::cout << "Called: delete [](void* ptr)" << std::endl;
     }
 }
 
@@ -74,7 +74,7 @@ void operator delete [](void* ptr, A)
 {
     if (ptr == &g_b) 
     {
-        std::cout << "Called: delete[](void* ptr, A)" << std::endl;
+        std::cout << "Called: delete [](void* ptr, A)" << std::endl;
     }
 }
 
