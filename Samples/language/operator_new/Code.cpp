@@ -60,21 +60,21 @@ void operator delete(void* ptr, A)
     }   
 }
 
-void operator delete [](void* ptr)
+void operator delete[](void* ptr)
    noexcept
 {
     if (ptr == &g_b) 
     {
-        std::cout << "Called: delete [](void* ptr)" << std::endl;
+        std::cout << "Called: delete[](void* ptr)" << std::endl;
     }
 }
 
-void operator delete [](void* ptr, A)
+void operator delete[](void* ptr, A)
    noexcept
 {
     if (ptr == &g_b) 
     {
-        std::cout << "Called: delete [](void* ptr, A)" << std::endl;
+        std::cout << "Called: delete[](void* ptr, A)" << std::endl;
     }
 }
 
