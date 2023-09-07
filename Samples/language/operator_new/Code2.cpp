@@ -34,7 +34,7 @@ auto operator new(std::size_t size, A)
 }
 
 [[nodiscard]]
-auto operator new [](std::size_t size, A)
+auto operator new[](std::size_t size, A)
    -> void*
 {
     std::cout << "Called: void* operator new[](std::size_t size, A)" << std::endl;
