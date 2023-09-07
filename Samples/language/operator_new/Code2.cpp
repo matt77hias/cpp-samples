@@ -62,7 +62,7 @@ void operator delete(void* ptr, A)
 }
 */
 
-void operator delete [](void* ptr)
+void operator delete[](void* ptr)
    noexcept
 {
     if (ptr == &g_b) 
@@ -72,7 +72,7 @@ void operator delete [](void* ptr)
 }
 
 /*
-void operator delete [](void* ptr, A)
+void operator delete[](void* ptr, A)
    noexcept
 {
     if (ptr == &g_b) 
