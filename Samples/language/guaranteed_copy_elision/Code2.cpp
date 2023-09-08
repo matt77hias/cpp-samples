@@ -11,9 +11,9 @@ struct Widget
     
     ~Widget() = default;
     
-    Widget& operator=(const Widget&) = delete;
+    Widget& operator =(const Widget&) = delete;
     
-    Widget& operator=(Widget&&) = delete;
+    Widget& operator =(Widget&&) = delete;
 
     Widget* m_this;
 };
