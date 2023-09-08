@@ -18,12 +18,14 @@ struct Widget
     Widget* m_this;
 };
 
-Widget Create()
+auto Create()
+    -> Widget
 {
     return Widget{};
 }
 
-int main()
+auto main()
+    -> int
 {
     Widget w = Create();
     
