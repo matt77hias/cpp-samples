@@ -21,21 +21,24 @@ struct Node
 {
     template< typename ComponentT >
     [[nodiscard]]
-	bool Has() const noexcept
+	auto Has() const
+		noexcept -> bool
     {
 		return m_components.find(typeid(ComponentT)) != m_components.cend();
 	}
 
 	template< typename ComponentT >
     [[nodiscard]]
-	size_t GetNumberOf() const noexcept
+	auto GetNumberOf() const
+		noexcept -> size_t
     {
 		return m_components.count(typeid(ComponentT));
 	};
 
 	template< typename ComponentT >
     [[nodiscard]]
-	ComponentT* Get() noexcept
+	auto Get()
+		noexcept -> ComponentT*
     {
 		const auto it = m_components.find(typeid(ComponentT));
 		return (it != m_components.end()) ? 
@@ -44,7 +47,8 @@ struct Node
 
 	template< typename ComponentT >
     [[nodiscard]]
-	const ComponentT* Get() const noexcept
+	auto Get() const
+		noexcept -> const ComponentT*
     {
 		const auto it = m_components.find(typeid(ComponentT));
 		return (it != m_components.cend()) ? 
@@ -53,7 +57,8 @@ struct Node
 
 	template< typename ComponentT >
     [[nodiscard]]
-	std::vector< ComponentT* > GetAll()
+	auto GetAll()
+		-> std::vector< ComponentT* >
     {
 		std::vector< ComponentT* > components;
 		const auto range = m_components.equal_range(typeid(ComponentT));
@@ -69,7 +74,8 @@ struct Node
 
 	template< typename ComponentT >
     [[nodiscard]]
-	std::vector< const ComponentT* > GetAll() const
+	auto GetAll() const
+		-> std::vector< const ComponentT* >
     {
 		std::vector< ComponentT* > components;
 		const auto range = m_components.equal_range(typeid(ComponentT));
@@ -91,7 +97,8 @@ struct Node
     std::unordered_multimap< std::type_index, Component* > m_components;
 };
 
-int main()
+auto main()
+    -> int
 {
     Node n;
     A* c = new A();
