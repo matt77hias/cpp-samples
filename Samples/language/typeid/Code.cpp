@@ -14,8 +14,10 @@ struct Component
     virtual ~Component() = default;
 };
 
-struct A : Component {};
-struct B : Component {};
+struct A : public Component
+{};
+struct B : public Component
+{};
 
 struct Node
 {
