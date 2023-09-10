@@ -100,7 +100,8 @@ typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type S
     return ToString(v);
 }
 
-int main()
+auto main()
+    -> int
 {
     std::cout << HasSerializeMemberMethod< A >::value << std::endl;
     std::cout << HasSerializeMemberMethod< B >::value << std::endl;
