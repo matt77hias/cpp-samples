@@ -20,7 +20,8 @@ void f(B< T > b)
     f(static_cast< A >(b));
 }
 
-int main()
+auto main()
+    -> int
 {
 	f(B< int >{});
     
