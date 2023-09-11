@@ -94,14 +94,16 @@ struct enable_if< true, T >
 
 template< typename T >
 [[nodiscard]]
-typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+auto Serialize(const T& v)
+    -> typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type
 {
     return v.Serialize();
 }
 
 template< typename T >
 [[nodiscard]]
-typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+auto Serialize(const T& v)
+    -> typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type
 {
     return ToString(v);
 }
