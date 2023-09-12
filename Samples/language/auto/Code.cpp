@@ -8,7 +8,8 @@ constexpr auto f(int& i)
     return i; 
 };
 
-auto main() -> int
+auto main()
+    -> int
 {
     int i = 5;
     auto j = f(i);
