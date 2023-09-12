@@ -19,7 +19,8 @@ static_assert(sizeof(B) == 16u);
 static_assert(sizeof(std::declval< B >().m_a) == 1u);
 static_assert(sizeof(decltype(std::declval< B >().m_a)) == 1u);
 
-auto main() -> int
+auto main()
+    -> int
 {
     return 0;
 }
