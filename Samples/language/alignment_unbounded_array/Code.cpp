@@ -1,9 +1,11 @@
-struct alignas(4u) Widget
+inline constexpr auto Alignment = 4u;
+
+struct alignas(Alignment) A
 {};
 
-static_assert(alignof(Widget)     == 4u);
-static_assert(alignof(Widget[2u]) == 4u);
-static_assert(alignof(Widget[])   == 4u);
+static_assert(alignof(A)     == Alignment);
+static_assert(alignof(A[2u]) == Alignment);
+static_assert(alignof(A[])   == Alignment);
 
 auto main()
     -> int
