@@ -1,9 +1,9 @@
-struct alignas(4u) A
+struct alignas(4u) Widget
 {};
 
-static_assert(alignof(A)     == 4u);
-static_assert(alignof(A[2u]) == 4u);
-static_assert(alignof(A[])   == 4u);
+static_assert(alignof(Widget)     == 4u);
+static_assert(alignof(Widget[2u]) == 4u);
+static_assert(alignof(Widget[])   == 4u);
 
 auto main()
     -> int
