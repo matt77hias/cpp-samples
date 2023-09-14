@@ -126,12 +126,13 @@ namespace v3
     }
 }
 
-int main()
+auto main()
+   -> int
 {
-   auto p0 = v0::MakeUnique< int[] >(16u);
-   auto p1 = v1::MakeUnique< int[] >(16u);
-   auto p2 = v2::MakeUnique< int[] >(16u);
-   auto p3 = v3::MakeUnique< int[] >(16u);
+   [[maybe_unused]] auto p0 = v0::MakeUnique< int[] >(16u);
+   [[maybe_unused]] auto p1 = v1::MakeUnique< int[] >(16u);
+   [[maybe_unused]] auto p2 = v2::MakeUnique< int[] >(16u);
+   [[maybe_unused]] auto p3 = v3::MakeUnique< int[] >(16u);
 
    return 0;
 }
