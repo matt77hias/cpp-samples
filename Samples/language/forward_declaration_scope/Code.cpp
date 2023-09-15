@@ -12,3 +12,9 @@ struct Outer
 };
 
 static_assert(std::same_as< Outer< int >::Inner, Outer< float >::Inner >);
+
+auto main()
+    -> int
+{
+	return 0;
+}
