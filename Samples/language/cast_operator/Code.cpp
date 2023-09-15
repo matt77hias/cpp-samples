@@ -57,8 +57,8 @@ auto main()
     -> int
 {
     Xyz xyz;
-    Rgb rgb1 = static_cast< Rgb >(xyz);
-    Rgb rgb2 = static_cast< Rgb >(Xyz{});
+    [[maybe_unused]] Rgb rgb1 = static_cast< Rgb >(xyz);
+    [[maybe_unused]] Rgb rgb2 = static_cast< Rgb >(Xyz{});
 
     return 0;
 }
