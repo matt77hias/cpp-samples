@@ -5,7 +5,8 @@ struct Widget
 
 int Widget::value = 5;
 
-auto main() -> int
+auto main()
+    -> int
 {
     using type = const Widget;
     type::value = 7;
