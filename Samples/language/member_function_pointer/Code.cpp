@@ -26,7 +26,7 @@ auto main()
     widgets.push_back({ .m_value = 1 });
     widgets.push_back({ .m_value = 2 });
 
-    const bool valid = std::ranges::all_of(widgets, &Widget::IsValid);
+    [[maybe_unused]] const bool valid = std::ranges::all_of(widgets, &Widget::IsValid);
     
     return 0;
 }
