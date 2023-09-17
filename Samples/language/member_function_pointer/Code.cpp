@@ -8,17 +8,19 @@
 struct Widget
 {
     [[nodiscard]]
-    bool IsValid() const noexcept
+    auto IsValid() const
+        noexcept -> bool
     {
         std::cout << m_value << std::endl;
-        
+
         return 0 < m_value;
     }
 
     int m_value = {};
 };
 
-int main()
+auto main()
+    -> int
 {
 	std::vector< Widget > widgets;
     widgets.push_back({ .m_value = 1 });
