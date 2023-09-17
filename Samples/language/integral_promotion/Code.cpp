@@ -4,9 +4,9 @@
 auto main()
    -> int
 {
-	unsigned short a = 0;
-    unsigned short b = 1;
-    auto c = a + b;
+	[[maybe_unused]] unsigned short a = 0;
+    [[maybe_unused]] unsigned short b = 1;
+    [[maybe_unused]] auto c = a + b;
     
     // static_assert(std::same_as< decltype(c), unsigned short >);
     static_assert(std::same_as< decltype(c), int >);
