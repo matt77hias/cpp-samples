@@ -1,7 +1,8 @@
 // cout, endl
 #include <iostream>
 
-int main() 
+auto main()
+    -> int
 {
     const auto x = new int;
     const auto y = new int();
