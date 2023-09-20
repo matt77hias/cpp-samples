@@ -4,13 +4,14 @@
 struct Widget
 {
     [[nodiscard]]
-    constexpr std::strong_ordering
-        operator<=>(const Widget& rhs) const noexcept = default;
+    constexpr auto operator <=>(const Widget& rhs) const
+        noexcept -> std::strong_ordering = default;
 
     int m_value = {};
 };
 
-int main()
+auto main()
+    -> int
 {
     static_assert(Widget{} == Widget{});
     
