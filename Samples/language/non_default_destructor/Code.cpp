@@ -12,9 +12,10 @@ struct B
     A m_a;
 };
 
-int main()
+auto main()
+    -> int
 {
-    B b;
+    [[maybe_unused]] B b;
 	
     return 0;
 }
