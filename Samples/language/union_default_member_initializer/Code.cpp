@@ -4,8 +4,11 @@ union Widget
     int m_second;
 };
 
-int main()
+auto main()
+    -> int
 {
     constexpr Widget w = {};
+	static_assert(w.m_first == 5);
+
     return w.m_first;
 }
