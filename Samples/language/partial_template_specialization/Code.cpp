@@ -20,7 +20,8 @@ struct Widget< Array< T, N, A > >
     }
 };
 
-int main()
+auto main()
+    -> int
 {
     Widget< Array< int, 3 > > w;
     w.print();
