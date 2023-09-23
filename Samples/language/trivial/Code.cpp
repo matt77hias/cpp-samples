@@ -2,17 +2,23 @@
 
 struct Foo
 {
-    constexpr Foo() noexcept = default;
+    [[nodiscard]]
+    constexpr Foo()
+        noexcept = default;
 };
 
 static_assert(std::is_trivially_default_constructible_v< Foo > == true);
 
 struct Bar
 {
-    constexpr Bar() noexcept;
+    [[nodiscard]]
+    constexpr Bar()
+        noexcept;
 };
 
-constexpr Bar::Bar() noexcept = default;
+[[nodiscard]]
+constexpr Bar::Bar()
+    noexcept = default;
 
 static_assert(std::is_trivially_default_constructible_v< Bar > == false);
 
