@@ -17,7 +17,8 @@ concept Concept = T::f();
 static_assert(Derived::f());
 static_assert(Concept< Derived >);
 
-auto main() -> int
+auto main()
+    -> int
 {
     return 0;
 }
