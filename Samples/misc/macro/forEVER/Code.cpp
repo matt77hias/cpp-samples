@@ -3,12 +3,12 @@
 
 #define EVER ;;
 
-auto main() -> int
+auto main()
+    -> int
 {
     int i = 0;
     for (EVER)
     {
-        
         std::cout << i++ << std::endl;
         
         if (i > 5)
