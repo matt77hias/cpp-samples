@@ -14,3 +14,9 @@ enum class B : int{};
 
 static_assert(Arithmetic< A >);
 static_assert(Arithmetic< B >);
+
+auto main()
+	-> int
+{
+	return 0;
+}
