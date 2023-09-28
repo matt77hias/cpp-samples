@@ -60,7 +60,8 @@ struct Widget
     }
 };
 
-auto main() -> int
+auto main()
+    -> int
 {
     Widget widget{};
     
