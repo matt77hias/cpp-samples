@@ -10,7 +10,8 @@ struct Vector
     {}
 };
 
-auto main() -> int
+auto main()
+    -> int
 {
     [[maybe_unused]] Vector v1 = std::array{ 1, 2, 3 };
     [[maybe_unused]] Vector< int, 3u > v2 = { { 1, 2, 3 } };
