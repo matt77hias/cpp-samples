@@ -14,7 +14,8 @@ void f(T)
     std::cout << "template function" << std::endl;
 }
 
-int main()
+auto main()
+   -> int
 {
    f(1);
    f<>(1);
