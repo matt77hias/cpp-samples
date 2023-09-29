@@ -5,7 +5,8 @@
 // cout
 #include <iostream>
 
-int main()
+auto main()
+    -> int
 {
     {
         constexpr std::int16_t src = -3;
