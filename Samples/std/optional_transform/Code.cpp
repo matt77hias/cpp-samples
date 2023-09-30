@@ -11,7 +11,7 @@ auto main()
     {
         return static_cast< float >(i);
     };
-    auto f = i.transform(function);
+    [[maybe_unused]] auto f = i.transform(function);
     static_assert(std::same_as< decltype(f), std::optional< float > >);
 
     return 0;
