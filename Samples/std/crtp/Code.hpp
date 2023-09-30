@@ -11,10 +11,10 @@ template< typename T >
 struct DenseVector : Vector< DenseVector< T > >
 {};
 
+static_assert(std::derived_from< DenseVector< int >, Vector< DenseVector< int > > >);
+
 auto main()
     -> int
 {
-    static_assert(std::derived_from< DenseVector< int >, Vector< DenseVector< int > > >);
-
     return 0;
 }
