@@ -210,27 +210,34 @@ public:
     }
     
     [[nodiscard]]
-    constexpr bool operator==(const BiRandomAccessIterator& rhs) const noexcept {
-        return m_it1 == rhs.m_it1;
-    }
+    friend constexpr auto operator ==(const BiRandomAccessIterator& lhs, const BiRandomAccessIterator& rhs) const
+        noexcept -> bool = default;
+
     [[nodiscard]]
-    constexpr bool operator!=(const BiRandomAccessIterator& rhs) const noexcept {
-        return m_it1 != rhs.m_it1;
-    }
-    [[nodiscard]]
-    constexpr bool operator<=(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator <=(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 <= rhs.m_it1;
     }
+
     [[nodiscard]]
-    constexpr bool operator>=(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator >=(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 >= rhs.m_it1;
     }
+
     [[nodiscard]]
-    constexpr bool operator<(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator <(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 < rhs.m_it1;
     }
+
     [[nodiscard]]
-    constexpr bool operator>(const BiRandomAccessIterator& rhs) const noexcept {
+    constexpr auto operator >(const BiRandomAccessIterator& rhs) const
+        noexcept -> bool
+    {
         return m_it1 > rhs.m_it1;
     }
     
