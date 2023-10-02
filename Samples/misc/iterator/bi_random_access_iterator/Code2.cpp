@@ -136,29 +136,52 @@ class BiRandomAccessIterator {
 
 public:
     
-    BiRandomAccessIterator() noexcept
-        : m_it1{}, m_it2{} {}
-    BiRandomAccessIterator(FirstT it1, SecondT it2) noexcept
-        : m_it1(std::move(it1)), m_it2(std::move(it2)) {}
-    BiRandomAccessIterator(const BiRandomAccessIterator& bit) = default;
-    BiRandomAccessIterator(BiRandomAccessIterator&& bit) noexcept = default;
+    BiRandomAccessIterator()
+        noexcept = default;
+
+    BiRandomAccessIterator(FirstT it1, SecondT it2)
+        noexcept
+        : m_it1(std::move(it1))
+        , m_it2(std::move(it2))
+    {}
+
+    BiRandomAccessIterator(const BiRandomAccessIterator& src)
+        noexcept = default;
+
+    BiRandomAccessIterator(BiRandomAccessIterator&& src)
+        noexcept = default;
+
     ~BiRandomAccessIterator() = default;
 
-    BiRandomAccessIterator& operator=(const BiRandomAccessIterator& bit) = default;
-    BiRandomAccessIterator& operator=(BiRandomAccessIterator&& bit) noexcept = default;
+    auto operator =(const BiRandomAccessIterator& src)
+        noexcept -> BiRandomAccessIterator& = default;
 
-    auto operator*() noexcept {
-        return make_bi_value(m_it1, m_it2);
-    }
-    auto operator*() const noexcept {
-        return make_bi_value(m_it1, m_it2);
-    }
+    auto operator =(BiRandomAccessIterator&& src)
+        noexcept -> BiRandomAccessIterator& = default;
+
     [[nodiscard]]
-    auto operator[](std::size_t n) noexcept {
+	auto operator *() noexcept
+	{
+        return make_bi_value(m_it1, m_it2);
+    }
+
+    auto operator *() const
+        noexcept
+	{
+        return make_bi_value(m_it1, m_it2);
+    }
+
+    [[nodiscard]]
+    auto operator [](std::size_t n)
+        noexcept
+	{
         return make_bi_value(m_it1 + n, m_it2 + n);
     }
+
     [[nodiscard]]
-    auto operator[](std::size_t n) const noexcept {
+    auto operator [](std::size_t n) const
+        noexcept
+	{
         return make_bi_value(m_it1 + n, m_it2 + n);
     }
 
@@ -240,7 +263,7 @@ public:
     {
         return m_it1 > rhs.m_it1;
     }
-    
+
 private:
 
     FirstT  m_it1;
