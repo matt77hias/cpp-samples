@@ -99,10 +99,10 @@ namespace v3
     concept NonArray = !std::is_array< T >::value;
 
     template < typename T >
-    concept StackArray = Array< T > && (std::extent_v< T > != 0u);
+    concept StackArray = Array< T > and (std::extent_v< T > != 0u);
 
     template < typename T >
-    concept HeapArray = Array< T > && (std::extent_v< T > == 0u);
+    concept HeapArray = Array< T > and (std::extent_v< T > == 0u);
     
     template< NonArray T, typename... ConstructorArgsT >
 	[[nodiscard]]
