@@ -13,7 +13,8 @@ struct Alignment< T[], A >
     static constexpr auto s_alignment = A;
 };
 
-int main()
+auto main()
+    -> int
 {
     return static_cast< int >(Alignment< char[] >::s_alignment);
 }
