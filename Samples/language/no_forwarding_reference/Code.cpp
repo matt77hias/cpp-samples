@@ -5,7 +5,8 @@
 // move
 #include <utility>
 
-auto main() -> int
+auto main()
+    -> int
 {
     int dst_value;
     int src_value = 5;
