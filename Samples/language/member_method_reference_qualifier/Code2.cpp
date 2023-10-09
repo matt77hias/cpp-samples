@@ -63,7 +63,8 @@ struct Widget : Base
     }
 };
 
-auto main() -> int
+auto main()
+    -> int
 {
     Widget widget{};
     
