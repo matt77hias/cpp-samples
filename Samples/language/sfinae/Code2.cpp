@@ -6,7 +6,8 @@
 struct A {};
 
 [[nodiscard]]
-std::string ToString(const A&)
+auto ToString(const A&)
+    -> std::string
 {
     return "ToString(const A&)";
 }
@@ -14,7 +15,8 @@ std::string ToString(const A&)
 struct B
 {
     [[nodiscard]]
-    std::string Serialize() const
+    auto Serialize() const
+        -> std::string
     {
         return "B::Serialize()";
     }
@@ -26,7 +28,8 @@ struct C
 };
 
 [[nodiscard]]
-std::string ToString(const C&)
+auto ToString(const C&)
+    -> std::string
 {
     return "ToString(const C&)";
 }
@@ -47,19 +50,22 @@ private:
     {};
 
     template< typename U > 
-    static constexpr Yes Test(IsMatch< std::string (U::*)(), &U::Serialize >*) noexcept
+    static constexpr auto Test(IsMatch< std::string (U::*)(), &U::Serialize >*)
+        noexcept -> Yes
     {
         return {};
     }
     
     template< typename U > 
-    static constexpr Yes Test(IsMatch< std::string (U::*)() const, &U::Serialize >*) noexcept
+    static constexpr auto Test(IsMatch< std::string (U::*)() const, &U::Serialize >*)
+        noexcept -> Yes
     {
         return {};
     }
     
     template< typename U > 
-    static constexpr No Test(...) noexcept
+    static constexpr auto Test(...)
+        noexcept -> No
     {
         return {};
     }
@@ -81,14 +87,16 @@ struct enable_if< true, T >
 
 template< typename T >
 [[nodiscard]]
-typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+auto Serialize(const T& v)
+    -> typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type
 {
     return v.Serialize();
 }
 
 template< typename T >
 [[nodiscard]]
-typename enable_if< not HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+auto Serialize(const T& v)
+    -> typename enable_if< not HasSerializeMemberMethod< T >::value, std::string >::type
 {
     return ToString(v);
 }
