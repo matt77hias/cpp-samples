@@ -88,12 +88,13 @@ typename enable_if< HasSerializeMemberMethod< T >::value, std::string >::type Se
 
 template< typename T >
 [[nodiscard]]
-typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
+typename enable_if< not HasSerializeMemberMethod< T >::value, std::string >::type Serialize(const T& v)
 {
     return ToString(v);
 }
 
-int main()
+auto main()
+    -> int
 {
     std::cout << HasSerializeMemberMethod< A >::value << std::endl;
     std::cout << HasSerializeMemberMethod< B >::value << std::endl;
