@@ -103,7 +103,7 @@ auto Serialize(const T& v)
 template< typename T >
 [[nodiscard]]
 auto Serialize(const T& v)
-    -> typename enable_if< !HasSerializeMemberMethod< T >::value, std::string >::type
+    -> typename enable_if< not HasSerializeMemberMethod< T >::value, std::string >::type
 {
     return ToString(v);
 }
