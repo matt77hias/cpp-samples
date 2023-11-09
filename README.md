@@ -1,9 +1,9 @@
 [![Code quality][s1]][co] [![License][s2]][li]
 
-[s1]: https://api.codacy.com/project/badge/Grade/cfe234fc62b0403784d58edb91fcc815
+[s1]: https://app.codacy.com/project/badge/Grade/cfe234fc62b0403784d58edb91fcc815
 [s2]: https://img.shields.io/badge/license-GPL%203.0-blue.svg
 
-[co]: https://www.codacy.com/app/matt77hias/cpp-samples?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matt77hias/cpp-samples&amp;utm_campaign=Badge_Grade
+[co]: https://app.codacy.com/gh/matt77hias/cpp-samples/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 [li]: https://raw.githubusercontent.com/matt77hias/cpp-samples/master/LICENSE.txt
 
 # cpp-samples
