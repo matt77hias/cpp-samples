@@ -18,3 +18,5 @@
 Samples for prototyping and experimenting with various C++ standards, features and libraries.
 
 [Try It Online](https://godbolt.org/)
+
+<p align="center">Copyright © 2018-2024 Matthias Moulin. All Rights Reserved.</p>
