@@ -51,7 +51,7 @@ auto main()
 	-> int
 {
     Base* b = new Derived;
-    std::shared_ptr< Base > clone = b->Clone();
+    [[maybe_unused]] std::shared_ptr< Base > clone = b->Clone();
     delete b;
 
     return 0;
