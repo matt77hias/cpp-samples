@@ -6,7 +6,7 @@
 auto main()
     -> int
 {
-    std::optional< const int > i = 7;
+    [[maybe_unused]] std::optional< const int > i = 7;
     constexpr auto function = [](int i) noexcept -> const float
     {
         return static_cast< float >(i);
