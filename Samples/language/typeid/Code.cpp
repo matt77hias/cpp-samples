@@ -106,7 +106,7 @@ auto main()
     A* c = new A();
     n.AddComponent(c);
     
-    A* g = n.Get< A >();
+    [[maybe_unused]] A* g = n.Get< A >();
     std::vector< A* > gs = n.GetAll< A >();
     std::cout << gs.size() << std::endl;
     std::cout << "----" << std::endl;
