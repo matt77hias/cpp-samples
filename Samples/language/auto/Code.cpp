@@ -12,7 +12,7 @@ auto main()
     -> int
 {
     int i = 5;
-    auto j = f(i);
+    [[maybe_unused]] auto j = f(i);
     j = 0;
     
     std::cout << i << ' ' << j;
