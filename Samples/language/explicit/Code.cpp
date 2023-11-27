@@ -5,27 +5,32 @@ struct Rgb : Vector
 {
     [[nodiscard]]
 	constexpr Rgb()
-        : Vector{}, m_i(0)
+        : Vector{}
+        , m_i(0)
     {}
 	
 	[[nodiscard]]
     constexpr Rgb(const Rgb&)
-        : Vector{}, m_i(16)
+        : Vector{}
+		, m_i(16)
     {}
 	
 	[[nodiscard]]
     constexpr Rgb(Rgb&&)
-        : Vector{}, m_i(16)
+        : Vector{}
+		, m_i(16)
     {}
 	
 	[[nodiscard]]
     constexpr explicit Rgb(const Vector&)
-        : Vector{}, m_i(1)
+        : Vector{}
+        , m_i(1)
     {}
 	
 	[[nodiscard]]
     constexpr explicit Rgb(Vector&&)
-        : Vector{}, m_i(1)
+        : Vector{}
+        , m_i(1)
     {}
 
     int m_i;
