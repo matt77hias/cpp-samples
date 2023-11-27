@@ -4,10 +4,7 @@ struct Vector
 struct Rgb : Vector
 {
     [[nodiscard]]
-	constexpr Rgb()
-        : Vector{}
-        , m_i(0)
-    {}
+	constexpr Rgb() = default;
 	
 	[[nodiscard]]
     constexpr Rgb(const Rgb&)
@@ -33,7 +30,7 @@ struct Rgb : Vector
         , m_i(1)
     {}
 
-    int m_i;
+    int m_i = {};
 };
 
 struct Xyz : Vector
