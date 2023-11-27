@@ -46,14 +46,16 @@ struct Xyz : Vector
 };
 
 [[nodiscard]]
-constexpr Rgb::Rgb(const Xyz&)
+constexpr Rgb
+    ::Rgb(const Xyz&)
     noexcept
     : Vector{}
     , m_i(1)
 {}
 
 [[nodiscard]]
-constexpr Rgb::Rgb(Xyz&&)
+constexpr Rgb
+    ::Rgb(Xyz&&)
     noexcept
     : Vector{}
     , m_i(1)
