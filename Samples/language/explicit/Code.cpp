@@ -4,28 +4,33 @@ struct Vector
 struct Rgb : Vector
 {
     [[nodiscard]]
-	constexpr Rgb() = default;
+	constexpr Rgb()
+		noexcept = default;
 	
 	[[nodiscard]]
     constexpr Rgb(const Rgb&)
+		noexcept
         : Vector{}
 		, m_i(16)
     {}
 	
 	[[nodiscard]]
     constexpr Rgb(Rgb&&)
+		noexcept
         : Vector{}
 		, m_i(16)
     {}
 	
 	[[nodiscard]]
     constexpr explicit Rgb(const Vector&)
+		noexcept
         : Vector{}
         , m_i(1)
     {}
 	
 	[[nodiscard]]
     constexpr explicit Rgb(Vector&&)
+		noexcept
         : Vector{}
         , m_i(1)
     {}
@@ -37,6 +42,7 @@ struct Xyz : Vector
 {
     [[nodiscard]]
 	constexpr explicit operator Rgb() const
+		noexcept
     {
         Rgb temp{};
         return temp;
