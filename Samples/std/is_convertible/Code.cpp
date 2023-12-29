@@ -5,7 +5,7 @@
 // declval
 #include <utility>
 
-template< typename FromT, typename ToT, typename = ToT >
+template< typename FromT, typename ToT, typename = std::remove_const_t< ToT > >
 struct is_static_castable 
     : std::false_type
 {};
