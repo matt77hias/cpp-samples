@@ -10,8 +10,10 @@ auto main()
     -> int
 {
     A a = {};
+    static_assert(not std::constructible_from< A, int >);
     static_assert(not std::constructible_from< int, A >);
     static_assert(not std::convertible_to< A, int >);
+    static_assert(not std::convertible_to< int, A >);
     static_assert(StaticCastable< A, int >);
     static_assert(StaticCastable< int, A >);
 
