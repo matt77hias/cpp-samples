@@ -15,7 +15,9 @@ struct B
 
 public:
 
-    constexpr B() : m_b(7) {}
+    constexpr B()
+        : m_b(7)
+    {}
 
     [[nodiscard]]
     constexpr auto get() const
