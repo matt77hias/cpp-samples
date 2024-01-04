@@ -10,7 +10,8 @@
 bool g_logging = false;
 
 [[nodiscard]]
-void* operator new(std::size_t size)
+auto operator new(std::size_t size)
+	-> void*
 {
     const auto ptr = std::malloc(size);
     
@@ -22,7 +23,8 @@ void* operator new(std::size_t size)
     return ptr;
 }
 
-void operator delete(void* ptr) noexcept
+void operator delete(void* ptr)
+	noexcept
 {
     if (g_logging)
     {
