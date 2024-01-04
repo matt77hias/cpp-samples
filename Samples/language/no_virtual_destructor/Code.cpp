@@ -50,7 +50,8 @@ struct B : A
     }
 };
 
-int main()
+auto main()
+    -> int
 {
     std::cout << sizeof(A) << std::endl;
     std::cout << sizeof(B) << std::endl;
