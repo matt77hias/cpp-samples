@@ -18,7 +18,8 @@ struct Bar : Foo
     T m_value;
 };
 
-int main()
+auto main()
+    -> int
 {
     Bar< Foo > a;
     
