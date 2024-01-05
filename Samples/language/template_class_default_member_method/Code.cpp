@@ -21,7 +21,7 @@ struct Bar : Foo
 auto main()
     -> int
 {
-    Bar< Foo > a;
+    [[maybe_unused]] Bar< Foo > a;
     
     return 0;
 }
