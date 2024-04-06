@@ -18,7 +18,7 @@ template <typename T, typename U>
 using copy_cvref_t = apply_const_ref< std::is_const_v< std::remove_reference_t<T> >, !std::is_lvalue_reference_v< T >, U >;
 
 template< typename T, typename U >
-using copy_cvref2_t = decltype(std::forward_like< T, U >(std::declval< U >()));
+using forward_like_t = decltype(std::forward_like< T, U >(std::declval< U >()));
 
 static_assert(std::same_as< copy_cvref_t< int, int >, int&& >);
 static_assert(std::same_as< copy_cvref_t< const int, int >, const int&& >);
@@ -30,15 +30,15 @@ static_assert(std::same_as< copy_cvref_t< const int, const int >, const int&& >)
 static_assert(std::same_as< copy_cvref_t< int&, const int >, const int& >);
 static_assert(std::same_as< copy_cvref_t< const int&, const int >, const int& >);
 
-static_assert(std::same_as< copy_cvref2_t< int, int >, int&& >);
-static_assert(std::same_as< copy_cvref2_t< const int, int >, const int&& >);
-static_assert(std::same_as< copy_cvref2_t< int&, int >, int& >);
-static_assert(std::same_as< copy_cvref2_t< const int&, int >, const int& >);
+static_assert(std::same_as< forward_like_t< int, int >, int&& >);
+static_assert(std::same_as< forward_like_t< const int, int >, const int&& >);
+static_assert(std::same_as< forward_like_t< int&, int >, int& >);
+static_assert(std::same_as< forward_like_t< const int&, int >, const int& >);
 
-static_assert(std::same_as< copy_cvref2_t< int, const int >, const int&& >);
-static_assert(std::same_as< copy_cvref2_t< const int, const int >, const int&& >);
-static_assert(std::same_as< copy_cvref2_t< int&, const int >, const int& >);
-static_assert(std::same_as< copy_cvref2_t< const int&, const int >, const int& >);
+static_assert(std::same_as< forward_like_t< int, const int >, const int&& >);
+static_assert(std::same_as< forward_like_t< const int, const int >, const int&& >);
+static_assert(std::same_as< forward_like_t< int&, const int >, const int& >);
+static_assert(std::same_as< forward_like_t< const int&, const int >, const int& >);
 
 auto main()
     -> int
