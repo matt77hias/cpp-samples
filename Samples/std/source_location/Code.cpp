@@ -8,7 +8,7 @@ struct Diagnostics1
     std::source_location m_source_location = {};
 };
 
-auto f1(Diagnostics1 d = { .m_source_location = std::source_location::current() })
+void f1(Diagnostics1 d = { .m_source_location = std::source_location::current() })
 {
     std::cout << d.m_source_location.function_name() << std::endl;
     std::cout << d.m_source_location.line() << std::endl;
@@ -19,7 +19,7 @@ struct Diagnostics2
     std::source_location m_source_location = std::source_location::current();
 };
 
-auto f2(Diagnostics2 d = {})
+void f2(Diagnostics2 d = {})
 {
     std::cout << d.m_source_location.function_name() << std::endl;
     std::cout << d.m_source_location.line() << std::endl;
