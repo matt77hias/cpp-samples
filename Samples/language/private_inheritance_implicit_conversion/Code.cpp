@@ -36,9 +36,9 @@ struct NullTerminatedStringView : private StringView< C >
 auto main()
     -> int
 {
-    NullTerminatedStringView< char > s;
-    //auto sv0 = static_cast< StringView< char > >(s);
-    auto sv1 = s.operator StringView< char >();
+    [[maybe_unused]] NullTerminatedStringView< char > s;
+    //[[maybe_unused]] auto sv0 = static_cast< StringView< char > >(s);
+    [[maybe_unused]] auto sv1 = s.operator StringView< char >();
     
     return 0;
 }
