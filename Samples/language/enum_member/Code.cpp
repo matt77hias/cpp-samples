@@ -22,8 +22,8 @@ struct B
     using UnscopedEnum = A::UnscopedEnum;
 };
 
-constexpr auto a = B::ScopedEnum::Huey;
-//constexpr auto b = B::UnscopedEnum_Huey;
+[[maybe_unused]] constexpr auto a = B::ScopedEnum::Huey;
+//[[maybe_unused]] constexpr auto b = B::UnscopedEnum_Huey;
 
 struct C
 {
@@ -36,8 +36,8 @@ struct C
     static constexpr auto UnscopedEnum_Louie = A::UnscopedEnum_Louie;
 };
 
-constexpr auto c = C::ScopedEnum::Huey;
-constexpr auto d = C::UnscopedEnum_Huey;
+[[maybe_unused]] constexpr auto c = C::ScopedEnum::Huey;
+[[maybe_unused]] constexpr auto d = C::UnscopedEnum_Huey;
 
 struct D
 {
@@ -46,8 +46,8 @@ struct D
     using enum A::UnscopedEnum; // C++20
 };
 
-constexpr auto e = D::ScopedEnum::Huey;
-constexpr auto f = D::UnscopedEnum_Huey;
+[[maybe_unused]] constexpr auto e = D::ScopedEnum::Huey;
+[[maybe_unused]] constexpr auto f = D::UnscopedEnum_Huey;
 
 auto main()
 	noexcept -> int
