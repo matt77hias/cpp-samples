@@ -2,7 +2,9 @@ struct A
 {
     enum ScopedEnum
     {
-        Huey, Dewey, Louie
+        Huey,
+        Dewey,
+        Louie
     };
 
     enum UnscopedEnum
