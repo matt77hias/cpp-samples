@@ -1,3 +1,5 @@
+// convertible_to
+#include <concepts>
 // is_arithmetic_v, is_integral_v, is_fundamental_v
 #include <type_traits>
 
@@ -11,6 +13,8 @@ enum UnscopedEnum : int
 static_assert(not std::is_arithmetic_v< UnscopedEnum >);
 static_assert(not std::is_integral_v< UnscopedEnum >);
 static_assert(not std::is_fundamental_v< UnscopedEnum >);
+
+static_assert(std::convertible_to< UnscopedEnum, int >);
 
 auto main()
     -> int
