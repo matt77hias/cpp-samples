@@ -1,8 +1,9 @@
+#define BAR BAZ
 #define FOO BAR
-#define BAR 7
+#define BAZ 7
 
 auto main()
     -> int
 {
-    return FOO;
+    return BAZ;
 }
