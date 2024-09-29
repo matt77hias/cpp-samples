@@ -2,7 +2,7 @@
 #include <concepts>
 
 template< typename T >
-void f(T x)
+void f(T)
 {
     static_assert(std::same_as< int, T >);
 }
