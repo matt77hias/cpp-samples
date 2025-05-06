@@ -1,14 +1,17 @@
-# Copyright © 2018-2025 Matthias Moulin. All Rights Reserved.
+# Copyright © 2016-2025 Matthias Moulin. All Rights Reserved.
 
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # LF Normalization
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
 * text=auto
 
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # CRLF Normalization
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+# Module Interface Files
+*.ixx                                       text eol=crlf
 
 # Header Files
 *.h                                         text eol=crlf
@@ -23,19 +26,19 @@
 *.cpp                                       text eol=crlf
 *.c++                                       text eol=crlf
 
+# Shader Files
+*.hlsl                                      text eol=crlf
+*.hlsli                                     text eol=crlf
+
 # Resource Files
 *.rc                                        text eol=crlf
 
-#------------------------------------------------------------------------------
-# Programming Languages
-#------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Engine Programming Languages
+#-------------------------------------------------------------------------------
 
-# Header Files
-*.h                                         linguist-language=C++
-*.hpp                                       linguist-language=C++
-*.h++                                       linguist-language=C++
-*.inc                                       linguist-language=C++
-*.inl                                       linguist-language=C++
+# Module Interface Files
+*.ixx                                       linguist-language=C++
 
 # Header Files
 *.h                                         linguist-language=C++
@@ -49,6 +52,10 @@
 *.cc                                        linguist-language=C++
 *.cpp                                       linguist-language=C++
 *.c++                                       linguist-language=C++
+
+# Shader Files
+*.hlsl                                      linguist-language=HLSL
+*.hlsli                                     linguist-language=HLSL
 
 #------------------------------------------------------------------------------
 # Explicitly declare documentation for the following files
