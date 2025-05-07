@@ -34,7 +34,7 @@
 *.rc                                        text eol=crlf
 
 #-------------------------------------------------------------------------------
-# Engine Programming Languages
+# Programming Languages
 #-------------------------------------------------------------------------------
 
 # Module Interface Files
