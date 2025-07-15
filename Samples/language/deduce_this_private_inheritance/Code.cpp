@@ -41,5 +41,5 @@ public:
 
 auto main() -> int
 {
-    return D().get(); // now ok, and returns B::i
+    return D().get();
 }
