@@ -1,4 +1,4 @@
-// array
+// std::array
 #include <array>
 
 using float4 = std::array< float, 4u >;
