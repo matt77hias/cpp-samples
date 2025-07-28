@@ -1,6 +1,6 @@
-// byte
+// std::byte
 #include <cstddef>
-// declval
+// std::declval
 #include <utility>
 
 struct A
