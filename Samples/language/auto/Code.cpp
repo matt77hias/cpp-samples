@@ -1,4 +1,4 @@
-// cout
+// std::cout
 #include <iostream>
 
 [[nodiscard]]
