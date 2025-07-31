@@ -1,10 +1,16 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// make_unique, unique_ptr
+// std::make_unique
+// std::unique_ptr
 #include <memory>
-// is_array, is_array_v, enable_if, enable_if_t, extent, extent_v
+// std::is_array
+// std::is_array_v
+// std::enable_if
+// std::enable_if_t
+// std::extent
+// std::extent_v
 #include <type_traits>
-// forward
+// std::forward
 #include <utility>
 
 // C++11 <=
