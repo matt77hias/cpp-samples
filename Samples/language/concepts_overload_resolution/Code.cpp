@@ -1,8 +1,9 @@
-// cout
+// std::cout
 #include <iostream>
-// contiguous_range, input_range
+// std::ranges::contiguous_range
+// std::ranges::input_range
 #include <ranges>
-// vector
+// std::vector
 #include <vector>
 
 constexpr auto generate()
