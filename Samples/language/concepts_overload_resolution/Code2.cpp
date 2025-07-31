@@ -1,4 +1,4 @@
-// integral
+// std::integral
 #include <concepts>
 
 template< std::floating_point T >
