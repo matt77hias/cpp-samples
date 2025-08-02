@@ -1,6 +1,7 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// dynamic_extent, span
+// std::dynamic_extent
+// std::span
 #include <span>
 
 template< typename T, std::size_t N = std::dynamic_extent >
