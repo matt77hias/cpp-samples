@@ -1,6 +1,7 @@
-// derived_from, integral
+// std::derived_from
+// std::integral
 #include <concepts>
-// declval
+// std::declval
 #include <utility>
 
 template< typename T >
