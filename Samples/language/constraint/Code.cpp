@@ -1,4 +1,4 @@
-// deque
+// std::deque
 #include <deque>
 
 template< typename T >
