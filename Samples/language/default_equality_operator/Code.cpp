@@ -1,4 +1,4 @@
-// strong_ordering
+// std::strong_ordering
 #include <compare>
 
 struct Widget
