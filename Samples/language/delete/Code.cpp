@@ -1,6 +1,7 @@
-// string
+// std::string
 #include <string>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 struct Widget
