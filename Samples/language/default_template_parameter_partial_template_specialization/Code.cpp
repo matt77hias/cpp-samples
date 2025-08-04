@@ -1,4 +1,4 @@
-// size_t
+// std::size_t
 #include <cstddef>
 
 template< typename T, std::size_t A = alignof(T) >
