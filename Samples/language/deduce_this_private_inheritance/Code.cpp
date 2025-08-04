@@ -1,6 +1,6 @@
-// forward_like
+// std::forward_like
 #include <type_traits>
-// declval
+// std::declval
 #include <utility>
 
 template< typename T, typename U >
