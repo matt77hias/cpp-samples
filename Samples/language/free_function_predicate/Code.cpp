@@ -1,8 +1,9 @@
-// find_if
+// std::find_if
 #include <algorithm>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// vector
+// std::vector
 #include <vector>
 
 [[nodiscard]]
