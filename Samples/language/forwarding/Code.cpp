@@ -1,13 +1,13 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// forward_like
+// std::forward_like
 #include <type_traits>
-// declval
+// std::declval
 #include <utility>
 
 template< typename T, typename U >
 using forward_like_t = decltype(std::forward_like< T, U >(std::declval< U >()));
-
 
 struct Base
 {};
