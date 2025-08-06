@@ -1,3 +1,4 @@
+// std::function
 #include <functional>
 
 template< typename F >
