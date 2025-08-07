@@ -1,6 +1,6 @@
 // assert
 #include <cassert>
-// abort
+// std::abort
 #include <cstdlib>
 
 [[nodiscard]]
