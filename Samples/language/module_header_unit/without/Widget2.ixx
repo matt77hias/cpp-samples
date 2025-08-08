@@ -1,6 +1,6 @@
 module;
 
-// size_t
+// std::size_t
 #include <cstddef>
 
 export module Widget2;
