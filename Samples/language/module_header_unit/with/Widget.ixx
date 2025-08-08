@@ -1,8 +1,8 @@
 export module Widget;
 
-// array
+// std::array
 import <array>;
-// size_t
+// std::size_t
 import <cstddef>;
 
 export
