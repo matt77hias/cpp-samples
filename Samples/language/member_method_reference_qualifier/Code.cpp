@@ -1,4 +1,4 @@
-// move
+// std::move
 #include <utility>
 
 struct Widget
