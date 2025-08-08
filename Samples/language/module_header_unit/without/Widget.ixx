@@ -1,8 +1,8 @@
 module;
 
-// array
+// std::array
 #include <array>
-// size_t
+// std::size_t
 #include <cstddef>
 
 export module Widget;
