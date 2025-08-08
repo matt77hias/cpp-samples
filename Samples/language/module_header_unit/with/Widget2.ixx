@@ -2,7 +2,7 @@ export module Widget2;
 
 import Widget;
 
-// size_t
+// std::size_t
 import <cstddef>;
 
 export
