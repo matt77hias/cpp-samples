@@ -1,8 +1,9 @@
-// all_of
+// std::ranges::all_of
 #include <algorithm>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// vector
+// std::vector
 #include <vector>
 
 struct Widget
