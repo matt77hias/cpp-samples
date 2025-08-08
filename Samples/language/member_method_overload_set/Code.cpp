@@ -1,6 +1,7 @@
-// cout
+// std::cout
 #include <iostream>
-// forward_iterator, input_iterator
+// std::forward_iterator
+// std::input_iterator
 #include <iterator>
 
 struct Widget
