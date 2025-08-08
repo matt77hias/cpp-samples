@@ -6,5 +6,5 @@ auto main()
 	using namespace mage;
 
 	//return ArrayAlias< float, 1u >{} == ArrayAlias< float, 1u >{};
-  return 0;
+	return 0;
 }
