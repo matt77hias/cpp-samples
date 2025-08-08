@@ -1,4 +1,4 @@
-// same_as
+// std::same_as
 #include <concepts>
 
 auto main()
