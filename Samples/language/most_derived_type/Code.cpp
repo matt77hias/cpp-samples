@@ -1,6 +1,8 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// is_final_v, is_polymorphic_v
+// std::is_final_v
+// std::is_polymorphic_v
 #include <type_traits>
 
 template< typename T >
