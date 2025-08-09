@@ -1,8 +1,11 @@
-// bitset
+// std::bitset
 #include <bitset>
-// int16_t, int8_t, uint16_t, uint8_t
+// std::int16_t
+// std::int8_t
+// std::uint16_t
+// std::uint8_t
 #include <cstdint>
-// cout
+// std::cout
 #include <iostream>
 
 auto main()
