@@ -1,10 +1,12 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// uintptr_t
+// std::uintptr_t
 #include <cstdint>
-// free, malloc
+// std::free
+// std::malloc
 #include <cstdlib>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 bool g_logging = false;
