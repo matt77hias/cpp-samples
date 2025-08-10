@@ -1,8 +1,8 @@
-// movable
+// std::movable
 #include <concepts>
-// is_nothrow_move_assignable_v
+// std::is_nothrow_move_assignable_v
 #include <type_traits>
-// move
+// std::move
 #include <utility>
 
 auto main()
