@@ -1,10 +1,11 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// same_as
+// std::same_as
 #include <concepts>
-// tuple_element, tuple_size
+// std::tuple_element
+// std::tuple_size
 #include <tuple>
-// integral_constant
+// std::integral_constant
 #include <type_traits>
 
 template< typename T >
