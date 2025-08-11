@@ -1,8 +1,9 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// logic_error
+// std::logic_error
 #include <stdexcept>
 
 struct A 
