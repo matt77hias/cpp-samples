@@ -1,6 +1,6 @@
-// same_as
+// std::same_as
 #include <concepts>
-// cout
+// std::cout
 #include <iostream>
 
 void f(int)
