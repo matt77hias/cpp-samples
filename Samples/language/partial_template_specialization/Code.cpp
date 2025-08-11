@@ -1,8 +1,9 @@
-// array
+// std::array
 #include <array>
-// size_t
+// std::size_t
 #include <cstddef>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 template< typename T, std::size_t N, std::size_t A = alignof(T) >
