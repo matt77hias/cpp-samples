@@ -1,4 +1,5 @@
-// constructible_from, convertible_to
+// std::constructible_from
+// std::convertible_to
 #include <concepts>
 
 template< typename SrcT, typename DstT >
