@@ -1,4 +1,5 @@
-// is_base_of_v, remove_reference_t
+// std::is_base_of_v
+// std::remove_reference_t
 #include <type_traits>
 
 template< typename T >
