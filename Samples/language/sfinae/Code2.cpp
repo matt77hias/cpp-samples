@@ -1,6 +1,7 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// string
+// std::string
 #include <string>
 
 struct A {};
