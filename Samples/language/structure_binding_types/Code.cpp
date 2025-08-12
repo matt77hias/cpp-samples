@@ -1,6 +1,6 @@
-// same_as
+// std::same_as
 #include <concepts>
-// tuple
+// std::tuple
 #include <tuple>
 
 auto main()
