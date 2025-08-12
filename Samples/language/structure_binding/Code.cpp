@@ -1,12 +1,14 @@
-// array
+// std::array
 #include <array>
-// size_t
+// std::size_t
 #include <cstddef>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// tuple_element, tuple_size 
+// std::tuple_element
+// std::tuple_size 
 #include <tuple>
-// integral_constant
+// std::integral_constant
 #include <type_traits>
 
 template< typename T, std::size_t N, std::size_t A = alignof(T) >
