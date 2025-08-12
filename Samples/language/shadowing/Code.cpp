@@ -1,6 +1,6 @@
-// floating_point
+// std::floating_point
 #include <concepts>
-// cout
+// std::cout
 #include <iostream>
 
 template< typename T  >
