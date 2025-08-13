@@ -1,4 +1,4 @@
-// integral
+// std::integral
 #include <concepts>
 
 void f()
