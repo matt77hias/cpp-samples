@@ -1,12 +1,13 @@
-// for_each
+// std::for_each
 #include <algorithm>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// type_index
+// std::type_index
 #include <typeindex>
-// unordered_multimap
+// std::unordered_multimap
 #include <unordered_map>
-// vector
+// std::vector
 #include <vector>
 
 struct Component
