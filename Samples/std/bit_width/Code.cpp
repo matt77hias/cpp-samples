@@ -1,4 +1,4 @@
-// bit_width
+// std::bit_width
 #include <bit>
 
 static_assert(std::bit_width(0u) == 0);
