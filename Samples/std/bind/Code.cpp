@@ -1,10 +1,12 @@
-// for_each
+// std::ranges::for_each
 #include <algorithm>
-// _1, bind
+// std::bind
+// std::placeholders::_1
 #include <functional>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// vector
+// std::vector
 #include <vector>
 
 struct Widget
