@@ -1,6 +1,7 @@
-// cout. endl
+// std::cout
+// std::endl
 #include <iostream>
-// vector
+// std::vector
 #include <vector>
 
 auto main()
