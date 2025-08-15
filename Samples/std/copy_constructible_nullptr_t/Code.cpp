@@ -1,6 +1,6 @@
-// copy_constructible
+// std::copy_constructible
 #include <concepts>
-// nullptr_t
+// std::nullptr_t
 #include <cstddef>
 
 static_assert(std::copy_constructible< std::nullptr_t >);
