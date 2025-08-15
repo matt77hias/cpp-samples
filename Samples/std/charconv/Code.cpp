@@ -1,12 +1,14 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// from_chars, from_chars_result
+// std::from_chars
+// std::from_chars_result
 #include <charconv>
-// size_t
+// std::size_t
 #include <cstddef>
-// size
+// std::size
 #include <iterator>
-// string_view
+// std::string_view
 #include <string_view>
  
 auto main()
