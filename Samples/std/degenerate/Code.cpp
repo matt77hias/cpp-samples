@@ -1,6 +1,6 @@
-// array
+// std::array
 #include <array>
-// tuple
+// std::tuple
 #include <tuple>
 
 auto main()
