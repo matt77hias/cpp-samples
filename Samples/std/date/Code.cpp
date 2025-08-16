@@ -1,7 +1,17 @@
-// day, days, floor, hh_mm_ss, hours, milliseconds, minutes, month, seconds,
-// system_clock, year, year_month_day
+// std::day
+// std::days
+// std::floor
+// std::hh_mm_ss
+// std::hours
+// std::milliseconds
+// std::minutes
+// std::month
+// std::seconds
+// std::system_clock
+// std::year
+// std::year_month_day
 #include <chrono>
-// strong_ordering
+// std::strong_ordering
 #include <compare>
 
 struct Date
