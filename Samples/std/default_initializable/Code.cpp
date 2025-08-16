@@ -1,6 +1,6 @@
-// default_initializable
+// std::default_initializable
 #include <concepts>
-// is_default_constructible_v
+// std::is_default_constructible_v
 #include <type_traits>
 
 static_assert(std::default_initializable< int >);
