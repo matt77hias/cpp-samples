@@ -1,6 +1,7 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// numeric_limits
+// std::numeric_limits
 #include <limits>
 
 auto main()
