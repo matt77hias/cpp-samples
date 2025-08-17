@@ -1,6 +1,6 @@
-// numeric_limits
+// std::numeric_limits
 #include <limits>
-// remove_cv_t
+// std::remove_cv_t
 #include <type_traits>
 
 template< typename T >
