@@ -1,8 +1,9 @@
-// constructible_from
+// std::constructible_from
 #include <concepts>
-// is_lvalue_reference_v, is_rvalue_reference_v
+// std::is_lvalue_reference_v
+// std::is_rvalue_reference_v
 #include <type_traits>
-// declval
+// std::declval
 #include <type_traits>
 
 template< typename E >
