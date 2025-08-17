@@ -1,8 +1,9 @@
-// remove_if
+// std::remove_if
 #include <algorithm>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// vector
+// std::vector
 #include <vector>
 
 struct A
