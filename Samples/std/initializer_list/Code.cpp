@@ -1,6 +1,7 @@
-// initializer_list
+// std::initializer_list
 #include <initializer_list>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 struct Widget
