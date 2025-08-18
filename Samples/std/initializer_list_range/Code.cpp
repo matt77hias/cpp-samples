@@ -1,8 +1,8 @@
-// initializer_list
+// std::initializer_list
 #include <initializer_list>
-// cout
+// std::cout
 #include <iostream>
-// range
+// std::range
 #include <ranges>
 
 template< std::ranges::range R >
