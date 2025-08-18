@@ -1,8 +1,9 @@
-// same_as
+// std::same_as
 #include <concepts>
-// initializer_list
+// std::initializer_list
 #include <initializer_list>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 struct A
