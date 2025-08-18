@@ -1,6 +1,7 @@
-// uint16_t, uint8_t
+// std::uint16_t
+// std::uint8_t
 #include <cstdint>
-// has_unique_object_representations_v
+// std::has_unique_object_representations_v
 #include <type_traits>
 
 struct A
