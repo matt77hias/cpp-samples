@@ -1,8 +1,9 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// is_nothrow_destructible_v
+// std::is_nothrow_destructible_v
 #include <type_traits>
-// declval
+// std::declval
 #include <utility>
 
 auto FuncA()
