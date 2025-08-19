@@ -1,4 +1,4 @@
-// is_base_of_v
+// std::is_base_of_v
 #include <type_traits>
 
 struct A
