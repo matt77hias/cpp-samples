@@ -1,8 +1,12 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// false_type, is_convertible_v, remove_const_t, true_type
+// std::false_type
+// std::is_convertible_v
+// std::remove_const_t
+// std::true_type
 #include <type_traits>
-// declval
+// std::declval
 #include <utility>
 
 template< typename FromT, typename ToT, typename = std::remove_const_t< ToT > >
