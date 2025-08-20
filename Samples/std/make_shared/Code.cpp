@@ -1,12 +1,16 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// uintptr_t
+// std::uintptr_t
 #include <cstdint>
-// free, malloc
+// std::free
+// std::malloc
 #include <cstdlib>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// make_shared, shared_ptr, weak_ptr
+// std::make_shared
+// std::shared_ptr
+// std::weak_ptr
 #include <memory>
 
 bool g_logging = false;
