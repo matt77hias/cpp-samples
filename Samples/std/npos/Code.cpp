@@ -1,6 +1,6 @@
-// cout
+// std::cout
 #include <iostream>
-// string
+// std::string
 #include <string>
  
 auto main()
