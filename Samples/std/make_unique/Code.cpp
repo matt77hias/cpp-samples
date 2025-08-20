@@ -1,14 +1,17 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// uintptr_t
+// std::uintptr_t
 #include <cstdint>
-// free, malloc
+// std::free
+// std::malloc
 #include <cstdlib>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// make_unique, unique_ptr
+// std::make_unique
+// std::unique_ptr
 #include <memory>
-// logic_error
+// std::logic_error
 #include <stdexcept>
 
 bool g_logging = false;
