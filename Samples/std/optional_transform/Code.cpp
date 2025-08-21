@@ -1,6 +1,6 @@
-// same_as
+// std::same_as
 #include <concepts>
-// optional
+// std::optional
 #include <optional>
 
 auto main()
