@@ -1,10 +1,10 @@
-// lower_bound
+// std::ranges::lower_bound
 #include <algorithm>
-// less
+// std::ranges::less
 #include <functional>
-// pair
+// std::pair
 #include <utility>
-// vector
+// std::vector
 #include <vector>
 
 struct Widget
