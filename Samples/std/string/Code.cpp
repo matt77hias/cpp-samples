@@ -1,4 +1,4 @@
-// string
+// std::string
 #include <string>
 
 auto main()
