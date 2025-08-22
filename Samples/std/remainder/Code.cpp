@@ -1,6 +1,8 @@
-// remainder, round
+// std::remainder
+// std::round
 #include <cmath>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 [[nodiscard]]
