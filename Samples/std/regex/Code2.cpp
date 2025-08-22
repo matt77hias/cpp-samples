@@ -1,12 +1,14 @@
-// transform
+// std::transform
 #include <algorithm>
-// cout
+// std::cout
 #include <iostream>
-// ostream_iterator
+// std::ostream_iterator
 #include <iterator>
-// regex, smatch, sregex_iterator
+// std::regex
+// std::smatch
+// std::sregex_iterator
 #include <regex>
-// string
+// std::string
 #include <string>
 
 auto main()
