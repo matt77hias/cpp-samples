@@ -1,12 +1,13 @@
-// copy
+// std::copy
 #include <algorithm>
-// cout
+// std::cout
 #include <iostream>
-// ostream_iterator
+// std::ostream_iterator
 #include <iterator>
-// regex, sregex_token_iterator
+// std::regex
+// std::sregex_token_iterator
 #include <regex>
-// string
+// std::string
 #include <string>
 
 auto main()
