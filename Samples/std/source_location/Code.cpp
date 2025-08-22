@@ -1,6 +1,7 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// source_location
+// std::source_location
 #include <source_location>
 
 struct Diagnostics1
