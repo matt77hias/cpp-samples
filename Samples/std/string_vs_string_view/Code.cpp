@@ -1,6 +1,6 @@
-// string
+// std::string
 #include <string>
-// string_view
+// std::string_view
 #include <string_view>
 
 static_assert(not std::convertible_to< std::string_view, std::string >);
