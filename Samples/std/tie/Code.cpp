@@ -1,6 +1,7 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// tie
+// std::tie
 #include <tuple>
 
 auto main()
