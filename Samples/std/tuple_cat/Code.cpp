@@ -1,8 +1,11 @@
-// array
+// std::array
 #include <array>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// get, tuple, tuple_cat
+// std::get
+// std::tuple
+// std::tuple_cat
 #include <tuple>
  
 auto main()
