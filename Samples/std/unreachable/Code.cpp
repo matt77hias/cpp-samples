@@ -1,4 +1,4 @@
-// unreachable
+// std::unreachable
 #include <utility>
 
 [[nodiscard]]
