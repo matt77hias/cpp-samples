@@ -1,8 +1,9 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// unique_resource
+// std::unique_resource
 #include <https://raw.githubusercontent.com/PeterSommerlad/scope17/master/scope.hpp>
 
 struct ResourceManager
