@@ -1,6 +1,8 @@
-// convertible_to
+// std::convertible_to
 #include <concepts>
-// is_arithmetic_v, is_integral_v, is_fundamental_v
+// std::is_arithmetic_v
+// std::is_integral_v
+// std::is_fundamental_v
 #include <type_traits>
 
 static_assert(std::is_arithmetic_v< int >);
