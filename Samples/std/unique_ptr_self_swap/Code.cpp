@@ -1,4 +1,4 @@
-// unique_ptr
+// std::unique_ptr
 #include <memory>
 
 auto main()
