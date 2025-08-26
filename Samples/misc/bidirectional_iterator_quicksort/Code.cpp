@@ -1,15 +1,18 @@
-// partition
+// std::partition
 #include <algorithm>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// bidirectional_iterator, distance, iter_swap, next, prev, sentinel_for
+// std::bidirectional_iterator
+// std::ranges::distance
+// std::ranges::iter_swap
+// std::ranges::next
+// std::ranges::prev
 #include <iterator>
-// list
+// std::list
 #include <list>
-// less
+// std::ranges::less
 #include <ranges>
-// move
-#include <utility>
 
 template< std::bidirectional_iterator I, typename CompareT >
 void QuickSort(I first, I last, CompareT compare)
