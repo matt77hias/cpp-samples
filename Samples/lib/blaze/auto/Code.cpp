@@ -1,6 +1,9 @@
-// norm, rowVector, StaticVector
+// blaze::norm
+// blaze::rowVector
+// blaze::StaticVector
 #include <blaze/math/StaticVector.h>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 auto main()
