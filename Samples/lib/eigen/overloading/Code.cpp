@@ -1,6 +1,7 @@
-// Matrix, StorageOptions
+// Eigen::Matrix
+// Eigen::StorageOptions
 #include <Eigen/Dense>
-// cout
+// std::cout
 #include <iostream>
 
 using F32 = float;
