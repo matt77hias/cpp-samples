@@ -1,6 +1,8 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// shared_ptr, static_pointer_cast
+// std::shared_ptr
+// std::static_pointer_cast
 #include <memory>
 
 struct Base
