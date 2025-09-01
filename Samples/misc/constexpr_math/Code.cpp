@@ -1,8 +1,11 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// enable_if_t, is_floating_point_v, is_unsigned_v
+// std::enable_if_t
+// std::is_floating_point_v
+// std::is_unsigned_v
 #include <type_traits>
 
 namespace internal
