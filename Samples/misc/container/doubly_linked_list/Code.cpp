@@ -1,6 +1,7 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// count, endl
+// std::count
+// std::endl
 #include <iostream>
 
 template< typename T >
