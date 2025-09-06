@@ -1,14 +1,17 @@
-// size_t
+// std::size_t
 #include <cstddef>
-// map
+// std::map
 #include <map>
-// shared_ptr, weak_ptr
+// std::shared_ptr
+// std::weak_ptr
 #include <memory>
-// mutex, scoped_lock
+// std::mutex
+// std::scoped_lock
 #include <mutex>
-// is_base_of_v
+// std::is_base_of_v
 #include <type_traits>
-// forward, move
+// std::forward
+// std::move
 #include <utility>
 
 /**
