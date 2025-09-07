@@ -1,8 +1,11 @@
-// same_as
+// std::same_as
 #include <concepts>
-// conditional_t, forward_like, is_lvalue_reference_v, remove_reference_t
+// std::conditional_t
+// std::forward_like
+// std::is_lvalue_reference_v
+// std::remove_reference_t
 #include <type_traits>
-// declval
+// std::declval
 #include <utility>
 
 template <bool RV, typename T>
