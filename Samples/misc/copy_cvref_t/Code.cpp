@@ -8,17 +8,17 @@
 // std::declval
 #include <utility>
 
-template <bool RV, typename T>
-using apply_ref = std::conditional_t< RV, T&&, T& >;
+template< bool IsRValue, typename T >
+using apply_ref = std::conditional_t< IsRValue, T&&, T& >;
 
-template <bool C, typename T>
-using apply_const = std::conditional_t< C, T const, T >;
+template< bool IsConst, typename T >
+using apply_const = std::conditional_t< IsConst, T const, T >;
 
-template <bool C, bool RV, typename T>
-using apply_const_ref = apply_ref< RV, apply_const< C, T > >;
+template< bool IsConst, bool IsRValue, typename T >
+using apply_const_ref = apply_ref< IsRValue, apply_const< IsConst, T > >;
 
-template <typename T, typename U>
-using copy_cvref_t = apply_const_ref< std::is_const_v< std::remove_reference_t<T> >, !std::is_lvalue_reference_v< T >, U >;
+template< typename T, typename U >
+using copy_cvref_t = apply_const_ref< std::is_const_v< std::remove_reference_t< T > >, !std::is_lvalue_reference_v< T >, U >;
 
 template< typename T, typename U >
 using forward_like_t = decltype(std::forward_like< T, U >(std::declval< U >()));
