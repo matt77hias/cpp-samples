@@ -1,6 +1,7 @@
-// array
+// std::array
 #include <array>
-// conditional_t, is_same_v
+// std::conditional_t
+// std::is_same_v
 #include <type_traits>
 
 template< typename T, typename = void >
