@@ -1,8 +1,9 @@
-// bitset
+// std::bitset
 #include <bitset>
-// uint32_t
+// std::uint32_t
 #include <cstdint>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 // even integer: 2a   -> (2a)^2   = 4a^2          -> even integer
