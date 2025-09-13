@@ -1,14 +1,16 @@
-// atomic, memory_order_relaxed
+// std::atomic
+// std::memory_order_relaxed
 #include <atomic>
-// floating_point
+// std::floating_point
 #include <concepts>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// final_action
+// gsl::final_action
 #include <gsl/util>
-// source_location
+// std::source_location
 #include <source_location>
-// remove_cvref_t
+// std::remove_cvref_t
 #include <type_traits>
 
 using U64 = unsigned long long;
