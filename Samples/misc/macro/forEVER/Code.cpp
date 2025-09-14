@@ -1,4 +1,5 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 #define EVER ;;
