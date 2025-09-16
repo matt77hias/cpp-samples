@@ -1,9 +1,10 @@
+// std::unsigned_integral
+#include <concepts>
 // std::size_t
 #include <cstdint>
 // std::ranges::range
 #include <ranges>
 // std::remove_cvref_t
-// std::unsigned_integral
 #include <type_traits>
 
 template< typename T >
