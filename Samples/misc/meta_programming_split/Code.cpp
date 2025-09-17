@@ -1,18 +1,21 @@
 // Source: https://stackoverflow.com/a/24971386/1731200
 
-// find_if
+// std::find_if
 #include <algorithm>
-// size_t
+// std::size_t
 #include <cstddef>
-// not1
+// std::not1
 #include <functional>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// string
+// std::string
 #include <string>
-// false_type, true_type
+// std::false_type
+// std::true_type
 #include <type_traits>
-// make_pair, pair
+// std::make_pair
+// std::pair
 #include <utility>
 
 // Sequences
@@ -95,7 +98,7 @@ constexpr auto getNextToken(I begin, I end)
 auto main()
 	-> int
 {
-	std::string s{"Some people, excluding those present, have been compile time constants - since puberty."};
+	std::string s{ "Some people, excluding those present, have been compile time constants - since puberty." };
 	
 	for (auto it = s.begin(); it != s.end();)
 	{
