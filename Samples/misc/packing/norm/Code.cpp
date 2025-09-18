@@ -1,8 +1,11 @@
-// clamp
+// std::clamp
 #include <algorithm>
-// int8_t, uint32_t, uint8_t
+// std::int8_t
+// std::uint32_t
+// std::uint8_t
 #include <cstdint>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 using F32 = float;
