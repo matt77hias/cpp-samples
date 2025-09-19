@@ -1,8 +1,11 @@
-// size_t
+// std::clamp
+#include <algorithm>
+// std::size_t
 #include <cstddef>
-// uint32_t
+// std::uint32_t
 #include <cstdint>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 using F32 = float;
