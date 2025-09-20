@@ -1,10 +1,11 @@
-// atomic
+// std::atomic
 #include <atomic>
-// derived_from
+// std::derived_from
 #include <concepts>
-// uint32_t
+// std::uint32_t
 #include <cstdint>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 class ReferenceCounted
