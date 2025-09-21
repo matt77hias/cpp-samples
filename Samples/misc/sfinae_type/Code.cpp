@@ -1,6 +1,9 @@
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
-// enable_if_t, is_floating_point_v, is_integral_v
+// std::enable_if_t
+// std::is_floating_point_v
+// std::is_integral_v
 #include <type_traits>
 
 template< typename T >
