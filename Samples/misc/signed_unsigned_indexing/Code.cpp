@@ -1,6 +1,6 @@
-// signed_integral
+// std::signed_integral
 #include <concepts>
-// size_t
+// std::size_t
 #include <cstddef>
 
 struct Vector
