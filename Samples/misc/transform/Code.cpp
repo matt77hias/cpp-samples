@@ -1,10 +1,15 @@
-// array
+// std::array
 #include <array>
-// size_t
+// std::size_t
 #include <cstddef>
-// cout, endl, ostream
+// std::cout
+// std::endl
+// std::ostream
 #include <iostream>
-// declval, forward, index_sequence, make_index_sequence
+// std::declval
+// std::forward
+// std::index_sequence
+// std::make_index_sequence
 #include <utility>
 
 template< typename ActionT, typename T, std::size_t... Is >
