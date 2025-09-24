@@ -1,6 +1,7 @@
-// bitset
+// std::bitset
 #include <bitset>
-// cout, endl
+// std::cout
+// std::endl
 #include <iostream>
 
 auto main()
