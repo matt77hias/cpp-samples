@@ -1,9 +1,17 @@
 // TODO: update
 
+// std::remove
 #include <algorithm>
+// std::ref
 #include <functional>
+// std::cout
+// std::endl
 #include <iostream>
+// std::make_pair
+// std::move
+// std::pair
 #include <utility>
+// std::vector
 #include <vector>
 
 template< typename FirstT, typename SecondT >
