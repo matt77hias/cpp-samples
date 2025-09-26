@@ -2,6 +2,8 @@
 
 // std::remove
 #include <algorithm>
+// std::size_t
+#include <cstddef>
 // std::ref
 #include <functional>
 // std::cout
