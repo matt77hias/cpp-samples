@@ -1,9 +1,15 @@
 // TODO: update
 
+// std::remove
 #include <algorithm>
 #include <functional>
+// std::cout
+// std::endl
 #include <iostream>
+// std::move
+// std::swap
 #include <utility>
+// std::vector
 #include <vector>
 
 template< typename FirstT, typename SecondT >
