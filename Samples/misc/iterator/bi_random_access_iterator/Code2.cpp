@@ -2,7 +2,6 @@
 
 // std::remove
 #include <algorithm>
-#include <functional>
 // std::cout
 // std::endl
 #include <iostream>
