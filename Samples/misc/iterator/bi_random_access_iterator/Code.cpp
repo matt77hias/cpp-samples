@@ -2,7 +2,7 @@
 
 // std::remove
 #include <algorithm>
-// std::size_t
+// std::ptrdiff_t
 #include <cstddef>
 // std::ref
 #include <functional>
@@ -60,27 +60,27 @@ public:
 
     [[nodiscard]]
     auto operator -(const BiRandomAccessIterator& bit) const
-        -> std::size_t
+        -> std::ptrdiff_t
     {
         return m_it1 - bit.m_it1;
     }
 
     [[nodiscard]]
-    auto operator +(std::size_t n) const
+    auto operator +(std::ptrdiff_t n) const
         noexcept -> BiRandomAccessIterator
     {
         return { m_it1 + n, m_it2 + n };
     }
 
     [[nodiscard]]
-    auto operator -(std::size_t n) const
+    auto operator -(std::ptrdiff_t n) const
         noexcept -> BiRandomAccessIterator
     {
         return { m_it1 - n, m_it2 - n };
     }
 
     [[nodiscard]]
-    friend auto operator +(std::size_t n, const BiRandomAccessIterator& bit)
+    friend auto operator +(std::ptrdiff_t n, const BiRandomAccessIterator& bit)
         noexcept -> BiRandomAccessIterator
     {
         return bit + n;
@@ -116,7 +116,7 @@ public:
         return { bit.m_it1 - 1, bit.m_it2 - 1 };
     }
 
-    auto operator +=(std::size_t n)
+    auto operator +=(std::ptrdiff_t n)
         -> BiRandomAccessIterator&
     {
         m_it1 += n;
@@ -124,7 +124,7 @@ public:
         return *this;
     }
 
-    auto operator -=(std::size_t n)
+    auto operator -=(std::ptrdiff_t n)
         -> BiRandomAccessIterator&
     {
         m_it1 -= n;
@@ -133,7 +133,7 @@ public:
     }
 
     [[nodiscard]]
-    auto operator [](std::size_t n) const
+    auto operator [](std::ptrdiff_t n) const
         noexcept
 	{
         return std::make_pair(std::ref(m_it1[n]), std::ref(m_it2[n]));
