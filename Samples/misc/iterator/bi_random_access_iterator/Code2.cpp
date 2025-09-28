@@ -2,7 +2,7 @@
 
 // std::remove
 #include <algorithm>
-// std::size_t
+// std::ptrdiff_t
 #include <cstddef>
 // std::cout
 // std::endl
@@ -179,35 +179,35 @@ public:
     }
 
     [[nodiscard]]
-    auto operator [](std::size_t n)
+    auto operator [](std::ptrdiff_t n)
         noexcept
 	{
         return make_bi_value(m_it1 + n, m_it2 + n);
     }
 
     [[nodiscard]]
-    auto operator [](std::size_t n) const
+    auto operator [](std::ptrdiff_t n) const
         noexcept
 	{
         return make_bi_value(m_it1 + n, m_it2 + n);
     }
 
     [[nodiscard]]
-    std::size_t operator-(const BiRandomAccessIterator& bit) const {
+    std::ptrdiff_t operator-(const BiRandomAccessIterator& bit) const {
         return m_it1 - bit.m_it1;
     }
     [[nodiscard]]
-    const BiRandomAccessIterator operator+(std::size_t n) const {
+    const BiRandomAccessIterator operator+(std::ptrdiff_t n) const {
         return { m_it1 + n, m_it2 + n };
     }
     [[nodiscard]]
-    const BiRandomAccessIterator operator-(std::size_t n) const {
+    const BiRandomAccessIterator operator-(std::ptrdiff_t n) const {
         return { m_it1 - n, m_it2 - n };
     }
 
     [[nodiscard]]
     friend const BiRandomAccessIterator 
-        operator+(std::size_t n, const BiRandomAccessIterator& bit)
+        operator+(std::ptrdiff_t n, const BiRandomAccessIterator& bit)
 	{
         return bit + n;
     }
@@ -238,14 +238,14 @@ public:
         return { bit.m_it1 - 1u, bit.m_it2 - 1u };
     }
 
-    BiRandomAccessIterator& operator+=(std::size_t n)
+    BiRandomAccessIterator& operator+=(std::ptrdiff_t n)
 	{
         m_it1 += n;
         m_it2 += n;
         return *this;
     }
 
-    BiRandomAccessIterator& operator-=(std::size_t n)
+    BiRandomAccessIterator& operator-=(std::ptrdiff_t n)
 	{
         m_it1 -= n;
         m_it2 -= n;
