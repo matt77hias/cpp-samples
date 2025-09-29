@@ -14,7 +14,8 @@
 #include <vector>
 
 template< typename FirstT, typename SecondT >
-class BiValue {
+class BiValue
+{
     
 public:
     
@@ -40,77 +41,113 @@ public:
     }
     
     [[nodiscard]]
-    friend constexpr bool operator==(const BiValue& lhs, const int& rhs) noexcept {
+    friend constexpr auto operator ==(const BiValue& lhs, const int& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 == rhs;
     }
     [[nodiscard]]
-    friend constexpr bool operator!=(const BiValue& lhs, const int& rhs) noexcept {
+    friend constexpr auto operator !=(const BiValue& lhs, const int& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 != rhs;
     }
     [[nodiscard]]
-    friend constexpr bool operator<=(const BiValue& lhs, const int& rhs) noexcept {
+    friend constexpr auto operator <=(const BiValue& lhs, const int& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 <= rhs;
     }
     [[nodiscard]]
-    friend constexpr bool operator>=(const BiValue& lhs, const int& rhs) noexcept {
+    friend constexpr auto operator >=(const BiValue& lhs, const int& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 >= rhs;
     }
     [[nodiscard]]
-    friend constexpr bool operator<(const BiValue& lhs, const int& rhs) noexcept {
+    friend constexpr auto operator <(const BiValue& lhs, const int& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 < rhs;
     }
     [[nodiscard]]
-    friend constexpr bool operator>(const BiValue& lhs, const int& rhs) noexcept {
+    friend constexpr auto operator >(const BiValue& lhs, const int& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 > rhs;
     }
     
     [[nodiscard]]
-    friend constexpr bool operator==(const int& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator ==(const int& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return lhs == *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator!=(const int& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator !=(const int& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return lhs != *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator<=(const int& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator <=(const int& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return lhs <= *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator>=(const int& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator >=(const int& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return lhs >= *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator<(const int& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator <(const int& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return lhs < *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator>(const int& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator >(const int& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return lhs > *rhs.m_it1;
     }
     
     [[nodiscard]]
-    friend constexpr bool operator==(const BiValue& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator ==(const BiValue& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 == *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator!=(const BiValue& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator !=(const BiValue& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 != *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator<=(const BiValue& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator <=(const BiValue& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 <= *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator>=(const BiValue& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator >=(const BiValue& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 >= *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator<(const BiValue& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator <(const BiValue& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 < *rhs.m_it1;
     }
     [[nodiscard]]
-    friend constexpr bool operator>(const BiValue& lhs, const BiValue& rhs) noexcept {
+    friend constexpr auto operator >(const BiValue& lhs, const BiValue& rhs)
+		noexcept -> bool
+    {
         return *lhs.m_it1 > *rhs.m_it1;
     }
     
