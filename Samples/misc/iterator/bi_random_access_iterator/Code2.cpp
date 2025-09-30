@@ -163,20 +163,23 @@ private:
 };
 
 template< typename FirstT, typename SecondT >
-auto make_bi_value(FirstT first, SecondT second) {
+auto make_bi_value(FirstT first, SecondT second)
+{
     return BiValue< FirstT, SecondT >(std::move(first), std::move(second));
 }
 
-namespace std {
-  
+namespace std
+{
     template< typename FirstT, typename SecondT >
-    void swap(BiValue< FirstT, SecondT >& lhs, BiValue< FirstT, SecondT >& rhs) {
+    void swap(BiValue< FirstT, SecondT >& lhs, BiValue< FirstT, SecondT >& rhs)
+    {
         lhs.swap(rhs);
     }
 }
 
 template< typename FirstT, typename SecondT >
-class BiRandomAccessIterator {
+class BiRandomAccessIterator
+{
 
 public:
     
