@@ -29,12 +29,14 @@ public:
         : m_it1(std::move(*value.m_it1)), m_it2(std::move(*value.m_it2)) {} 
     ~BiValue() = default;
 
-    BiValue& operator=(const BiValue& value) {
+    BiValue& operator=(const BiValue& value)
+    {
         *m_it1 = *value.m_it1;
         *m_it2 = *value.m_it2;
         return *this;
     }
-    BiValue& operator=(BiValue&& value) noexcept {
+    BiValue& operator=(BiValue&& value) noexcept
+    {
         *m_it1 = std::move(*value.m_it1);
         *m_it2 = std::move(*value.m_it2);
         return *this;
@@ -151,7 +153,9 @@ public:
         return *lhs.m_it1 > *rhs.m_it1;
     }
     
-    void swap(BiValue& other) noexcept {
+    void swap(BiValue& other)
+        noexcept
+    {
         std::swap(*m_it1, *other.m_it1);
         std::swap(*m_it2, *other.m_it2);
     }
@@ -233,33 +237,36 @@ public:
     }
 
     [[nodiscard]]
-    std::ptrdiff_t operator-(const BiRandomAccessIterator& bit) const {
+    std::ptrdiff_t operator -(const BiRandomAccessIterator& bit) const
+    {
         return m_it1 - bit.m_it1;
     }
     [[nodiscard]]
-    const BiRandomAccessIterator operator+(std::ptrdiff_t n) const {
+    const BiRandomAccessIterator operator +(std::ptrdiff_t n) const
+    {
         return { m_it1 + n, m_it2 + n };
     }
     [[nodiscard]]
-    const BiRandomAccessIterator operator-(std::ptrdiff_t n) const {
+    const BiRandomAccessIterator operator -(std::ptrdiff_t n) const
+    {
         return { m_it1 - n, m_it2 - n };
     }
 
     [[nodiscard]]
     friend const BiRandomAccessIterator 
-        operator+(std::ptrdiff_t n, const BiRandomAccessIterator& bit)
+        operator +(std::ptrdiff_t n, const BiRandomAccessIterator& bit)
 	{
         return bit + n;
     }
 
-    BiRandomAccessIterator& operator++()
+    BiRandomAccessIterator& operator ++()
 	{
         ++m_it1;
         ++m_it2;
         return *this;
     }
 
-    BiRandomAccessIterator& operator--()
+    BiRandomAccessIterator& operator --()
 	{
         --m_it1;
         --m_it2;
@@ -267,25 +274,25 @@ public:
     }
 
     [[nodiscard]]
-    friend const BiRandomAccessIterator operator++(const BiRandomAccessIterator& bit)
+    friend const BiRandomAccessIterator operator ++(const BiRandomAccessIterator& bit)
 	{
         return { bit.m_it1 + 1u, bit.m_it2 + 1u };
     }
 
     [[nodiscard]]
-    friend const BiRandomAccessIterator operator--(const BiRandomAccessIterator& bit)
+    friend const BiRandomAccessIterator operator --(const BiRandomAccessIterator& bit)
 	{
         return { bit.m_it1 - 1u, bit.m_it2 - 1u };
     }
 
-    BiRandomAccessIterator& operator+=(std::ptrdiff_t n)
+    BiRandomAccessIterator& operator +=(std::ptrdiff_t n)
 	{
         m_it1 += n;
         m_it2 += n;
         return *this;
     }
 
-    BiRandomAccessIterator& operator-=(std::ptrdiff_t n)
+    BiRandomAccessIterator& operator -=(std::ptrdiff_t n)
 	{
         m_it1 -= n;
         m_it2 -= n;
