@@ -29,14 +29,14 @@ public:
         : m_it1(std::move(*value.m_it1)), m_it2(std::move(*value.m_it2)) {} 
     ~BiValue() = default;
 
-    auto operator=(const BiValue& value)
+    auto operator =(const BiValue& value)
         -> BiValue&
     {
         *m_it1 = *value.m_it1;
         *m_it2 = *value.m_it2;
         return *this;
     }
-    auto operator=(BiValue&& value)
+    auto operator =(BiValue&& value)
         noexcept -> BiValue&
     {
         *m_it1 = std::move(*value.m_it1);
