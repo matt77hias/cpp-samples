@@ -287,14 +287,16 @@ public:
         return { bit.m_it1 - 1u, bit.m_it2 - 1u };
     }
 
-    BiRandomAccessIterator& operator +=(std::ptrdiff_t n)
+    auto operator +=(std::ptrdiff_t n)
+        ->  BiRandomAccessIterator&
 	{
         m_it1 += n;
         m_it2 += n;
         return *this;
     }
-
-    BiRandomAccessIterator& operator -=(std::ptrdiff_t n)
+    
+    auto operator -=(std::ptrdiff_t n)
+        ->  BiRandomAccessIterator&
 	{
         m_it1 -= n;
         m_it2 -= n;
