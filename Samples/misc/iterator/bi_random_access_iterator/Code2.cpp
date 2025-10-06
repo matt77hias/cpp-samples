@@ -21,15 +21,19 @@ public:
     
     BiValue()
         noexcept
-        : m_it1{}, m_it2{} {}
+        : m_it1{}, m_it2{}
+    {}
     BiValue(FirstT it1, SecondT it2)
         noexcept
-        : m_it1(std::move(it1)), m_it2(std::move(it2)) {}
+        : m_it1(std::move(it1)), m_it2(std::move(it2))
+    {}
     BiValue(const BiValue& value) 
-        : m_it1(*value.m_it1), m_it2(*value.m_it2) {}
+        : m_it1(*value.m_it1), m_it2(*value.m_it2)
+    {}
     BiValue(BiValue&& value)
         noexcept 
-        : m_it1(std::move(*value.m_it1)), m_it2(std::move(*value.m_it2)) {} 
+        : m_it1(std::move(*value.m_it1)), m_it2(std::move(*value.m_it2))
+    {} 
     ~BiValue() = default;
 
     auto operator =(const BiValue& value)
